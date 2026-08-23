@@ -180,8 +180,9 @@ def build_one(ed):
         bodies.append({"id": t["id"], "label": t["label"], "desc": t["desc"],
                        "html": body, "count": cnt})
     doc["stats"]["본 호 수록"] = f"{total}건"
-    html = R.render_email(doc, datestr, bodies)
-    return html, doc, raw
+    mail = R.render_email(doc, datestr, bodies)     # 발송용: 탭 없이 순차 배치
+    web = R.render_web(doc, datestr, bodies)        # 웹 게시용: CSS 전용 탭
+    return mail, web, doc, raw
 
 
 def main():
@@ -200,11 +201,12 @@ def main():
     for f in files:
         ed = json.load(open(f, encoding="utf-8"))
         try:
-            html, doc, raw = build_one(ed)
+            mail, web, doc, raw = build_one(ed)
         except Exception as ex:
             errs.append(f"{ed.get('date')}: {type(ex).__name__} {ex}")
             continue
-        open(os.path.join(OUT, f"{ed['date']}.html"), "w", encoding="utf-8").write(html)
+        open(os.path.join(OUT, f"{ed['date']}.html"), "w", encoding="utf-8").write(mail)
+        open(os.path.join(OUT, f"{ed['date']}_web.html"), "w", encoding="utf-8").write(web)
         index.append({
             "date": ed["date"], "no": ed.get("no"),
             "subject": ed.get("subject", ""),
