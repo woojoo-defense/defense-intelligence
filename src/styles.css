@@ -196,7 +196,7 @@ footer b { color: #fff; display: block; margin-bottom: 6px; font-size: 13px; }
   display: flex; gap: 0; align-items: stretch; overflow-x: auto;
   padding-bottom: 10px;
 }
-.flow-col { display: flex; align-items: center; flex: 0 0 auto; }
+.flow-col { display: flex; align-items: flex-start; flex: 0 0 auto; }
 .stage {
   width: 268px; background: #fff; border: 1px solid var(--line);
   border-radius: 10px; padding: 16px; border-top: 4px solid var(--navy);
@@ -232,12 +232,15 @@ footer b { color: #fff; display: block; margin-bottom: 6px; font-size: 13px; }
   font-size: 10px; font-weight: 800; color: var(--blue); background: var(--bluebg);
   border-radius: 3px; padding: 3px 6px; white-space: nowrap;
 }
-.flow-arrow { color: #a9bccd; font-size: 22px; padding: 0 12px; flex: 0 0 auto; }
+.flow-arrow {
+  color: #93a9bd; font-size: 24px; padding: 0 10px; flex: 0 0 auto;
+  align-self: flex-start; margin-top: 26px; user-select: none;
+}
 @media (max-width: 820px) {
   .flow { flex-direction: column; }
   .flow-col { flex-direction: column; width: 100%; }
   .stage { width: 100%; }
-  .flow-arrow { transform: rotate(90deg); padding: 8px 0; }
+  .flow-arrow { transform: rotate(90deg); padding: 8px 0; margin: 0 auto; align-self: center; }
 }
 
 /* ---------------------------------------------------------------- 퍼널 */
