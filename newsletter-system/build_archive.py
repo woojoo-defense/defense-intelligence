@@ -153,6 +153,7 @@ def build_one(ed):
 
     doc = {
         "date": date, "issue": ed.get("no", 1),
+        "cadence": "주간 브리핑", "lead_title": "이번 주 핵심",
         "subject": ed.get("subject", ""), "preheader": ed.get("preheader", ""),
         "lead": ed.get("lead", ""),
         "stats": {"수집": f"{raw['counts']['unique']}건",

@@ -394,7 +394,7 @@ def header_block(ed, datestr):
       <td align="right" style="vertical-align:bottom;">
           <div style="font-size:12px;color:#a9c6e3;font-weight:600;">{datestr}</div>
           <div style="font-size:11px;color:#7fa8d4;margin-top:3px;">
-            제{e(ed.get('issue', 1))}호 · 데일리 시그널</div></td>
+            제{e(ed.get('issue', 1))}호 · {e(ed.get('cadence', '데일리 시그널'))}</div></td>
     </tr></table>
     <div style="margin-top:12px;padding-top:10px;border-top:1px solid #2a4d73;
                 font-size:11px;color:#8fb4d9;">
@@ -433,7 +433,7 @@ def lead_block(ed):
             f'style="background:{C["navy2"]};border-radius:6px;margin:0 0 22px;">'
             f'<tr><td style="padding:15px 18px;">'
             f'<div style="font-size:11px;font-weight:800;color:#8fb4d9;letter-spacing:1px;'
-            f'margin-bottom:6px;">오늘의 핵심</div>'
+            f'margin-bottom:6px;">{e(ed.get("lead_title", "오늘의 핵심"))}</div>'
             f'<div style="font-size:14px;line-height:1.7;color:#fff;">{ed["lead"]}</div>'
             f'</td></tr></table>')
 
