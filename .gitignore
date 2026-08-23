@@ -6,3 +6,4 @@ newsletter-system/secrets.json
 newsletter-system/__pycache__/
 newsletter-system/data/sam_cache/
 newsletter-system/data/sam_calls.json
+newsletter-system/_batch.py
