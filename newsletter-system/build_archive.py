@@ -57,7 +57,7 @@ def build_one(ed):
     raw = json.load(open(os.path.join(RAW, f"{date}.json"), encoding="utf-8"))
     items = raw["items"]
 
-    secs = []
+    brief_secs, global_secs = [], []
 
     feats = []
     for f in ed.get("features", []):
@@ -79,8 +79,10 @@ def build_one(ed):
             "source": it.get("outlet") or it.get("source"), "url": it["url"],
         })
     if feats:
-        secs.append({"kind": "feature", "title": "이번 주 핵심",
-                     "subtitle": "국내 기업의 사업기회 관점에서 본 주요 움직임", "items": feats})
+        brief_secs.append({"kind": "feature", "title": "이번 주 핵심",
+                           "subtitle": "국내 기업의 사업기회 관점에서 본 주요 움직임 — "
+                                       "왜 중요한가 · 누구에게 기회인가 · 지금 할 일",
+                           "items": feats})
 
     tds = []
     for t in ed.get("tenders", []):
@@ -92,9 +94,10 @@ def build_one(ed):
                     "note": t.get("note", ""), "stage": it.get("notice_type", ""),
                     "deadline": (it.get("deadline") or "")[:10], "url": it["url"]})
     if tds:
-        secs.append({"kind": "table", "title": "이번 주 해외 조달공고",
-                     "subtitle": "EU 공공조달(TED) 국방 분야 공고 중 국내 기업 대응 가능성이 있는 건",
-                     "items": tds})
+        global_secs.append({"kind": "table", "title": "해외 조달·입찰 공고",
+                            "subtitle": "EU 공공조달(TED) 국방 분야 공고 중 국내 기업 대응 가능성이 있는 건 — "
+                                        "제목 또는 우측 '공고'를 누르면 원문으로 이동합니다",
+                            "items": tds})
 
     brs = []
     for b in ed.get("briefs", []):
@@ -105,8 +108,48 @@ def build_one(ed):
                               f"{' · ' + it['date'] if it.get('date') else ''}",
                     "url": it["url"]})
     if brs:
-        secs.append({"kind": "brief", "title": "주요 동향",
-                     "subtitle": "제목을 누르면 원문으로 이동합니다", "items": brs})
+        global_secs.append({"kind": "brief", "title": "글로벌 시장·공급망 동향",
+                            "subtitle": "향후 사업으로 전환될 가능성이 있는 신호 — 제목을 누르면 원문으로 이동합니다",
+                            "items": brs})
+
+    # ---- 탭 구성: 주간 브리핑 / 글로벌 방산 정보 / 아티클 스크랩 / 전시회·MICE 캘린더
+    tabs = [
+        {"id": "brief", "label": "주간 브리핑",
+         "desc": "이번 주 가장 중요한 움직임을 골라 '왜 중요한가 → 누구에게 기회인가 → 지금 무엇을 할 것인가' "
+                 "순으로 정리했습니다.",
+         "sections": brief_secs},
+        {"id": "global", "label": "글로벌 방산 정보",
+         "desc": "이번 주 해외 조달공고와 글로벌 시장·공급망 동향입니다. "
+                 "마감일과 자격요건은 반드시 원문 공고로 확인하십시오.",
+         "sections": global_secs},
+        {"id": "scrap", "label": "방산 아티클 스크랩",
+         "desc": "이번 주 수집된 국내·해외 방산 기사를 제목과 원문 링크 중심으로 모았습니다. "
+                 "본문은 복제하지 않으며, 같은 사안을 여러 매체가 보도한 경우 대표기사 아래에 "
+                 "타 매체 링크를 함께 제공합니다.",
+         "sections": [
+             {"kind": "scrap", "title": "국내 방산 아티클",
+              "subtitle": "국내 매체 보도 — 제목을 누르면 원문으로 이동합니다",
+              "auto": {"region": "국내", "limit": 16, "show_snippet": False}},
+             {"kind": "scrap", "title": "해외 방산 아티클",
+              "subtitle": "해외 매체 보도 — 원제 그대로 표기하며 매체명과 함께 원문으로 연결됩니다",
+              "auto": {"region": "해외", "limit": 16, "show_snippet": False}},
+         ]},
+        {"id": "mice", "label": "전시회·MICE 캘린더",
+         "desc": "발행 시점 기준으로 다가오는 해외 방산전시회입니다. "
+                 "국가관·공동관 신청은 통상 개최 4~6개월 전에 마감되므로 D-180 시점부터 검토가 필요합니다.",
+         "sections": [
+             {"kind": "calendar", "title": "다가오는 해외 방산전시회",
+              "subtitle": "발행일 기준 D-day · 이미 끝난 행사는 자동 제외",
+              "auto": {"months": 20, "limit": 8}},
+             {"kind": "scrap", "title": "이번 주 전시회·상담회 소식",
+              "subtitle": "수집된 기사 중 전시회·사절단·상담회 관련 건",
+              "auto": {"limit": 6, "show_snippet": False,
+                       "keywords": ["exhibition", "expo", "air show", "trade fair", "전시회",
+                                    "상담회", "사절단", "DSEI", "IDEX", "Eurosatory", "ADEX",
+                                    "MSPO", "Indo Defence", "AUSA", "Euronaval", "EDEX",
+                                    "Aero India", "DSA ", "defence show", "pavilion", "국가관"]}},
+         ]},
+    ]
 
     doc = {
         "date": date, "issue": ed.get("no", 1),
@@ -114,15 +157,28 @@ def build_one(ed):
         "lead": ed.get("lead", ""),
         "stats": {"수집": f"{raw['counts']['unique']}건",
                   "조달공고": f"{raw['counts']['tender']}건",
-                  "본 호 수록": f"{len(feats) + len(tds) + len(brs)}건",
                   "대상기간": raw["covers"]},
-        "tabs": [{"id": "main", "label": "주간 브리핑", "desc": "", "sections": secs}],
+        "tabs": tabs,
     }
     d = datetime.strptime(date, "%Y-%m-%d")
     datestr = f"{d.year}년 {d.month}월 {d.day}일 ({'월화수목금토일'[d.weekday()]})"
-    body, _ = R.render_tab_body(doc["tabs"][0], date, set())
-    bodies = [{"id": "main", "label": "주간 브리핑", "desc": "",
-               "html": body, "count": len(feats) + len(tds) + len(brs)}]
+
+    used, bodies, total = set(), [], 0
+    today = d.date()
+    for t in tabs:
+        body, _ = R.render_tab_body(t, date, used)
+        cnt = 0
+        for sec in t["sections"]:
+            if sec.get("kind") == "calendar":
+                cnt += len(R.load_exhibitions(sec.get("auto", {}), today))
+            elif sec.get("kind") == "scrap":
+                cnt += len(R.fill_auto(sec, date, set(used)))
+            else:
+                cnt += len(sec.get("items", []))
+        total += cnt
+        bodies.append({"id": t["id"], "label": t["label"], "desc": t["desc"],
+                       "html": body, "count": cnt})
+    doc["stats"]["본 호 수록"] = f"{total}건"
     html = R.render_email(doc, datestr, bodies)
     return html, doc, raw
 
@@ -155,7 +211,7 @@ def main():
             "covers": raw["covers"],
             "counts": {"collected": raw["counts"]["unique"],
                        "tender": raw["counts"]["tender"],
-                       "published": doc["stats"]["본 호 수록"]},
+                       "published": doc["stats"].get("본 호 수록", "")},
             "tags": ed.get("tags", []),
         })
         print(f"  OK  {ed['date']}  제{ed.get('no')}호  {ed.get('subject', '')[:52]}")
