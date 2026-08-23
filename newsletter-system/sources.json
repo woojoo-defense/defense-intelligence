@@ -1,0 +1,863 @@
+{
+  "_comment": "방산MICE 글로벌 뉴스 수집 소스 정의. tier: 1=공식조달/정부, 2=전문매체, 3=타깃검색. 새 소스 추가는 이 파일만 수정하면 됨.",
+  "rss": [
+    {
+      "name": "DoD 일일 계약공고",
+      "tier": 1,
+      "url": "https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=800&Site=945&max=40",
+      "country": "미국",
+      "region": "해외"
+    },
+    {
+      "name": "UK MOD",
+      "tier": 1,
+      "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=ministry-of-defence",
+      "country": "영국",
+      "region": "해외"
+    },
+    {
+      "name": "UK DE&S (조달청)",
+      "tier": 1,
+      "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=defence-equipment-and-support",
+      "country": "영국",
+      "region": "해외"
+    },
+    {
+      "name": "Defense News",
+      "tier": 2,
+      "url": "https://www.defensenews.com/arc/outboundfeeds/rss/?outputType=xml",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "Breaking Defense",
+      "tier": 2,
+      "url": "https://breakingdefense.com/feed/",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "Defense One",
+      "tier": 2,
+      "url": "https://www.defenseone.com/rss/all/",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "DefenseScoop",
+      "tier": 2,
+      "url": "https://defensescoop.com/feed/",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "Naval News",
+      "tier": 2,
+      "url": "https://www.navalnews.com/feed/",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "Defence Industry Europe",
+      "tier": 2,
+      "url": "https://defence-industry.eu/feed/",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "Overt Defense",
+      "tier": 2,
+      "url": "https://www.overtdefense.com/feed/",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "Defence Blog",
+      "tier": 2,
+      "url": "https://defence-blog.com/feed/",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "국방신문",
+      "tier": 2,
+      "url": "https://www.gukbangnews.com/rss/allArticle.xml",
+      "country": "한국",
+      "region": "국내"
+    },
+    {
+      "name": "IDRW (인도 방산연구)",
+      "tier": 2,
+      "url": "https://idrw.org/feed/",
+      "country": "인도",
+      "region": "해외"
+    },
+    {
+      "name": "Bharat Shakti (인도)",
+      "tier": 2,
+      "url": "https://bharatshakti.in/feed/",
+      "country": "인도",
+      "region": "해외"
+    },
+    {
+      "name": "Livefist (인도)",
+      "tier": 2,
+      "url": "https://www.livefistdefence.com/feed",
+      "country": "인도",
+      "region": "해외"
+    },
+    {
+      "name": "DefenceNews.in (인도)",
+      "tier": 2,
+      "url": "https://www.defencenews.in/feed",
+      "country": "인도",
+      "region": "해외"
+    },
+    {
+      "name": "StratNews Global (인도)",
+      "tier": 2,
+      "url": "https://stratnewsglobal.com/feed/",
+      "country": "인도",
+      "region": "해외"
+    },
+    {
+      "name": "Military Leak",
+      "tier": 2,
+      "url": "https://militaryleak.com/feed/",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "Asian Military Review",
+      "tier": 2,
+      "url": "https://www.asianmilitaryreview.com/feed/",
+      "country": "",
+      "region": "해외"
+    },
+    {
+      "name": "Arab News (중동)",
+      "tier": 2,
+      "url": "https://www.arabnews.com/rss.xml",
+      "country": "",
+      "region": "해외",
+      "filter_kw": [
+        "defence",
+        "defense",
+        "military",
+        "army",
+        "navy",
+        "air force",
+        "weapon",
+        "missile",
+        "arms deal",
+        "fighter jet",
+        "drone",
+        "radar",
+        "warship",
+        "tank",
+        "artillery",
+        "procurement",
+        "tender",
+        "offset",
+        "armed forces",
+        "MoD",
+        "joint venture"
+      ]
+    },
+    {
+      "name": "The National UAE",
+      "tier": 2,
+      "url": "https://www.thenationalnews.com/arc/outboundfeeds/rss/?outputType=xml",
+      "country": "UAE",
+      "region": "해외",
+      "filter_kw": [
+        "defence",
+        "defense",
+        "military",
+        "army",
+        "navy",
+        "air force",
+        "weapon",
+        "missile",
+        "arms deal",
+        "fighter jet",
+        "drone",
+        "radar",
+        "warship",
+        "tank",
+        "artillery",
+        "procurement",
+        "tender",
+        "offset",
+        "armed forces",
+        "MoD",
+        "joint venture"
+      ]
+    }
+  ],
+  "_google_news_comment": "구글뉴스 RSS 타깃 쿼리. OEM 공급망·국가별 조달·한국기업 수출 3개 축. 쿼리 추가/삭제 자유.",
+  "google_news": [
+    {
+      "label": "OEM 공급망",
+      "q": "(Rheinmetall OR \"BAE Systems\" OR Leonardo OR Saab OR Thales OR KNDS) AND (supplier OR subcontract OR \"supply chain\" OR partnership)",
+      "region": "해외"
+    },
+    {
+      "label": "OEM 공급망",
+      "q": "(\"Lockheed Martin\" OR RTX OR Boeing OR \"Northrop Grumman\" OR \"General Dynamics\") AND (supplier OR \"supply chain\" OR \"industrial partner\")",
+      "region": "해외"
+    },
+    {
+      "label": "중동 현지화",
+      "q": "(EDGE OR SAMI OR GAMI OR ASELSAN OR \"Saudi Arabia\" OR UAE OR Qatar) AND (defence OR defense) AND (localisation OR localization OR \"joint venture\" OR offset)",
+      "region": "해외"
+    },
+    {
+      "label": "폴란드",
+      "q": "Poland defence procurement (tender OR contract OR offset OR \"local production\")",
+      "region": "해외"
+    },
+    {
+      "label": "루마니아",
+      "q": "Romania defence procurement (tender OR acquisition OR contract)",
+      "region": "해외"
+    },
+    {
+      "label": "인도네시아",
+      "q": "Indonesia defence procurement (tender OR acquisition OR contract)",
+      "region": "해외"
+    },
+    {
+      "label": "인도",
+      "q": "India defence procurement (RFI OR RFP OR tender OR \"Make in India\" OR offset)",
+      "region": "해외"
+    },
+    {
+      "label": "호주",
+      "q": "Australia defence (tender OR \"Australian Industry Capability\" OR acquisition program)",
+      "region": "해외"
+    },
+    {
+      "label": "동남아",
+      "q": "(Malaysia OR Philippines OR Vietnam OR Thailand) defence procurement (tender OR acquisition)",
+      "region": "해외"
+    },
+    {
+      "label": "K-방산 수출",
+      "q": "(Hanwha OR \"Korea Aerospace Industries\" OR \"Hyundai Rotem\" OR LIG Nex1 OR Poongsan OR \"South Korea\") defense export contract",
+      "region": "해외"
+    },
+    {
+      "label": "탄약·포병",
+      "q": "(artillery OR ammunition OR howitzer OR \"155mm\") (procurement OR production capacity OR contract OR shortage)",
+      "region": "해외"
+    },
+    {
+      "label": "대드론·C-UAS",
+      "q": "(counter-drone OR \"C-UAS\" OR \"counter-UAS\") military procurement contract",
+      "region": "해외"
+    },
+    {
+      "label": "MRO·후속군수",
+      "q": "(MRO OR sustainment OR \"depot level\" OR \"in-country maintenance\") defence contract",
+      "region": "해외"
+    },
+    {
+      "label": "NATO 공동조달",
+      "q": "(NSPA OR \"NATO Support and Procurement\" OR \"NATO procurement\") contract award",
+      "region": "해외"
+    },
+    {
+      "label": "방산전시회",
+      "q": "(defence exhibition OR defense expo) (DSEI OR IDEX OR Eurosatory OR \"DX Korea\" OR ADEX OR Indo Defence)",
+      "region": "해외"
+    },
+    {
+      "label": "사우디",
+      "q": "Saudi Arabia defence (GAMI OR SAMI OR localisation OR \"World Defense Show\" OR procurement OR contract)",
+      "region": "해외"
+    },
+    {
+      "label": "UAE",
+      "q": "UAE defence (EDGE Group OR Tawazun OR IDEX OR procurement OR contract OR offset)",
+      "region": "해외"
+    },
+    {
+      "label": "카타르·쿠웨이트",
+      "q": "(Qatar OR Kuwait OR Bahrain OR Oman) defence procurement OR armed forces contract",
+      "region": "해외"
+    },
+    {
+      "label": "이집트·북아프리카",
+      "q": "(Egypt OR Morocco OR Algeria) defence (procurement OR production OR contract OR agreement)",
+      "region": "해외"
+    },
+    {
+      "label": "인도-조달",
+      "q": "India defence (RFI OR RFP OR tender OR acceptance of necessity OR AoN OR emergency procurement)",
+      "region": "해외"
+    },
+    {
+      "label": "인도-현지생산",
+      "q": "India defence (\"Make in India\" OR offset OR technology transfer OR joint venture OR indigenisation) HAL OR BEL OR BDL OR Tata OR Mahindra",
+      "region": "해외"
+    },
+    {
+      "label": "인도-한국",
+      "q": "India Korea defence (Hanwha OR K9 Vajra OR L&T OR cooperation OR export)",
+      "region": "해외"
+    },
+    {
+      "label": "일본",
+      "q": "Japan defense (ATLA OR procurement OR export OR \"defense buildup\" OR Mitsubishi Heavy OR Kawasaki Heavy) contract",
+      "region": "해외"
+    },
+    {
+      "label": "튀르키예",
+      "q": "Turkey OR Turkiye defence (SSB OR ASELSAN OR Baykar OR TAI OR export OR procurement) contract",
+      "region": "해외"
+    },
+    {
+      "label": "우크라이나·재건",
+      "q": "Ukraine defence (procurement OR tender OR joint production OR co-production OR reconstruction) contract",
+      "region": "해외"
+    },
+    {
+      "label": "중남미",
+      "q": "(Brazil OR Peru OR Colombia OR Chile OR Mexico) defence (procurement OR tender OR acquisition OR modernisation)",
+      "region": "해외"
+    },
+    {
+      "label": "동아시아",
+      "q": "(Taiwan OR Japan OR Philippines) defence budget OR acquisition OR indigenous program",
+      "region": "해외"
+    },
+    {
+      "label": "경쟁사동향",
+      "q": "(Elbit OR IAI OR Rafael OR Embraer OR Norinco OR Rosoboronexport) export contract win",
+      "region": "해외"
+    },
+    {
+      "label": "북유럽·발트",
+      "q": "(Norway OR Sweden OR Denmark OR Finland OR Estonia OR Latvia OR Lithuania) defence procurement contract",
+      "region": "해외"
+    },
+    {
+      "label": "아프리카",
+      "q": "(Nigeria OR South Africa OR Kenya OR Ghana) defence procurement OR acquisition contract",
+      "region": "해외"
+    }
+  ],
+  "_ted_comment": "EU 공공조달 공고(TED). API 키 불필요. CPV 353~359=무기/군용차량/함정/군용기/군전자/군수품, 50600000=방산장비 정비, 75220000=국방서비스",
+  "ted": {
+    "enabled": true,
+    "days_back": 3,
+    "cpv_prefixes": [
+      "353",
+      "354",
+      "355",
+      "356",
+      "357",
+      "358",
+      "359",
+      "506",
+      "7522"
+    ],
+    "limit": 100
+  },
+  "_scoring_comment": "자동 사전채점 가중치(합계 100 상한). 최종 발행 판단은 사람이 한다.",
+  "scoring": {
+    "procurement_stage": {
+      "weight": 25,
+      "kw": [
+        "tender",
+        "rfp",
+        "rfi",
+        "solicitation",
+        "request for proposal",
+        "request for information",
+        "contract notice",
+        "invitation to bid",
+        "prior information",
+        "procurement",
+        "framework agreement",
+        "awarded",
+        "contract award",
+        "공고",
+        "입찰",
+        "사전수요조사",
+        "사전공고",
+        "입찰공고",
+        "낙찰공고",
+        "sources sought",
+        "presolicitation"
+      ]
+    },
+    "supply_chain": {
+      "weight": 20,
+      "kw": [
+        "supplier",
+        "subcontract",
+        "supply chain",
+        "industrial partner",
+        "joint venture",
+        "offset",
+        "local production",
+        "localisation",
+        "localization",
+        "technology transfer",
+        "co-production",
+        "mro",
+        "sustainment",
+        "spare parts",
+        "vendor"
+      ]
+    },
+    "korea_link": {
+      "weight": 20,
+      "kw": [
+        "korea",
+        "korean",
+        "hanwha",
+        "kai",
+        "lig nex1",
+        "hyundai rotem",
+        "poongsan",
+        "k9",
+        "k2",
+        "fa-50",
+        "kf-21",
+        "chunmoo",
+        "redback"
+      ]
+    },
+    "focus_country": {
+      "weight": 15,
+      "kw": [
+        "poland",
+        "polish",
+        "romania",
+        "czech",
+        "finland",
+        "norway",
+        "estonia",
+        "latvia",
+        "lithuania",
+        "saudi",
+        "uae",
+        "emirates",
+        "qatar",
+        "oman",
+        "egypt",
+        "india",
+        "indonesia",
+        "malaysia",
+        "philippines",
+        "vietnam",
+        "australia",
+        "canada",
+        "peru",
+        "morocco",
+        "nato",
+        "european union",
+        "turkey",
+        "türkiye",
+        "israel",
+        "brazil",
+        "colombia",
+        "kuwait",
+        "bahrain",
+        "jordan",
+        "japan",
+        "taiwan",
+        "ukraine",
+        "chile",
+        "mexico",
+        "nigeria",
+        "south africa",
+        "sweden",
+        "denmark"
+      ]
+    },
+    "product_fit": {
+      "weight": 15,
+      "kw": [
+        "artillery",
+        "howitzer",
+        "ammunition",
+        "155mm",
+        "armoured vehicle",
+        "armored vehicle",
+        "infantry fighting vehicle",
+        "self-propelled",
+        "multiple launch rocket",
+        "trainer aircraft",
+        "light attack",
+        "submarine",
+        "frigate",
+        "corvette",
+        "patrol vessel",
+        "radar",
+        "electro-optical",
+        "c-uas",
+        "counter-drone",
+        "simulator",
+        "night vision",
+        "fire control",
+        "guided missile",
+        "air defence",
+        "air defense"
+      ]
+    },
+    "exhibition": {
+      "weight": 10,
+      "kw": [
+        "exhibition",
+        "expo",
+        "air show",
+        "trade fair",
+        "dsei",
+        "idex",
+        "eurosatory",
+        "adex",
+        "indo defence",
+        "defexpo",
+        "world defense show"
+      ]
+    },
+    "penalty_ops": {
+      "weight": -25,
+      "kw": [
+        "killed",
+        "casualt",
+        "strike on",
+        "offensive",
+        "frontline",
+        "front line",
+        "airstrike",
+        "shelling",
+        "invasion",
+        "troops deployed",
+        "war crime",
+        "ceasefire",
+        "peace talks"
+      ]
+    }
+  },
+  "focus_countries": [
+    "폴란드",
+    "루마니아",
+    "체코",
+    "핀란드",
+    "노르웨이",
+    "영국",
+    "독일",
+    "프랑스",
+    "사우디아라비아",
+    "UAE",
+    "카타르",
+    "오만",
+    "이집트",
+    "인도",
+    "인도네시아",
+    "말레이시아",
+    "필리핀",
+    "베트남",
+    "호주",
+    "미국",
+    "캐나다",
+    "페루",
+    "모로코"
+  ],
+  "_google_news_kr_comment": "국내 방산 아티클 스크랩용 한국어 구글뉴스 쿼리. hl=ko&gl=KR로 수집.",
+  "google_news_kr": [
+    {
+      "label": "방산수출",
+      "q": "방산 수출",
+      "region": "국내"
+    },
+    {
+      "label": "방위산업",
+      "q": "방위산업 OR 방산기업",
+      "region": "국내"
+    },
+    {
+      "label": "방위사업청",
+      "q": "방위사업청 사업 OR 계약 OR 입찰",
+      "region": "국내"
+    },
+    {
+      "label": "주요기업",
+      "q": "한화에어로스페이스 OR KAI OR LIG넥스원 OR 현대로템 OR 풍산 방산",
+      "region": "국내"
+    },
+    {
+      "label": "수출협상",
+      "q": "K-방산 수출 계약 OR 협상 OR 상담",
+      "region": "국내"
+    },
+    {
+      "label": "절충교역",
+      "q": "절충교역 OR 기술이전 OR 현지생산 방산",
+      "region": "국내"
+    },
+    {
+      "label": "전시회·MICE",
+      "q": "방산 전시회 OR ADEX OR DX코리아 OR 방산 상담회",
+      "region": "국내"
+    },
+    {
+      "label": "국방예산",
+      "q": "국방예산 OR 전력증강 OR 방위력개선비",
+      "region": "국내"
+    },
+    {
+      "label": "오피니언·칼럼",
+      "q": "방산 칼럼 OR 기고 OR 오피니언 OR 사설 방위산업",
+      "region": "국내"
+    },
+    {
+      "label": "연구·보고서",
+      "q": "방위산업 연구 OR 보고서 OR 정책연구 OR 국방연구원 OR 방위산업학회",
+      "region": "국내"
+    }
+  ],
+  "_filter_comment": "스크랩 품질 관리. blocklist_outlets=제외 매체(기계번역·수집형 사이트), blocklist_title_kw=제목에 포함되면 제외",
+  "blocklist_outlets": [
+    "Vietnam.vn",
+    "vietnam.vn",
+    "MSN",
+    "msn.com",
+    "Yahoo",
+    "news.google.com"
+  ],
+  "blocklist_title_kw": [
+    "스캔들",
+    "뇌물",
+    "성추행",
+    "음주운전",
+    "부고",
+    "인사말",
+    "주가",
+    "급등",
+    "급락",
+    "상한가",
+    "테마주",
+    "수혜주",
+    "마감시황",
+    "증시",
+    "코스피",
+    "코스닥"
+  ],
+  "_preferred_comment": "같은 사건을 여러 매체가 보도할 때 대표기사로 삼을 매체 우선순위",
+  "preferred_outlets": [
+    "연합뉴스",
+    "조선일보",
+    "매일경제",
+    "한국경제",
+    "서울경제",
+    "파이낸셜뉴스",
+    "뉴시스",
+    "이데일리",
+    "머니투데이",
+    "아시아경제",
+    "헤럴드경제",
+    "전자신문",
+    "디펜스투데이",
+    "국방신문",
+    "Defense News",
+    "Breaking Defense",
+    "Reuters",
+    "Naval News",
+    "Defence Industry Europe",
+    "Defense One"
+  ],
+  "_sam_comment": "미국 연방조달(SAM.gov) Get Opportunities Public API. API 키 필요 — system/secrets.json 의 sam_api_key 또는 환경변수 SAM_API_KEY. ★ 개인(비연방) 계정은 하루 10회 요청 제한. 사업자 등록(UEI) 계정은 1,000회. ptypes 항목 수 x max_pages = 하루 최대 호출 수이므로 넉넉히 잡지 말 것. ptype: r=사전수요조사, p=사전공고, o=입찰공고, k=통합공고, a=낙찰공고",
+  "sam": {
+    "enabled": true,
+    "days_back": 3,
+    "ptypes": [
+      "r",
+      "p"
+    ],
+    "limit": 1000,
+    "max_pages": 2,
+    "psc_prefixes": [
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "19",
+      "20",
+      "23",
+      "24",
+      "25",
+      "28",
+      "58",
+      "59",
+      "J0"
+    ],
+    "agency_keywords": [
+      "DEFENSE",
+      "ARMY",
+      "NAVY",
+      "AIR FORCE",
+      "MARINE",
+      "DEFENSE LOGISTICS",
+      "DLA",
+      "SOCOM",
+      "SPECIAL OPERATIONS",
+      "MISSILE DEFENSE",
+      "SPACE FORCE"
+    ],
+    "daily_call_budget": 8
+  },
+  "_portals_comment": "주요국 조달포털. 모두 API 키 불필요. canada=CanadaBuys 공개 CSV, poland=e-Zamowienia(EU 기준액 미만 국내공고, TED 미게재분), uk=Find a Tender Service(OCDS). 폴란드는 서버측 CPV 필터가 부정확해 폴란드어 품목 키워드로 조회한다.",
+  "portals": {
+    "canada": {
+      "enabled": true,
+      "url": "https://canadabuys.canada.ca/opendata/pub/openTenderNotice-ouvertAvisAppelOffres.csv"
+    },
+    "poland": {
+      "enabled": false,
+      "keywords": [
+        "amunicja",
+        "broń",
+        "wojskow",
+        "pojazd",
+        "czołg",
+        "uzbrojenie",
+        "radiostacja",
+        "kamizelka",
+        "noktowizyjn",
+        "radar",
+        "śmigłowiec",
+        "remont sprzętu"
+      ],
+      "cpv_prefixes": [
+        "35",
+        "1443",
+        "1852",
+        "3410",
+        "5063",
+        "5065",
+        "5066"
+      ],
+      "_why_disabled": "검증 결과 폴란드 국내포털의 방산 공고는 대부분 TED 재게재분이라 중복이고, 국내 전용 공고는 부대 급식·시설·도로공사가 대부분이어서 수출기회로서 가치가 낮음. Agencja Uzbrojenia(군비청) 대형사업은 TED로 나오므로 EU 수집기가 이미 커버함. 필요 시 enabled를 true로 바꾸면 즉시 동작함."
+    },
+    "uk": {
+      "enabled": true,
+      "max_pages": 6,
+      "cpv_prefixes": [
+        "353",
+        "354",
+        "355",
+        "356",
+        "357",
+        "358",
+        "359",
+        "5060",
+        "7522"
+      ]
+    }
+  },
+  "_brazil_note": "브라질 PNCP(신규 국가조달 API, https://pncp.gov.br/api/consulta/v1/) 는 키 없이 동작 확인됨. 국방부·육해공군 발주기관 필터만 붙이면 즉시 추가 가능하나 한국 기업 수출 실적이 적어 보류.",
+  "_papers_comment": "OpenAlex 학술논문 API(키 불필요). 검색어는 반드시 따옴표로 묶은 구(phrase)로 쓸 것. 'defense' 단독으로는 식물 방어기작·독성학 논문이 대량 유입된다.",
+  "papers": {
+    "enabled": true,
+    "days_back": 240,
+    "per_query": 10,
+    "sort": "cited_by_count:desc",
+    "mailto": "newsletter@example.org",
+    "queries": [
+      "\"defence industry\"",
+      "\"defense industrial base\"",
+      "\"arms export\"",
+      "\"arms transfer\"",
+      "\"defence procurement\"",
+      "\"defense acquisition\"",
+      "\"military spending\"",
+      "\"defence offset\"",
+      "\"defence supply chain\"",
+      "\"defence exports\"",
+      "\"military industry\" Korea"
+    ],
+    "kr_queries": [
+      "\"defence industry\"",
+      "\"defense industry\"",
+      "\"arms export\"",
+      "\"military\" procurement",
+      "\"defense acquisition\"",
+      "\"defence policy\""
+    ]
+  },
+  "_opinion_comment": "싱크탱크·전문매체 기고·논평 RSS. filter_kw로 방산 무관 논평을 걸러낸다.",
+  "opinion": {
+    "enabled": true,
+    "per_feed": 25,
+    "filter_kw": [
+      "defence",
+      "defense",
+      "military",
+      "army",
+      "navy",
+      "air force",
+      "weapon",
+      "missile",
+      "procurement",
+      "arms",
+      "industrial base",
+      "supply chain",
+      "deterrence",
+      "alliance",
+      "nato",
+      "export",
+      "drone",
+      "shipbuilding",
+      "artillery",
+      "ammunition"
+    ],
+    "feeds": [
+      {
+        "name": "War on the Rocks",
+        "url": "https://warontherocks.com/feed/"
+      },
+      {
+        "name": "Defense One Ideas",
+        "url": "https://www.defenseone.com/rss/ideas/"
+      },
+      {
+        "name": "Atlantic Council",
+        "url": "https://www.atlanticcouncil.org/feed/"
+      },
+      {
+        "name": "Lowy Interpreter",
+        "url": "https://www.lowyinstitute.org/the-interpreter/rss.xml"
+      },
+      {
+        "name": "19FortyFive",
+        "url": "https://www.19fortyfive.com/feed/"
+      },
+      {
+        "name": "Modern War Institute",
+        "url": "https://mwi.westpoint.edu/feed/"
+      },
+      {
+        "name": "European Security & Defence",
+        "url": "https://euro-sd.com/feed/"
+      },
+      {
+        "name": "RealClearDefense",
+        "url": "https://www.realcleardefense.com/index.xml"
+      },
+      {
+        "name": "Euro-SD Opinion",
+        "url": "https://euro-sd.com/category/opinion/feed/"
+      }
+    ]
+  }
+}

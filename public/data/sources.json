@@ -1,0 +1,223 @@
+{
+ "official": {
+  "label": "공식 조달·정부",
+  "desc": "발주기관·마감일·품목분류가 원문 그대로 들어오는 1차 자료",
+  "grade": "A",
+  "items": [
+   {
+    "n": "TED",
+    "f": "ted.png",
+    "d": "EU 27개국 공공조달 공고",
+    "u": "https://ted.europa.eu"
+   },
+   {
+    "n": "SAM.gov",
+    "f": "sam.png",
+    "d": "미국 연방조달 사전수요조사·사전공고",
+    "u": "https://sam.gov"
+   },
+   {
+    "n": "U.S. DoD",
+    "f": "dod.png",
+    "d": "미 국방부 일일 계약공고",
+    "u": "https://www.defense.gov"
+   },
+   {
+    "n": "UK MOD / DE&S",
+    "f": "ukmod.png",
+    "d": "영국 국방부·조달청 발표",
+    "u": "https://www.gov.uk"
+   },
+   {
+    "n": "Find a Tender",
+    "f": "findtender.ico",
+    "d": "영국 고액 조달공고(OCDS)",
+    "u": "https://www.find-tender.service.gov.uk"
+   },
+   {
+    "n": "CanadaBuys",
+    "f": "canadabuys.png",
+    "d": "캐나다 국방부 등 공개 입찰",
+    "u": "https://canadabuys.canada.ca"
+   }
+  ]
+ },
+ "media": {
+  "label": "글로벌 방산 전문매체",
+  "desc": "사업 신호를 가장 먼저 포착하는 이슈 탐지 계층",
+  "grade": "C",
+  "items": [
+   {
+    "n": "Defense News",
+    "f": "defensenews.png",
+    "d": "",
+    "u": "https://www.defensenews.com"
+   },
+   {
+    "n": "Breaking Defense",
+    "f": "breakingdefense.png",
+    "d": "",
+    "u": "https://breakingdefense.com"
+   },
+   {
+    "n": "Defense One",
+    "f": "defenseone.png",
+    "d": "",
+    "u": "https://www.defenseone.com"
+   },
+   {
+    "n": "Naval News",
+    "f": "navalnews.png",
+    "d": "",
+    "u": "https://www.navalnews.com"
+   },
+   {
+    "n": "DefenseScoop",
+    "f": "defensescoop.png",
+    "d": "",
+    "u": "https://defensescoop.com"
+   },
+   {
+    "n": "Defence Industry Europe",
+    "f": "dieurope.png",
+    "d": "",
+    "u": "https://defence-industry.eu"
+   },
+   {
+    "n": "Defence Blog",
+    "f": "defenceblog.png",
+    "d": "",
+    "u": "https://defence-blog.com"
+   },
+   {
+    "n": "Military Leak",
+    "f": "militaryleak.png",
+    "d": "",
+    "u": "https://militaryleak.com"
+   }
+  ]
+ },
+ "region": {
+  "label": "지역 전문매체",
+  "desc": "공개 조달 API가 없는 인도·중동·아시아를 매체로 보완",
+  "grade": "C",
+  "items": [
+   {
+    "n": "IDRW",
+    "f": "idrw.png",
+    "d": "인도",
+    "u": "https://idrw.org"
+   },
+   {
+    "n": "Bharat Shakti",
+    "f": "bharatshakti.png",
+    "d": "인도",
+    "u": "https://bharatshakti.in"
+   },
+   {
+    "n": "Livefist",
+    "f": "livefist.png",
+    "d": "인도",
+    "u": "https://www.livefistdefence.com"
+   },
+   {
+    "n": "StratNews Global",
+    "f": "stratnews.png",
+    "d": "인도",
+    "u": "https://stratnewsglobal.com"
+   },
+   {
+    "n": "Asian Military Review",
+    "f": "amr.png",
+    "d": "아시아·태평양",
+    "u": "https://www.asianmilitaryreview.com"
+   },
+   {
+    "n": "Arab News",
+    "f": "arabnews.png",
+    "d": "중동",
+    "u": "https://www.arabnews.com"
+   },
+   {
+    "n": "The National",
+    "f": "thenational.png",
+    "d": "UAE",
+    "u": "https://www.thenationalnews.com"
+   },
+   {
+    "n": "국방신문",
+    "f": "gukbang.png",
+    "d": "국내",
+    "u": "https://www.gukbangnews.com"
+   }
+  ]
+ },
+ "research": {
+  "label": "연구·오피니언",
+  "desc": "흐름의 배경을 읽는 계층. 논문과 싱크탱크 논평",
+  "grade": "B",
+  "items": [
+   {
+    "n": "OpenAlex",
+    "f": "openalex.png",
+    "d": "학술논문 색인",
+    "u": "https://openalex.org"
+   },
+   {
+    "n": "War on the Rocks",
+    "f": "wotr.png",
+    "d": "",
+    "u": "https://warontherocks.com"
+   },
+   {
+    "n": "Atlantic Council",
+    "f": "atlanticcouncil.png",
+    "d": "",
+    "u": "https://www.atlanticcouncil.org"
+   },
+   {
+    "n": "Lowy Interpreter",
+    "f": "lowy.png",
+    "d": "",
+    "u": "https://www.lowyinstitute.org"
+   },
+   {
+    "n": "Modern War Institute",
+    "f": "mwi.png",
+    "d": "",
+    "u": "https://mwi.westpoint.edu"
+   },
+   {
+    "n": "RealClearDefense",
+    "f": "rcd.png",
+    "d": "",
+    "u": "https://www.realcleardefense.com"
+   },
+   {
+    "n": "European Security & Defence",
+    "f": "eurosd.png",
+    "d": "",
+    "u": "https://euro-sd.com"
+   },
+   {
+    "n": "19FortyFive",
+    "f": "f45.png",
+    "d": "",
+    "u": "https://www.19fortyfive.com"
+   }
+  ]
+ },
+ "search": {
+  "label": "타깃 검색",
+  "desc": "개별 피드가 없는 OEM·신흥시장을 30개 쿼리로 보완",
+  "grade": "C",
+  "items": [
+   {
+    "n": "Google News (30개 쿼리)",
+    "f": "googlenews.png",
+    "d": "국가·품목·OEM별",
+    "u": "https://news.google.com"
+   }
+  ]
+ }
+}
