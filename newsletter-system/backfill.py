@@ -156,7 +156,7 @@ def fetch_ted(d_from, d_to, cpv_prefixes, limit=100):
         pubno = n.get("publication-number", "")
         rows.append({
             "title": clean(pick("notice-title"), 300),
-            "url": f"https://ted.europa.eu/en/notice/{pubno}",
+            "url": f"https://ted.europa.eu/en/notice/-/detail/{pubno}",
             "snippet": clean(pick("description-lot"), 400),
             "published": str(n.get("publication-date", "")),
             "date": str(n.get("publication-date", ""))[:10],

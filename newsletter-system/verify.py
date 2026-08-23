@@ -29,6 +29,12 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# 수집기가 '조립한' 주소를 쓰는 도메인.
+# 원자료에 있다고 신뢰하면 안 된다 — 주소 형식을 우리가 만든 것이므로 형식이 틀리면 전부 죽는다.
+# 실제로 TED 주소 형식을 잘못 만들어 전 호의 링크가 404였던 사고가 있었다.
+BUILT_URL_HOSTS = ("ted.europa.eu", "sam.gov", "canadabuys.canada.ca",
+                   "ezamowienia.gov.pl", "find-tender.service.gov.uk")
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126.0 Safari/537.36"}
 CTX = ssl.create_default_context()
 CTX.check_hostname = False
@@ -113,7 +119,8 @@ def main():
 
     todo, ok_known = [], []
     for where, title, url in urls:
-        if url in known and not args.all:
+        built = any(h in url for h in BUILT_URL_HOSTS)
+        if url in known and not args.all and not built:
             ok_known.append((where, title, url))
         else:
             todo.append((where, title, url))
@@ -122,7 +129,8 @@ def main():
     print(f"[2] 원자료에 없는 링크 {len(todo)}건 → 실제 접속 확인 중…\n")
 
     bad, suspicious = [], []
-    with cf.ThreadPoolExecutor(max_workers=8) as ex:
+    workers = 3 if any(h in u for _, _, u in todo for h in BUILT_URL_HOSTS) else 8
+    with cf.ThreadPoolExecutor(max_workers=workers) as ex:
         futs = {ex.submit(check, u): (w, t, u) for w, t, u in todo}
         for f in cf.as_completed(futs):
             w, t, u = futs[f]

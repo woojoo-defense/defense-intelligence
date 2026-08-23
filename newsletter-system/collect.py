@@ -216,7 +216,7 @@ def collect_ted(cfg):
         pubno = n.get("publication-number", "")
         out.append({
             "title": title,
-            "url": f"https://ted.europa.eu/en/notice/{pubno}",
+            "url": f"https://ted.europa.eu/en/notice/-/detail/{pubno}",
             "snippet": clean(pick("description-lot"), 400),
             "published": str(n.get("publication-date", "")),
             "date": str(n.get("publication-date", ""))[:10],
