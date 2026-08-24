@@ -324,9 +324,10 @@ def fill_auto(sec, date, used_urls):
     for it in raw:
         if len(picked) >= cfg.get("limit", 20):
             break
-        if cfg.get("region") and it.get("region") != cfg["region"]:
+        kinds = cfg.get("kinds", ["news"])
+        if it.get("kind", "news") not in kinds:
             continue
-        if it.get("kind") == "tender" and not cfg.get("include_tender"):
+        if cfg.get("region") and it.get("region") != cfg["region"]:
             continue
         if it["url"] in used_urls:
             continue
@@ -338,13 +339,26 @@ def fill_auto(sec, date, used_urls):
             if not any(k.lower() in blob for k in kws):
                 continue
         used_urls.add(it["url"])
-        picked.append({
+        row = {
             "title": it["title"], "url": it["url"],
             "outlet": it.get("outlet") or it.get("source"),
             "date": it.get("date", ""), "others": it.get("others", []),
             "note": (it.get("snippet", "")[:110] + "…") if cfg.get("show_snippet")
                     and it.get("snippet") else "",
-        })
+        }
+        # 논문·오피니언은 부가정보를 함께 표기한다
+        if it.get("kind") == "paper":
+            row["outlet"] = it.get("journal") or row["outlet"]
+            meta = []
+            if it.get("citations"):
+                meta.append(f"인용 {it['citations']}")
+            meta.append("오픈액세스" if it.get("is_oa") else "유료 저널")
+            if it.get("authors"):
+                meta.insert(0, it["authors"][:60])
+            row["note"] = " · ".join(meta)
+        elif it.get("kind") == "opinion" and it.get("author"):
+            row["note"] = f"필자: {it['author']}"
+        picked.append(row)
     return picked
 
 

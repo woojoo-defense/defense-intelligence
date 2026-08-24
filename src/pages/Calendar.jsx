@@ -39,7 +39,7 @@ export default function Calendar() {
             const d = r.verified ? dday(r.start) : null
             const cls = d === null ? 'd-tbd' : d <= 30 ? 'd-soon' : d <= 90 ? 'd-mid' : 'd-far'
             return (
-              <div className="exh" key={r.name}>
+              <div className={"exh" + (r.country === "대한민국" ? " exh-kr" : "")} key={r.name}>
                 <div className={`dday ${cls}`}>
                   <b>{d === null ? '미정' : `D-${d}`}</b>
                   <span>{r.country}</span>

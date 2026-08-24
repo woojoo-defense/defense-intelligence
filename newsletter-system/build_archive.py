@@ -133,6 +133,9 @@ def build_one(ed):
              {"kind": "scrap", "title": "해외 방산 아티클",
               "subtitle": "해외 매체 보도 — 원제 그대로 표기하며 매체명과 함께 원문으로 연결됩니다",
               "auto": {"region": "해외", "limit": 16, "show_snippet": False}},
+             {"kind": "scrap", "title": "연구·오피니언",
+              "subtitle": "학술논문과 싱크탱크 기고 — 저널명·필자와 함께 원문(DOI)으로 연결됩니다",
+              "auto": {"kinds": ["paper", "opinion"], "limit": 10, "show_snippet": False}},
          ]},
         {"id": "mice", "label": "전시회·MICE 캘린더",
          "desc": "발행 시점 기준으로 다가오는 해외 방산전시회입니다. "
@@ -219,6 +222,15 @@ def main():
         })
         print(f"  OK  {ed['date']}  제{ed.get('no')}호  {ed.get('subject', '')[:52]}")
 
+    # 기존 색인의 아카이브 외 항목(데일리 등)은 보존한다
+    if os.path.exists(IDX):
+        try:
+            built = {e["date"] for e in index}
+            for e in json.load(open(IDX, encoding="utf-8")):
+                if e["date"] not in built:
+                    index.append(e)
+        except Exception:
+            pass
     index.sort(key=lambda x: x["date"], reverse=True)
     json.dump(index, open(IDX, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"\n{len(index)}개 호 생성 → {OUT}")

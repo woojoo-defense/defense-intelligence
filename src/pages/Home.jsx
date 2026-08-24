@@ -17,47 +17,61 @@ export default function Home() {
 
   return (
     <>
-      {/* ------------------------------------------------ 히어로 */}
-      <div className="hero">
+      {/* ------------------------------------------------ 히어로: 짧은 헤드라인 */}
+      <div className="hero" style={{ textAlign: 'center' }}>
         <div className="wrap">
           <div className="eyebrow">K-DEFENSE GLOBAL MARKET INTELLIGENCE</div>
           <h1>
-            해외 조달공고는 이미 공개돼 있습니다.<br />
-            문제는 <em>아무도 한국 기업 관점으로</em> 읽어주지 않는다는 것입니다.
+            뉴스에서, <em>수출기회</em>까지
           </h1>
-          <p>
-            매주 전 세계 조달포털·정부 발표·전문매체에서 수백 건을 수집해,
-            국내 기업이 실제로 대응할 수 있는 건만 골라
-            <b> “왜 중요한가 → 누구에게 기회인가 → 이번 주에 무엇을 할 것인가”</b>로 바꿔 보내드립니다.
+          <div className="hero-date">
+            매주 월요일 발행 <b>·</b> 방산MICE 글로벌 마켓 인텔리전스
+          </div>
+          <p style={{ margin: '0 auto 30px' }}>
+            전 세계 조달포털·정부 발표·전문매체의 신호를
+            국내 방산기업의 <b style={{ color: '#fff' }}>사업기회</b>로 바꿔 전달합니다.
           </p>
           <div>
             {latest && (
               <Link className="btn btn-primary" to={`/archive/${latest.date}`}>
-                최신호 읽기 ({latest.date})
+                최신호 읽기 ▸
               </Link>
             )}
-            <Link className="btn btn-ghost" to="/archive">아카이브 전체 보기</Link>
-            <Link className="btn btn-ghost" to="/how-it-works">작동 방식</Link>
+            <Link className="btn btn-ghost" to="/archive">아카이브</Link>
           </div>
 
           <div className="stats">
-            <div><b>{issues.length || 34}호</b><span>2026년 1월 5일부터 매주 월요일 발행</span></div>
-            <div><b>{srcCount}곳</b><span>상시 수집 중인 정보원</span></div>
-            <div><b>32개국</b><span>조달공고 원문이 들어오는 국가</span></div>
-            <div><b>주 300건+</b><span>수집 후 30건 내외로 압축</span></div>
+            <div><b>{issues.length || 35}+</b><span>ISSUE</span><small>2026년 1월 5일 창간</small></div>
+            <div><b>{srcCount}</b><span>SOURCE</span><small>상시 수집 정보원</small></div>
+            <div><b>32</b><span>COUNTRY</span><small>조달공고 원문 수집국</small></div>
+            <div><b>300+</b><span>WEEKLY</span><small>주간 수집 후 30건으로 압축</small></div>
           </div>
         </div>
       </div>
 
-      {/* ------------------------------------------------ 문제 정의 */}
+      {/* ------------------------------------------------ 퀵메뉴 (K-DEX 스트립) */}
+      <div className="quickbar">
+        <div className="quickbar-in">
+          <Link to={latest ? `/archive/${latest.date}` : '/archive'}>
+            <span className="qi">◎</span> 최신호 보기
+          </Link>
+          <Link to="/archive"><span className="qi">▤</span> 아카이브</Link>
+          <Link to="/how-it-works"><span className="qi">⚙</span> 작동 방식</Link>
+          <Link to="/calendar"><span className="qi">▦</span> 전시회 캘린더</Link>
+        </div>
+      </div>
+
+      {/* ------------------------------------------------ 문제 정의 (히어로에서 내려온 카피) */}
       <section>
         <div className="wrap narrow">
-          <div className="kicker">왜 또 하나의 방산뉴스인가</div>
-          <h2 className="sec">뉴스를 읽는 것과, 기회를 잡는 것은 다릅니다</h2>
-          <p className="lead" style={{ color: 'var(--ink)' }}>
-            국내 방산뉴스는 이미 충분히 많습니다. 다만 대부분 <b>“무슨 일이 있었다”</b>에서 끝납니다.
-            정작 기업이 알아야 할 것은 그 다음입니다. 이 공고에 우리가 들어갈 수 있는가,
-            자격요건은 무엇인가, 마감은 언제이며, 누구를 통해 접촉하는가.
+          <div className="kicker">Why Intelligence</div>
+          <h2 className="sec">
+            해외 조달공고는 이미 공개돼 있습니다.<br />
+            문제는 아무도 한국 기업 관점으로 읽어주지 않는다는 것입니다.
+          </h2>
+          <p className="lead" style={{ color: 'var(--ink)', marginTop: 18 }}>
+            매주 전 세계에서 수백 건을 수집해, 국내 기업이 실제로 대응할 수 있는 건만 골라
+            <b> “왜 중요한가 → 누구에게 기회인가 → 이번 주에 무엇을 할 것인가”</b>로 바꿔 보내드립니다.
           </p>
           <p className="lead" style={{ color: 'var(--muted)' }}>
             핀란드가 기관총 사전시장조사를 시작했다는 사실 자체는 검색하면 나옵니다.
@@ -66,7 +80,7 @@ export default function Home() {
             두 시장에 들어간다는 것 — 그 해석이 이 서비스가 하는 일입니다.
           </p>
 
-          <table className="cmp" style={{ marginTop: 30 }}>
+          <table className="cmp" style={{ marginTop: 34 }}>
             <thead>
               <tr><th style={{ width: '22%' }}></th><th style={{ width: '39%' }}>일반 방산뉴스</th>
                 <th style={{ width: '39%' }}>방산MICE 마켓 인텔리전스</th></tr>
@@ -86,11 +100,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ------------------------------------------------ 기사 구조 */}
-      <section style={{ background: '#fff', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
+      {/* ------------------------------------------------ 기사 구조 (다크 밴드) */}
+      <section className="dark-band">
         <div className="wrap">
-          <div className="kicker">모든 기사는 이 네 가지에 답합니다</div>
-          <h2 className="sec">읽고 나면 다음 행동이 정해집니다</h2>
+          <div className="kicker">Editorial Format</div>
+          <h2 className="sec">모든 기사는 네 가지에 답합니다</h2>
           <p className="sub">읽을거리가 아니라 업무 지시서에 가깝게 씁니다.</p>
           <div className="grid g4">
             {[
@@ -99,10 +113,13 @@ export default function Home() {
               ['03', '지금 할 일', '공급업체 등록 여부 점검, 영문 자료 준비, 회신 마감 확인처럼 이번 주에 실행할 항목으로 적습니다.'],
               ['04', '누구와 연결하나', '해당 국가 KOTRA 무역관, 현지 파트너 후보, 참가할 전시회를 함께 제시합니다.'],
             ].map(([n, t, d]) => (
-              <div className="card" key={n}>
-                <div className="kicker">{n}</div>
-                <h3>{t}</h3>
-                <p style={{ fontSize: 13.5, color: 'var(--muted)', margin: 0 }}>{d}</p>
+              <div key={n} style={{
+                background: 'var(--dark-card)', border: '1px solid var(--dark-line)',
+                borderRadius: 8, padding: 24,
+              }}>
+                <div style={{ color: 'var(--orange)', fontWeight: 800, fontSize: 13, letterSpacing: 2 }}>{n}</div>
+                <h3 style={{ color: '#fff', margin: '8px 0' }}>{t}</h3>
+                <p style={{ fontSize: 13.5, color: '#9fb0d8', margin: 0, lineHeight: 1.7 }}>{d}</p>
               </div>
             ))}
           </div>
@@ -110,9 +127,9 @@ export default function Home() {
       </section>
 
       {/* ------------------------------------------------ 소스 */}
-      <section>
+      <section style={{ background: '#fff' }}>
         <div className="wrap">
-          <div className="kicker">정보원</div>
+          <div className="kicker">Sources</div>
           <h2 className="sec">{srcCount}곳에서 매일 모읍니다</h2>
           <p className="sub">
             기사만 모으지 않습니다. 발주기관·마감일·품목분류가 들어 있는 <b>조달공고 원문</b>이 핵심 계층입니다.
@@ -131,7 +148,7 @@ export default function Home() {
                       <img src={`/logos/${s.f}`} alt="" width="16" height="16"
                            style={{ verticalAlign: '-3px', marginRight: 7, borderRadius: 3 }}
                            onError={(e) => { e.currentTarget.style.display = 'none' }} />
-                      {s.n}{s.d ? <b style={{ color: 'var(--muted)', fontWeight: 400 }}> · {s.d}</b> : null}
+                      {s.n}{s.d ? <b style={{ fontWeight: 400 }}> · {s.d}</b> : null}
                     </span>
                   </a>
                 ))}
@@ -139,7 +156,7 @@ export default function Home() {
             </div>
           ))}
 
-          <div className="card" style={{ marginTop: 8, background: 'var(--bluebg)', borderColor: '#bcd6ee' }}>
+          <div className="card" style={{ marginTop: 10, borderLeft: '4px solid var(--orange)' }}>
             <h3 style={{ marginBottom: 6 }}>정보 신뢰등급을 함께 표기합니다</h3>
             <p style={{ margin: 0, fontSize: 13.5 }}>
               <b>A</b> 해외 정부·군·조달기관 공식자료 &nbsp;·&nbsp;
@@ -156,9 +173,9 @@ export default function Home() {
 
       {/* ------------------------------------------------ 최근호 */}
       {issues.length > 0 && (
-        <section style={{ background: '#fff', borderTop: '1px solid var(--line)' }}>
+        <section>
           <div className="wrap">
-            <div className="kicker">최근 발행</div>
+            <div className="kicker">Latest Issues</div>
             <h2 className="sec">지난 호 살펴보기</h2>
             <p className="sub">2026년 1월 5일 창간 이후 매주 월요일 아침 발송했습니다.</p>
             <div className="grid g3">
@@ -173,26 +190,25 @@ export default function Home() {
                 </Link>
               ))}
             </div>
-            <div style={{ marginTop: 22 }}>
-              <Link className="btn btn-primary" style={{ background: 'var(--navy)', color: '#fff' }} to="/archive">
-                전체 아카이브 보기
-              </Link>
+            <div style={{ marginTop: 24 }}>
+              <Link className="btn btn-primary" to="/archive">전체 아카이브 보기 ▸</Link>
             </div>
           </div>
         </section>
       )}
 
-      {/* ------------------------------------------------ CTA */}
-      <section style={{ background: 'var(--navy2)', color: '#fff' }}>
-        <div className="wrap narrow" style={{ textAlign: 'center' }}>
-          <h2 className="sec" style={{ color: '#fff' }}>관심 국가와 품목을 알려주시면</h2>
-          <p style={{ color: '#c5d8ea', fontSize: 16 }}>
+      {/* ------------------------------------------------ CTA (다크) */}
+      <section className="dark-band" style={{ textAlign: 'center' }}>
+        <div className="wrap narrow">
+          <div className="kicker" style={{ textAlign: 'center' }}>Contact</div>
+          <h2 className="sec" style={{ textAlign: 'center' }}>관심 국가와 품목을 알려주시면</h2>
+          <p style={{ color: '#9fb0d8', fontSize: 16.5, lineHeight: 1.8 }}>
             해당 분야 공고를 우선 발송하고, 사업 발굴 시 KOTRA 무역관 연결과
             전시회·상담회 참가까지 이어드립니다.
           </p>
-          <div style={{ marginTop: 18 }}>
+          <div style={{ marginTop: 20 }}>
             <a className="btn btn-primary" href="mailto:defensemice@example.org?subject=%5B%EB%B0%A9%EC%82%B0MICE%5D%20%EB%89%B4%EC%8A%A4%EB%A0%88%ED%84%B0%20%EA%B5%AC%EB%8F%85%20%EB%B0%8F%20%EA%B4%80%EC%8B%AC%EB%B6%84%EC%95%BC%20%EB%93%B1%EB%A1%9D">
-              구독·관심분야 등록 문의
+              구독·관심분야 등록 ▸
             </a>
           </div>
         </div>
