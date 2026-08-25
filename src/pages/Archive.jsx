@@ -7,10 +7,16 @@ const TYPES = [
   { key: 'weekly', label: '주간뉴스' },
   { key: 'monthly', label: '월간뉴스' },
 ]
-const TYPE_META = {
-  daily: { badge: '일간', color: 'var(--sky)', bg: '#e8f3fe' },
-  weekly: { badge: '주간', color: 'var(--orange)', bg: '#ffede3' },
-  monthly: { badge: '월간', color: '#7c3aed', bg: '#f1eafe' },
+const TYPE_KO = { daily: '일간', weekly: '주간', monthly: '월간' }
+
+function ago(dateStr) {
+  const d = new Date(dateStr + 'T06:00:00')
+  const diff = Math.floor((Date.now() - d.getTime()) / 86400000)
+  if (diff <= 0) return '오늘'
+  if (diff === 1) return '어제'
+  if (diff < 30) return `${diff}일전`
+  if (diff < 365) return `${Math.floor(diff / 30)}개월전`
+  return `${Math.floor(diff / 365)}년전`
 }
 
 export default function Archive() {
@@ -44,26 +50,19 @@ export default function Archive() {
 
   return (
     <>
-      <div className="hero" style={{ padding: '48px 0 38px' }}>
+      <div className="hero">
         <div className="wrap">
-          <div className="eyebrow">ARCHIVE</div>
-          <h1 style={{ fontSize: 32 }}>뉴스레터 아카이브</h1>
-          <p style={{ marginBottom: 16 }}>
-            일일(매일)·주간(매주 월요일)·월간(매월 1일) 세 종의 뉴스레터를 발행합니다.
-            모든 호는 실제 해당 기간에 공고·보도된 내용으로 작성했습니다.
+          <div className="eyebrow">K-DEFENSE GLOBAL MARKET INTELLIGENCE</div>
+          <h1 style={{ fontSize: 32 }}>방산MICE 글로벌 마켓 인텔리전스</h1>
+          <p style={{ marginBottom: 22 }}>
+            뉴스에서 수출기회까지. 일일 · 주간(월요일) · 월간(1일) 세 종의 뉴스레터를
+            공개 조달공고와 보도를 확인해 직접 작성합니다.
           </p>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
+          <div className="chipbar">
             {TYPES.map((t) => (
               <button key={t.key} onClick={() => setType(t.key)}
-                style={{
-                  padding: '9px 18px', borderRadius: 5, cursor: 'pointer',
-                  fontFamily: 'var(--font)', fontSize: 13.5, fontWeight: 800,
-                  border: '1px solid rgba(157,184,255,.4)',
-                  background: type === t.key ? 'var(--orange)' : 'rgba(10,18,44,.6)',
-                  color: type === t.key ? '#fff' : '#cdd9ff',
-                }}>
-                {t.label} <span style={{ opacity: 0.75, fontWeight: 600 }}>
-                  {counts[t.key] || 0}</span>
+                      className={'chip' + (type === t.key ? ' on' : '')}>
+                {t.label} <span className="cnt">{counts[t.key] || 0}</span>
               </button>
             ))}
           </div>
@@ -76,44 +75,33 @@ export default function Archive() {
         </div>
       </div>
 
-      <section>
+      <section style={{ paddingTop: 6 }}>
         <div className="wrap">
           {shown.length === 0 && (
-            <p style={{ color: 'var(--muted)' }}>검색 결과가 없습니다.</p>
+            <p style={{ color: 'var(--muted)', textAlign: 'center' }}>검색 결과가 없습니다.</p>
           )}
           {Object.keys(byMonth).sort().reverse().map((m) => (
             <div key={m}>
               <div className="year-head">
                 {m.slice(0, 4)}년 {Number(m.slice(5, 7))}월
-                <span style={{ fontWeight: 400, marginLeft: 8 }}>({byMonth[m].length}개 호)</span>
+                <span style={{ fontWeight: 400 }}>· {byMonth[m].length}개 호</span>
               </div>
-              <div className="grid g2">
-                {byMonth[m].map((it) => {
-                  const meta = TYPE_META[it.type || 'weekly']
-                  return (
-                    <Link className="issue" key={it.slug || it.date}
-                          to={`/archive/${it.slug || it.date}`}>
-                      <div className="no">
-                        <span style={{
-                          background: meta.bg, color: meta.color, borderRadius: 3,
-                          padding: '2px 7px', marginRight: 7, fontSize: 10.5,
-                        }}>{meta.badge}</span>
-                        제{it.no}호 · {it.date} 발행
-                      </div>
-                      <h3>{it.subject}</h3>
-                      <p>{it.summary}</p>
-                      <div className="meta">
-                        수집 <b>{it.counts?.collected}건</b> · 조달공고 <b>{it.counts?.tender}건</b>
-                        {it.covers ? <> · {it.covers}</> : null}
-                      </div>
-                      {(it.tags || []).length > 0 && (
-                        <div style={{ marginTop: 9, display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                          {it.tags.map((t) => <span className="tag" key={t}>{t}</span>)}
-                        </div>
-                      )}
-                    </Link>
-                  )
-                })}
+              <div className="feed">
+                {byMonth[m].map((it) => (
+                  <Link className="issue" key={it.slug || it.date}
+                        to={`/archive/${it.slug || it.date}`}>
+                    <div className="no">
+                      {TYPE_KO[it.type || 'weekly']} 제{it.no}호
+                      {it.covers ? ` · ${it.covers}` : ''}
+                    </div>
+                    <h3>{it.subject}</h3>
+                    <p>{it.summary}</p>
+                    <div className="meta">
+                      수집 {it.counts?.collected}건 · 조달공고 {it.counts?.tender}건
+                      {' · '}{ago(it.date)} · <b>by 방산MICE</b>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </div>
           ))}

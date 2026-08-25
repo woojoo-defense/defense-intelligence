@@ -28,6 +28,7 @@ from datetime import date as ddate, datetime, timedelta
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render as R  # noqa: E402
 from daily_topics import match_topic  # noqa: E402
+from translate import ko_title, ko_country  # noqa: E402
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -127,12 +128,12 @@ def build_one(pub, no, titles=None):
                 facts.append(["마감", it["deadline"]])
             facts.append(["원제", it["title"]])
             ko_list = ov.get("feats", [])
-            ko_title = ko_list[len(feats)] if len(feats) < len(ko_list) else None
+            ko_override = ko_list[len(feats)] if len(feats) < len(ko_list) else None
             feats.append({
                 "score": it.get("score"), "grade": "A" if it.get("tier") == 1 else "C",
                 "tags": tp["tags"],
-                "title": (f"[{tp['name']}] {ko_title}" if ko_title
-                          else f"[{tp['name']}] " + it["title"][:120]),
+                "title": (f"[{tp['name']}] {ko_override}" if ko_override
+                          else f"[{tp['name']}] " + ko_title(it["title"])[:120]),
                 "facts": facts, "why": tp["why"],
                 "targets": tp["targets"], "action": tp["action"],
                 "source": it.get("outlet") or it.get("source"), "url": it["url"],
@@ -150,7 +151,8 @@ def build_one(pub, no, titles=None):
     # ---- 입찰정보
     tds = []
     for it in tenders[:9]:
-        tds.append({"country": parse_country(it), "title": it["title"][:150],
+        tds.append({"country": ko_country(parse_country(it)),
+                    "title": ko_title(it["title"])[:150],
                     "note": (it.get("buyer") or "")[:70],
                     "stage": it.get("notice_type", ""),
                     "deadline": (it.get("deadline") or "")[:10],
@@ -168,7 +170,10 @@ def build_one(pub, no, titles=None):
     for it in news:
         if it["url"] in used_urls or len(brs) >= 6:
             continue
-        brs.append({"title": it["title"][:160], "note": "",
+        _ko = ko_title(it["title"])
+        brs.append({"title": _ko[:160],
+                    "title_orig": it["title"] if _ko != it["title"] else "",
+                    "note": "",
                     "source": f"{it.get('outlet') or it.get('source')}"
                               f"{' · ' + it['date'] if it.get('date') else ''}",
                     "url": it["url"]})
@@ -256,6 +261,7 @@ def build_one(pub, no, titles=None):
     web = R.render_web(doc, datestr, bodies)
     R.export_doc(doc, tabs, key, pub,
                  os.path.join(OUT, f"{pub}-d.json"))
+    R.og_shell(doc, f"{pub}-d", os.path.join(os.path.dirname(OUT), "archive"))
 
     entry = {"slug": f"{key}-d", "type": "daily", "date": key, "no": no,
              "subject": doc["subject"].replace("[방산MICE 데일리] ", ""),

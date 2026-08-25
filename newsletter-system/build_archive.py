@@ -33,6 +33,7 @@ from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render as R  # noqa: E402
+from translate import ko_title, ko_country  # noqa: E402
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -91,7 +92,8 @@ def build_one(ed):
             continue
         if pub_d <= dd <= pub_d + timedelta(days=14):
             c = (it["title"].split("–")[0].strip()[:14] if "–" in it["title"] else "")
-            watch.append({"country": c, "title": it["title"][:150],
+            watch.append({"country": ko_country(c),
+                          "title": ko_title(it["title"])[:150],
                           "note": (it.get("buyer") or "")[:70],
                           "stage": it.get("notice_type", ""), "deadline": dl,
                           "urgent": dd <= pub_d + timedelta(days=7), "url": it["url"]})
@@ -114,8 +116,8 @@ def build_one(ed):
         it = resolve(t["ref"], items, date)
         country = (it["title"].split("–")[0].strip() if "–" in it["title"] else
                    it.get("country_hint") or "")
-        tds.append({"country": t.get("country") or country,
-                    "title": t.get("ko") or it["title"],
+        tds.append({"country": ko_country(t.get("country") or country),
+                    "title": t.get("ko") or ko_title(it["title"]),
                     "note": t.get("note", ""), "stage": it.get("notice_type", ""),
                     "deadline": (it.get("deadline") or "")[:10], "url": it["url"]})
     if tds:
@@ -127,7 +129,9 @@ def build_one(ed):
     brs = []
     for b in ed.get("briefs", []):
         it = resolve(b["ref"], items, date)
-        brs.append({"title": b.get("ko") or it["title"],
+        _ko = b.get("ko") or ko_title(it["title"])
+        brs.append({"title": _ko,
+                    "title_orig": (it["title"] if _ko != it["title"] else ""),
                     "note": b.get("note", ""),
                     "source": f"{it.get('outlet') or it.get('source')}"
                               f"{' · ' + it['date'] if it.get('date') else ''}",
@@ -212,6 +216,7 @@ def build_one(ed):
     web = R.render_web(doc, datestr, bodies)        # 웹 게시용: CSS 전용 탭
     R.export_doc(doc, tabs, date, today,
                  os.path.join(OUT, f"{date}.json"))
+    R.og_shell(doc, ed["date"], os.path.join(os.path.dirname(OUT), "archive"))
     return mail, web, doc, raw
 
 

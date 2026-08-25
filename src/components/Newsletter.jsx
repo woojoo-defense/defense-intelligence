@@ -111,6 +111,7 @@ function Briefs({ items }) {
       {items.map((it, i) => (
         <div className="nl-brief" key={i}>
           <Ext url={it.url} className="nl-brief-title">{it.title}</Ext>
+          {it.title_orig && <div className="nl-orig">{it.title_orig}</div>}
           {it.note && <Html className="nl-brief-note" text={it.note} />}
           <div className="nl-brief-src">{it.source} · <Ext url={it.url}>원문 ›</Ext></div>
         </div>
@@ -181,15 +182,18 @@ function CalendarList({ items }) {
   )
 }
 
-function Section({ sec }) {
+function Section({ sec, hideHead }) {
   const items = sec.items || []
   if (items.length === 0) return null
   return (
     <div className="nl-section">
-      <div className="nl-sec-head">
-        <h2>{sec.title}</h2>
-        {sec.subtitle && <p>{sec.subtitle}</p>}
-      </div>
+      {!hideHead && (
+        <div className="nl-sec-head">
+          <h2>{sec.title}</h2>
+          {sec.subtitle && <p>{sec.subtitle}</p>}
+        </div>
+      )}
+      {hideHead && sec.subtitle && <p className="nl-subdesc">{sec.subtitle}</p>}
       {sec.kind === 'feature' && items.map((it, i) => <Feature it={it} key={i} />)}
       {sec.kind === 'table' && <TenderTable items={items} />}
       {sec.kind === 'brief' && <Briefs items={items} />}
@@ -199,32 +203,41 @@ function Section({ sec }) {
   )
 }
 
+const SUBTAB_IDS = ['global', 'scrap']
+
 export default function Newsletter({ doc }) {
   const tabs = (doc.tabs || []).filter(
     (t) => t.sections?.some((s) => (s.items || []).length > 0),
   )
   const [tabId, setTabId] = useState(tabs[0]?.id)
+  const [subIdx, setSubIdx] = useState(0)
   const active = tabs.find((t) => t.id === tabId) || tabs[0]
   const count = (t) => t.sections.reduce((a, s) => a + (s.items || []).length, 0)
 
+  const activeSecs = (active?.sections || []).filter((s) => (s.items || []).length > 0)
+  const useSub = SUBTAB_IDS.includes(active?.id) && activeSecs.length > 1
+  const curSub = Math.min(subIdx, activeSecs.length - 1)
+
   const d = new Date(doc.date + 'T00:00:00')
   const dateStr = `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 (${'일월화수목금토'[d.getDay()]})`
+  // 메일 제목의 "[방산MICE 데일리] 8/25 — " 접두어는 웹 커버에서 뗀다
+  const coverTitle = (doc.subject || '')
+    .replace(/^\[[^\]]*\]\s*/, '')
+    .replace(/^[0-9]{1,2}\/[0-9]{1,2}\s*—\s*/, '')
+    || '방산MICE 글로벌 마켓 인텔리전스'
 
   return (
     <div className="nl">
-      {/* 머리띠 */}
-      <div className="nl-head">
-        <div className="nl-head-row">
-          <div>
-            <div className="nl-head-eyebrow">K-DEFENSE GLOBAL MARKET INTELLIGENCE</div>
-            <div className="nl-head-title">방산MICE 글로벌 방산뉴스</div>
-          </div>
-          <div className="nl-head-meta">
-            <div>{dateStr}</div>
-            <div>제{doc.issue}호 · {doc.cadence || ''}</div>
-          </div>
+      {/* 커버 (브런치 아티클형) */}
+      <div className="nl-cover">
+        <div className="nl-cover-eyebrow">K-DEFENSE GLOBAL MARKET INTELLIGENCE</div>
+        <h1 className="nl-cover-title">{coverTitle}</h1>
+        <div className="nl-cover-sub">{doc.cadence || ''} 제{doc.issue}호</div>
+        <div className="nl-cover-meta">
+          <span><i>by</i> 방산MICE 글로벌 마켓 인텔리전스</span>
+          <span>·</span>
+          <span>{dateStr}</span>
         </div>
-        <div className="nl-head-sub">디펜스엑스포 · 한국방위산업MICE협회 | 뉴스에서 수출기회까지</div>
       </div>
 
       {/* 리드 */}
@@ -241,7 +254,7 @@ export default function Newsletter({ doc }) {
           <button
             key={t.id} role="tab" aria-selected={t.id === active?.id}
             className={'nl-tab' + (t.id === active?.id ? ' on' : '')}
-            onClick={() => setTabId(t.id)}
+            onClick={() => { setTabId(t.id); setSubIdx(0) }}
           >
             {t.label} <span className="nl-cnt">{count(t)}</span>
           </button>
@@ -249,7 +262,20 @@ export default function Newsletter({ doc }) {
       </div>
       {active?.desc && <p className="nl-tab-desc">{active.desc}</p>}
 
-      {active?.sections.map((sec, i) => <Section sec={sec} key={i} />)}
+      {useSub && (
+        <div className="nl-subtabs">
+          {activeSecs.map((sec, i) => (
+            <button key={i} className={'nl-subtab' + (i === curSub ? ' on' : '')}
+                    onClick={() => setSubIdx(i)}>
+              {sec.title} <span className="nl-cnt">{(sec.items || []).length}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {useSub
+        ? <Section sec={activeSecs[curSub]} hideHead key={active.id + curSub} />
+        : active?.sections.map((sec, i) => <Section sec={sec} key={i} />)}
 
       {/* 꼬리 */}
       <div className="nl-foot">

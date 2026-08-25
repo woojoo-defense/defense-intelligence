@@ -32,18 +32,20 @@ export default function Issue() {
 
   return (
     <section style={{ paddingTop: 24 }}>
-      <div className="wrap" style={{ maxWidth: 900 }}>
-        <div style={{ marginBottom: 14, fontSize: 13, display: 'flex',
+      <div className="wrap" style={{ maxWidth: 820 }}>
+        <div style={{ marginBottom: 6, fontSize: 13, display: 'flex',
                       justifyContent: 'space-between', alignItems: 'center', gap: 10,
                       flexWrap: 'wrap' }}>
-          <Link to="/archive">← 아카이브</Link>
+          <Link to="/archive" style={{ color: 'var(--meta)', textDecoration: 'none' }}>
+            ← 아카이브
+          </Link>
           <a href={`/issues/${slug}.html`} target="_blank" rel="noopener noreferrer"
-             style={{ fontSize: 12.5 }}>
+             style={{ fontSize: 12.5, color: 'var(--muted)' }}>
             메일 원본 보기 ↗
           </a>
         </div>
 
-        {me && (
+        {me && state !== 'ok' && (
           <div style={{ marginBottom: 16 }}>
             <div className="kicker" style={{ marginBottom: 6 }}>
               {TYPE_KO[me.type] || '주간뉴스'} 제{me.no}호 · {me.date} 발행

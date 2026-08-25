@@ -20,6 +20,9 @@ data/edition/YYYY-MM-DD.json (편집 완료본) → 두 가지 산출물
 
 import argparse
 import html
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from translate import ko_title, has_hangul
 import json
 import os
 import sys
@@ -171,7 +174,9 @@ def render_brief(items):
             + A(it.get("url", "#"), e(it.get("title")),
                 f'color:{C["navy"]};text-decoration:none;')
             + f'</div>'
-            f'<div style="font-size:12.5px;color:{C["text"]};line-height:1.6;margin-top:3px;">'
+            + ((f'<div style="font-size:11px;color:{C["muted"]};margin-top:2px;">'
+                f'{e(it["title_orig"])}</div>') if it.get("title_orig") else '')
+            + f'<div style="font-size:12.5px;color:{C["text"]};line-height:1.6;margin-top:3px;">'
             f'{it.get("note","")}</div>'
             f'<div style="font-size:11px;color:{C["muted"]};margin-top:4px;">'
             f'{e(it.get("source"))} &nbsp;·&nbsp; {src_link(it.get("url"))}</div>'
@@ -325,6 +330,50 @@ def export_doc(doc, tabs, date, pub_date, out_path):
     json.dump(payload, open(out_path, "w", encoding="utf-8"), ensure_ascii=False)
 
 
+OG_SHELL = """<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="방산MICE 글로벌 마켓 인텔리전스" />
+    <meta property="og:title" content="{title}" />
+    <meta property="og:description" content="{desc}" />
+    <meta property="og:url" content="https://defense-intelligence.vercel.app/archive/{slug}" />
+    <meta name="description" content="{desc}" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" as="style" crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/assets/app.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/assets/app.js"></script>
+  </body>
+</html>
+"""
+
+
+def og_shell(doc, slug, out_dir):
+    """카카오톡·페이스북 등 크롤러용 경로별 정적 쉘.
+    크롤러는 JS를 실행하지 않으므로 OG 메타를 정적으로 박아 두고,
+    실제 방문자는 같은 파일이 로드하는 SPA 번들(고정 파일명)로 앱을 본다."""
+    d = datetime.strptime(doc["date"], "%Y-%m-%d")
+    wd = "월화수목금토일"[d.weekday()]
+    title = f"{d.year % 100:02d}.{d.month:02d}.{d.day:02d}({wd}) 방산MICE 글로벌 마켓 인텔리전스"
+    desc = (doc.get("subject", "")
+            .replace("[방산MICE 데일리] ", "").replace("[방산MICE] ", ""))[:150]
+    os.makedirs(out_dir, exist_ok=True)
+    html_out = (OG_SHELL
+                .replace("{title}", e(title))
+                .replace("{desc}", e(desc))
+                .replace("{slug}", slug)
+                .replace("\U0001F6E1\uFE0F", "🛡️"))
+    open(os.path.join(out_dir, f"{slug}.html"), "w", encoding="utf-8").write(html_out)
+
+
 def section_header(sec, first=False):
     sub = (f'<div style="font-size:12px;color:{C["muted"]};margin-top:3px;">'
            f'{e(sec.get("subtitle"))}</div>') if sec.get("subtitle") else ""
@@ -373,8 +422,11 @@ def fill_auto(sec, date, used_urls):
             if not any(k.lower() in blob for k in kws):
                 continue
         used_urls.add(it["url"])
+        _t = it["title"]
+        _ko = ko_title(_t)
         row = {
-            "title": it["title"], "url": it["url"],
+            "title": _ko, "url": it["url"],
+            "title_orig": (_t if _ko != _t else it.get("title_orig", "")) or "",
             "outlet": it.get("outlet") or it.get("source"),
             "date": it.get("date", ""), "others": it.get("others", []),
             "note": (it.get("snippet", "")[:110] + "…") if cfg.get("show_snippet")
