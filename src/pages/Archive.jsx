@@ -92,6 +92,8 @@ export default function Archive() {
                         to={`/archive/${it.slug || it.date}`}>
                     <div className="no">
                       {TYPE_KO[it.type || 'weekly']} 제{it.no}호
+                      {' · '}{Number(it.date.slice(5, 7))}/{Number(it.date.slice(8, 10))}
+                      ({'일월화수목금토'[new Date(it.date + 'T00:00:00').getDay()]}) 발행
                       {it.covers ? ` · ${it.covers}` : ''}
                     </div>
                     <h3>{it.subject}</h3>
