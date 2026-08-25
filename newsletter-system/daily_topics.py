@@ -7,6 +7,8 @@
 매칭되는 주제가 없으면 해설 카드를 만들지 않는다 — 억지 해설보다 생략이 낫다.
 """
 
+import re
+
 TOPICS = [
  {"key": ["k9", "vajra", "vidar", "howitzer", "자주포", "self-propelled"],
   "name": "K9 계열·자주포", "tags": ["화력체계", "K9"],
@@ -160,12 +162,17 @@ TOPICS = [
 ]
 
 
+def _hit(kw, text):
+    # 단어 경계 매칭 — militar 안의 itar, Romania 안의 oman 같은 오탐을 막는다
+    return re.search(r"(?<![a-z0-9])" + re.escape(kw) + r"(?![a-z])", text) is not None
+
+
 def match_topic(text):
     """텍스트에서 가장 많은 키워드가 맞는 주제를 고른다. 없으면 None."""
     t = (text or "").lower()
     best, best_n = None, 0
     for tp in TOPICS:
-        n = sum(1 for k in tp["key"] if k in t)
+        n = sum(1 for k in tp["key"] if _hit(k, t))
         if n > best_n:
             best, best_n = tp, n
     return best

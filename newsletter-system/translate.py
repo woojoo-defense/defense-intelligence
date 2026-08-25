@@ -139,6 +139,8 @@ def _mt(text, sl="auto"):
 
 
 def _postfix(text):
+    # MT가 넣는 zero-width 문자 제거
+    text = re.sub("[​‌‍﻿]", "", text)
     for a, b in GLOSSARY:
         text = text.replace(a, b)
     # 흔한 어색함 정리
