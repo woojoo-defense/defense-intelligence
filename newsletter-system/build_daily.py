@@ -254,6 +254,8 @@ def build_one(pub, no, titles=None):
     doc["stats"]["본 호 수록"] = f"{total}건"
     mail = R.render_email(doc, datestr, bodies)
     web = R.render_web(doc, datestr, bodies)
+    R.export_doc(doc, tabs, key, pub,
+                 os.path.join(OUT, f"{pub}-d.json"))
 
     entry = {"slug": f"{key}-d", "type": "daily", "date": key, "no": no,
              "subject": doc["subject"].replace("[방산MICE 데일리] ", ""),

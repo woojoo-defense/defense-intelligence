@@ -1,5 +1,5 @@
 import { Routes, Route, Link, NavLink, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Home from './pages/Home.jsx'
 import HowItWorks from './pages/HowItWorks.jsx'
 import Archive from './pages/Archive.jsx'
@@ -7,9 +7,7 @@ import Issue from './pages/Issue.jsx'
 import Calendar from './pages/Calendar.jsx'
 
 const NAV = [
-  { to: '/', label: '소개', end: true },
-  { to: '/how-it-works', label: '작동 방식' },
-  { to: '/archive', label: '아카이브' },
+  { to: '/', label: '아카이브', end: true },
   { to: '/calendar', label: '전시회 캘린더' },
 ]
 
@@ -20,6 +18,10 @@ function ScrollTop() {
 }
 
 export default function App() {
+  const [menu, setMenu] = useState(false)
+  const loc = useLocation()
+  useEffect(() => { setMenu(false) }, [loc.pathname])
+
   return (
     <>
       <ScrollTop />
@@ -29,7 +31,11 @@ export default function App() {
             <span>K-DEFENSE GLOBAL MARKET INTELLIGENCE</span>
             <b>방산MICE 글로벌 마켓 인텔리전스</b>
           </Link>
-          <nav className="nav">
+          <button className="nav-toggle" aria-label="메뉴"
+                  onClick={() => setMenu((v) => !v)}>
+            {menu ? '✕' : '☰'}
+          </button>
+          <nav className={menu ? 'nav open' : 'nav'}>
             {NAV.map((n) => (
               <NavLink
                 key={n.to}
@@ -46,12 +52,13 @@ export default function App() {
 
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Archive />} />
+          <Route path="/about" element={<Home />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/archive" element={<Archive />} />
           <Route path="/archive/:date" element={<Issue />} />
           <Route path="/calendar" element={<Calendar />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<Archive />} />
         </Routes>
       </main>
 
@@ -69,8 +76,7 @@ export default function App() {
           </div>
           <div>
             <b>바로가기</b>
-            <Link to="/archive">주간호 아카이브</Link> · <Link to="/calendar">전시회 캘린더</Link><br />
-            <Link to="/how-it-works">작동 방식</Link>
+            <Link to="/archive">뉴스레터 아카이브</Link> · <Link to="/calendar">전시회 캘린더</Link>
           </div>
         </div>
       </footer>

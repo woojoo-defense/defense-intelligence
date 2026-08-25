@@ -80,7 +80,8 @@ export default function Home() {
             두 시장에 들어간다는 것 — 그 해석이 이 서비스가 하는 일입니다.
           </p>
 
-          <table className="cmp" style={{ marginTop: 34 }}>
+          <div className="cmp-scroll" style={{ marginTop: 34 }}>
+          <table className="cmp">
             <thead>
               <tr><th style={{ width: '22%' }}></th><th style={{ width: '39%' }}>일반 방산뉴스</th>
                 <th style={{ width: '39%' }}>방산MICE 마켓 인텔리전스</th></tr>
@@ -97,6 +98,7 @@ export default function Home() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </section>
 

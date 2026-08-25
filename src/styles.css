@@ -353,3 +353,187 @@ footer b { color: var(--orange); display: block; margin-bottom: 8px; font-size: 
 .fstep:nth-child(4) { background: #1d5fd0; }
 .fstep:nth-child(5) { background: var(--orange); }
 .fstep b { font-size: 20px; font-weight: 800; }
+
+
+/* ================================================================ 뉴스레터 본문 (React 네이티브) */
+.nl { background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+
+.nl-head { background: var(--dark2); color: #fff; padding: 20px 24px 16px; }
+.nl-head-row { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.nl-head-eyebrow { color: var(--sky); font-size: 10px; font-weight: 800; letter-spacing: 2px; }
+.nl-head-title { font-size: 20px; font-weight: 800; margin-top: 4px; }
+.nl-head-meta { text-align: right; font-size: 12px; color: #9db8ff; }
+.nl-head-sub { margin-top: 11px; padding-top: 9px; border-top: 1px solid rgba(157,184,255,.25);
+               font-size: 11px; color: #8ea6dd; }
+
+.nl-lead { background: var(--royal-deep); color: #fff; padding: 16px 24px; font-size: 14.5px;
+           line-height: 1.75; }
+.nl-lead-label { color: var(--sky); font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+                 margin-bottom: 7px; }
+
+.nl-tabs { display: flex; overflow-x: auto; background: #f4f6fb;
+           border-bottom: 2px solid var(--line); -webkit-overflow-scrolling: touch;
+           scrollbar-width: none; }
+.nl-tabs::-webkit-scrollbar { display: none; }
+.nl-tab { flex: 0 0 auto; padding: 14px 18px; border: 0; background: none; cursor: pointer;
+          font-family: var(--font); font-size: 14px; font-weight: 700; color: var(--muted);
+          border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap;
+          min-height: 46px; }
+.nl-tab.on { color: var(--royal); border-bottom-color: var(--orange); background: #fff; }
+.nl-cnt { font-size: 11px; background: #e2e7f2; border-radius: 8px; padding: 1px 7px;
+          color: var(--muted); font-weight: 700; }
+.nl-tab.on .nl-cnt { background: var(--orange); color: #fff; }
+.nl-tab-desc { margin: 0; padding: 13px 24px; font-size: 12.5px; color: var(--muted);
+               background: #fafbfe; border-bottom: 1px solid var(--line); line-height: 1.65; }
+
+.nl-section { padding: 22px 24px 8px; }
+.nl-sec-head { border-left: 4px solid var(--royal); padding-left: 12px; margin-bottom: 16px; }
+.nl-sec-head h2 { margin: 0; font-size: 17px; color: var(--heading); font-weight: 800; }
+.nl-sec-head p { margin: 3px 0 0; font-size: 12px; color: var(--muted); }
+
+.nl-feature { border: 1px solid var(--line); border-radius: 8px; padding: 18px;
+              margin-bottom: 16px; }
+.nl-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 9px; }
+.nl-badge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 3px;
+            background: #eef1f8; color: var(--heading); }
+.nl-g-a { background: var(--greenbg); color: var(--green); }
+.nl-g-b { background: var(--bluebg); color: var(--link); }
+.nl-g-c { background: var(--amberbg); color: var(--amber); }
+.nl-g-d { background: var(--redbg); color: var(--red); }
+.nl-feature-title { margin: 0 0 12px; font-size: 17px; line-height: 1.5; }
+.nl-feature-title a { color: var(--heading); text-decoration: none; }
+.nl-feature-title a:hover { text-decoration: underline; }
+.nl-facts { margin: 0 0 4px; background: #f7f8fc; border-radius: 6px; padding: 10px 14px; }
+.nl-facts > div { display: flex; gap: 12px; padding: 4px 0; font-size: 13px; }
+.nl-facts dt { flex: 0 0 74px; color: var(--muted); }
+.nl-facts dd { margin: 0; font-weight: 600; color: var(--ink); min-width: 0;
+               overflow-wrap: anywhere; }
+.nl-why { margin-top: 12px; background: var(--bluebg); border-left: 3px solid var(--link);
+          padding: 11px 14px; font-size: 13.5px; line-height: 1.7; }
+.nl-why-label { font-size: 11.5px; font-weight: 800; color: var(--link); margin-bottom: 4px; }
+.nl-list { margin-top: 12px; }
+.nl-list-label { font-size: 11.5px; font-weight: 800; letter-spacing: .4px; margin-bottom: 5px; }
+.nl-list-green .nl-list-label { color: var(--green); }
+.nl-list-red .nl-list-label { color: var(--red); }
+.nl-list ul { margin: 0; padding-left: 18px; }
+.nl-list li { font-size: 13.5px; line-height: 1.65; margin-bottom: 4px; }
+.nl-src { margin-top: 13px; padding-top: 10px; border-top: 1px solid var(--line);
+          font-size: 11.5px; color: var(--muted); }
+.nl-src a, .nl-golink { color: var(--link); font-weight: 700; text-decoration: none;
+                        white-space: nowrap; }
+
+.nl-table { width: 100%; border-collapse: collapse; font-size: 12.5px;
+            border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.nl-table th { background: var(--royal); color: #fff; padding: 8px 10px; text-align: left;
+               font-size: 11.5px; white-space: nowrap; }
+.nl-table td { padding: 9px 10px; border-top: 1px solid var(--line); vertical-align: top;
+               line-height: 1.5; }
+.nl-table tr:nth-child(even) td { background: #f8f9fc; }
+.nl-country { font-weight: 700; color: var(--heading); white-space: nowrap; font-size: 12px; }
+.nl-tender-title { color: var(--ink); font-weight: 600; text-decoration: none; }
+.nl-tender-title:hover { text-decoration: underline; }
+.nl-stage { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
+.nl-dl { font-size: 11.5px; white-space: nowrap; }
+.nl-urgent { color: var(--red); font-weight: 800; }
+.nl-note { font-size: 11.5px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+.nl-tender-cards { display: none; }
+.nl-tender-card { border: 1px solid var(--line); border-radius: 8px; padding: 13px 14px;
+                  margin-bottom: 10px; }
+.nl-tc-head { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 7px; }
+.nl-tc-foot { display: flex; justify-content: space-between; gap: 8px; margin-top: 9px;
+              align-items: center; }
+
+.nl-brief { padding: 11px 0; border-bottom: 1px solid var(--line); }
+.nl-brief:last-child { border-bottom: 0; }
+.nl-brief-title { font-size: 14px; font-weight: 700; color: var(--heading);
+                  text-decoration: none; line-height: 1.5; display: inline-block; }
+.nl-brief-title:hover { text-decoration: underline; }
+.nl-brief-note { font-size: 12.5px; color: var(--ink); line-height: 1.65; margin-top: 3px; }
+.nl-brief-src { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.nl-brief-src a { color: var(--link); text-decoration: none; }
+.nl-orig { font-size: 11.5px; color: var(--muted); margin-top: 2px; line-height: 1.45; }
+.nl-scrap-row { display: flex; gap: 12px; align-items: flex-start; }
+.nl-scrap-main { flex: 1; min-width: 0; }
+.nl-scrap-go { flex: 0 0 auto; font-size: 11.5px; padding-top: 2px; }
+.nl-others a { color: var(--muted); }
+
+.nl-foot { background: var(--dark2); color: #8ea6dd; padding: 16px 24px; font-size: 10.5px;
+           line-height: 1.8; }
+.nl-foot-stats { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px 16px;
+                 font-size: 11.5px; }
+.nl-foot-stats b { color: #fff; }
+.nl-foot p { margin: 0; }
+
+@media (max-width: 720px) {
+  .nl-table { display: none; }
+  .nl-tender-cards { display: block; }
+  .nl-section { padding: 18px 14px 6px; }
+  .nl-head { padding: 16px 14px 13px; }
+  .nl-lead { padding: 14px; }
+  .nl-tab-desc { padding: 11px 14px; }
+  .nl-facts > div { flex-direction: column; gap: 1px; }
+  .nl-facts dt { flex: none; font-size: 11px; }
+  .nl-head-meta { text-align: left; }
+  .nl-foot { padding: 14px; }
+  .nl-scrap-go { display: none; }
+}
+
+/* ================================================================ 월 그리드 캘린더 */
+.cal-wrap { background: #fff; border: 1px solid var(--line); border-radius: 10px;
+            padding: 18px; margin-bottom: 26px; }
+.cal-nav { display: flex; align-items: center; justify-content: space-between;
+           margin-bottom: 12px; }
+.cal-nav h3 { margin: 0; font-size: 18px; font-weight: 800; color: var(--heading); }
+.cal-nav button { border: 1px solid var(--line); background: #fff; border-radius: 6px;
+                  width: 38px; height: 38px; font-size: 16px; cursor: pointer;
+                  color: var(--heading); font-weight: 700; }
+.cal-nav button:hover { border-color: var(--orange); color: var(--orange); }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.cal-dow { text-align: center; font-size: 11px; font-weight: 800; color: var(--muted);
+           padding: 6px 0; }
+.cal-dow.sun { color: var(--red); }
+.cal-cell { min-height: 74px; border: 1px solid #eef0f6; border-radius: 6px;
+            padding: 4px 5px; background: #fff; position: relative; }
+.cal-cell.out { background: #fafbfd; }
+.cal-cell.today { border-color: var(--orange); box-shadow: inset 0 0 0 1px var(--orange); }
+.cal-date { font-size: 11px; font-weight: 700; color: var(--heading); }
+.cal-cell.out .cal-date { color: #c2c9d8; }
+.cal-date.sun { color: var(--red); }
+.cal-ev { display: block; margin-top: 3px; font-size: 10px; font-weight: 700;
+          padding: 2px 5px; border-radius: 3px; background: var(--bluebg); color: var(--link);
+          text-decoration: none; overflow: hidden; text-overflow: ellipsis;
+          white-space: nowrap; line-height: 1.5; }
+.cal-ev.kr { background: #ffede3; color: var(--orange); }
+.cal-ev.start { border-left: 3px solid currentColor; }
+@media (max-width: 720px) {
+  .cal-wrap { padding: 10px; }
+  .cal-cell { min-height: 52px; padding: 3px 3px; }
+  .cal-ev { font-size: 0; padding: 0; height: 6px; margin-top: 3px; border-radius: 3px; }
+  .cal-ev.start { border-left: 0; }
+}
+
+/* ================================================================ 햄버거 내비 */
+.nav-toggle { display: none; background: none; border: 1px solid rgba(255,255,255,.35);
+              border-radius: 5px; color: #fff; font-size: 20px; padding: 5px 11px;
+              cursor: pointer; line-height: 1; }
+@media (max-width: 860px) {
+  .nav-toggle { display: block; }
+  .nav { display: none; }
+  .nav.open {
+    display: flex; flex-direction: column; position: absolute; top: 62px; left: 0; right: 0;
+    background: var(--royal); padding: 8px 14px 14px; gap: 2px;
+    box-shadow: 0 12px 24px rgba(0,0,40,.35); z-index: 60;
+  }
+  .nav.open a { padding: 13px 12px; font-size: 15px; border-radius: 6px; }
+  .topbar-in { position: relative; }
+  .hero .hero-date { font-size: 15px; }
+  .quickbar a { font-size: 13.5px; padding: 15px 8px; }
+  h2.sec { font-size: 24px; }
+  .cmp-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cmp-scroll table.cmp { min-width: 560px; }
+  .exh { flex-direction: column; gap: 10px; }
+  .exh .dday { display: flex; align-items: baseline; gap: 10px; min-width: 0;
+               padding: 8px 12px; text-align: left; align-self: flex-start; }
+  .exh .dday b { font-size: 16px; }
+  .pager { flex-direction: column; gap: 8px; }
+}

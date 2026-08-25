@@ -210,6 +210,8 @@ def build_one(ed):
     doc["stats"]["본 호 수록"] = f"{total}건"
     mail = R.render_email(doc, datestr, bodies)     # 발송용: 탭 없이 순차 배치
     web = R.render_web(doc, datestr, bodies)        # 웹 게시용: CSS 전용 탭
+    R.export_doc(doc, tabs, date, today,
+                 os.path.join(OUT, f"{date}.json"))
     return mail, web, doc, raw
 
 

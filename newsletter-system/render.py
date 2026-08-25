@@ -291,6 +291,40 @@ def load_exhibitions(cfg, today):
     return out[:cfg.get("limit", 12)]
 
 
+def resolve_tabs(tabs, date, pub_date):
+    """auto 섹션(scrap·calendar)을 실제 항목으로 채운 탭 사본을 만든다.
+    사이트가 React로 직접 그릴 수 있도록 JSON 직렬화 가능한 구조를 반환한다.
+    중복 배제(used) 누적 순서는 render_tab_body와 동일하다."""
+    used = set()
+    out = []
+    for t in tabs:
+        secs = []
+        for sec in t.get("sections", []):
+            sec2 = {k: v for k, v in sec.items() if k not in ("auto",)}
+            kind = sec.get("kind", "feature")
+            if kind == "calendar":
+                sec2["items"] = load_exhibitions(sec.get("auto", {}), pub_date)
+            elif kind == "scrap":
+                sec2["items"] = fill_auto(sec, date, used)
+            else:
+                sec2["items"] = sec.get("items", [])
+                for it in sec2["items"]:
+                    if it.get("url"):
+                        used.add(it["url"])
+            secs.append(sec2)
+        t2 = {k: v for k, v in t.items() if k != "sections"}
+        t2["sections"] = secs
+        out.append(t2)
+    return out
+
+
+def export_doc(doc, tabs, date, pub_date, out_path):
+    """React 뷰어용 JSON 문서를 저장한다."""
+    payload = dict(doc)
+    payload["tabs"] = resolve_tabs(tabs, date, pub_date)
+    json.dump(payload, open(out_path, "w", encoding="utf-8"), ensure_ascii=False)
+
+
 def section_header(sec, first=False):
     sub = (f'<div style="font-size:12px;color:{C["muted"]};margin-top:3px;">'
            f'{e(sec.get("subtitle"))}</div>') if sec.get("subtitle") else ""
