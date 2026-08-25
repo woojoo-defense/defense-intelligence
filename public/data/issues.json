@@ -1,23 +1,25 @@
 [
  {
+  "slug": "2026-08-25-d",
+  "type": "daily",
   "date": "2026-08-25",
-  "no": 35,
-  "subject": "정부, NATO 표준 국내 지침 마련 — 공동조달 진입 가속 / 노르웨이 가변심도 소나 RFI",
-  "summary": "정부가 NATO 표준 국내 지침을 마련했습니다. 공동조달 시장 진입의 실무 관문이 열리고 있습니다.",
-  "covers": "2026-08-24 ~ 2026-08-25 (데일리)",
+  "no": 25,
+  "subject": "8/25 — [현지생산·산업협력] Indonesia Seeks Technology Transfer in D",
+  "summary": "2026-08-24 신호 499건 · 조달공고 80건 · 해설 2건",
+  "covers": "2026-08-24 (일간)",
   "counts": {
    "collected": 499,
    "tender": 80,
-   "published": "약 70건"
+   "published": "53건"
   },
   "tags": [
-   "NATO",
-   "노르웨이",
-   "미국",
-   "소나"
+   "현지생산",
+   "오프셋"
   ]
  },
  {
+  "slug": "2026-08-24",
+  "type": "weekly",
   "date": "2026-08-24",
   "no": 34,
   "subject": "미 육군, 기동전술포에 K9 계열 선정 — 한화 첫 미군 계약 / 앨라배마에 시제품 생산",
@@ -26,7 +28,7 @@
   "counts": {
    "collected": 367,
    "tender": 31,
-   "published": "52건"
+   "published": "58건"
   },
   "tags": [
    "미국",
@@ -36,6 +38,128 @@
   ]
  },
  {
+  "slug": "2026-08-24-d",
+  "type": "daily",
+  "date": "2026-08-24",
+  "no": 24,
+  "subject": "8/24 — [K9 계열·자주포] US Army selects Hanwha’s K9MH truck-moun",
+  "summary": "2026-08-23 신호 786건 · 조달공고 44건 · 해설 2건",
+  "covers": "2026-08-23 (일간)",
+  "counts": {
+   "collected": 786,
+   "tender": 44,
+   "published": "53건"
+  },
+  "tags": [
+   "화력체계",
+   "K9"
+  ]
+ },
+ {
+  "slug": "2026-08-23-d",
+  "type": "daily",
+  "date": "2026-08-23",
+  "no": 23,
+  "subject": "8/23 — 신호 28건 정리",
+  "summary": "2026-08-22 신호 28건 · 조달공고 0건",
+  "covers": "2026-08-22 (일간)",
+  "counts": {
+   "collected": 28,
+   "tender": 0,
+   "published": "19건"
+  },
+  "tags": []
+ },
+ {
+  "slug": "2026-08-22-d",
+  "type": "daily",
+  "date": "2026-08-22",
+  "no": 22,
+  "subject": "8/22 — [방공·요격체계] Future of Iraqi air defense in disarray as",
+  "summary": "2026-08-21 신호 61건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-21 (일간)",
+  "counts": {
+   "collected": 61,
+   "tender": 0,
+   "published": "30건"
+  },
+  "tags": [
+   "방공"
+  ]
+ },
+ {
+  "slug": "2026-08-21-d",
+  "type": "daily",
+  "date": "2026-08-21",
+  "no": 21,
+  "subject": "8/21 — [K9 계열·자주포] Hanwha Defense awarded contract to build",
+  "summary": "2026-08-20 신호 68건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-20 (일간)",
+  "counts": {
+   "collected": 68,
+   "tender": 0,
+   "published": "25건"
+  },
+  "tags": [
+   "화력체계",
+   "K9"
+  ]
+ },
+ {
+  "slug": "2026-08-20-d",
+  "type": "daily",
+  "date": "2026-08-20",
+  "no": 20,
+  "subject": "8/20 — [K9 계열·자주포] India's K9 Vajra-T family finds a new ta",
+  "summary": "2026-08-19 신호 70건 · 조달공고 6건 · 해설 2건",
+  "covers": "2026-08-19 (일간)",
+  "counts": {
+   "collected": 70,
+   "tender": 6,
+   "published": "32건"
+  },
+  "tags": [
+   "화력체계",
+   "K9"
+  ]
+ },
+ {
+  "slug": "2026-08-19-d",
+  "type": "daily",
+  "date": "2026-08-19",
+  "no": 19,
+  "subject": "8/19 — [국내 완성체계 기업 동향] US Army Turns to Hanwha Defense for ",
+  "summary": "2026-08-18 신호 56건 · 조달공고 11건 · 해설 2건",
+  "covers": "2026-08-18 (일간)",
+  "counts": {
+   "collected": 56,
+   "tender": 11,
+   "published": "35건"
+  },
+  "tags": [
+   "K-방산"
+  ]
+ },
+ {
+  "slug": "2026-08-18-d",
+  "type": "daily",
+  "date": "2026-08-18",
+  "no": 18,
+  "subject": "8/18 — [폴란드 시장] Poland – Military helmets – Zakup i dostawa",
+  "summary": "2026-08-17 신호 59건 · 조달공고 14건 · 해설 1건",
+  "covers": "2026-08-17 (일간)",
+  "counts": {
+   "collected": 59,
+   "tender": 14,
+   "published": "34건"
+  },
+  "tags": [
+   "폴란드"
+  ]
+ },
+ {
+  "slug": "2026-08-17",
+  "type": "weekly",
   "date": "2026-08-17",
   "no": 33,
   "subject": "한화, 미국 오스탈USA 인수 추진 — 원자력잠수함 공급망 확보 / 남미 잠수함 시장 공략",
@@ -44,7 +168,7 @@
   "counts": {
    "collected": 383,
    "tender": 31,
-   "published": "53건"
+   "published": "55건"
   },
   "tags": [
    "미국",
@@ -54,6 +178,127 @@
   ]
  },
  {
+  "slug": "2026-08-17-d",
+  "type": "daily",
+  "date": "2026-08-17",
+  "no": 17,
+  "subject": "8/17 — 신호 23건 정리",
+  "summary": "2026-08-16 신호 23건 · 조달공고 0건",
+  "covers": "2026-08-16 (일간)",
+  "counts": {
+   "collected": 23,
+   "tender": 0,
+   "published": "15건"
+  },
+  "tags": []
+ },
+ {
+  "slug": "2026-08-16-d",
+  "type": "daily",
+  "date": "2026-08-16",
+  "no": 16,
+  "subject": "8/16 — [인도 시장] India’s defence story on 80th Independence D",
+  "summary": "2026-08-15 신호 22건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-15 (일간)",
+  "counts": {
+   "collected": 22,
+   "tender": 0,
+   "published": "16건"
+  },
+  "tags": [
+   "인도"
+  ]
+ },
+ {
+  "slug": "2026-08-15-d",
+  "type": "daily",
+  "date": "2026-08-15",
+  "no": 15,
+  "subject": "8/15 — [K9 계열·자주포] 한화에어로, K9 정밀도 6배↑…방사청과 155mm 탄도수정신관 개발",
+  "summary": "2026-08-14 신호 53건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-14 (일간)",
+  "counts": {
+   "collected": 53,
+   "tender": 0,
+   "published": "25건"
+  },
+  "tags": [
+   "화력체계",
+   "K9"
+  ]
+ },
+ {
+  "slug": "2026-08-14-d",
+  "type": "daily",
+  "date": "2026-08-14",
+  "no": 14,
+  "subject": "8/14 — [인도 시장] India Plans ₹1 Lakh Crore Tender for 60 Tran",
+  "summary": "2026-08-13 신호 57건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-13 (일간)",
+  "counts": {
+   "collected": 57,
+   "tender": 0,
+   "published": "25건"
+  },
+  "tags": [
+   "인도"
+  ]
+ },
+ {
+  "slug": "2026-08-13-d",
+  "type": "daily",
+  "date": "2026-08-13",
+  "no": 13,
+  "subject": "8/13 — [MRO·후속군수] Saab Australia awarded sustainment contra",
+  "summary": "2026-08-12 신호 54건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-12 (일간)",
+  "counts": {
+   "collected": 54,
+   "tender": 0,
+   "published": "25건"
+  },
+  "tags": [
+   "MRO"
+  ]
+ },
+ {
+  "slug": "2026-08-12-d",
+  "type": "daily",
+  "date": "2026-08-12",
+  "no": 12,
+  "subject": "8/12 — [잠수함·수중체계] HD Hyundai, Hanwha Ocean Target South Ame",
+  "summary": "2026-08-11 신호 78건 · 조달공고 13건 · 해설 2건",
+  "covers": "2026-08-11 (일간)",
+  "counts": {
+   "collected": 78,
+   "tender": 13,
+   "published": "35건"
+  },
+  "tags": [
+   "해양",
+   "잠수함"
+  ]
+ },
+ {
+  "slug": "2026-08-11-d",
+  "type": "daily",
+  "date": "2026-08-11",
+  "no": 11,
+  "subject": "8/11 — [탄약·화약류] Slovenia – Ammunition – Nakup raket zrak-ze",
+  "summary": "2026-08-10 신호 72건 · 조달공고 18건 · 해설 1건",
+  "covers": "2026-08-10 (일간)",
+  "counts": {
+   "collected": 72,
+   "tender": 18,
+   "published": "34건"
+  },
+  "tags": [
+   "탄약"
+  ]
+ },
+ {
+  "slug": "2026-08-10",
+  "type": "weekly",
   "date": "2026-08-10",
   "no": 32,
   "subject": "한독 MRO 패키지 재점화 / 우크라이나, 한국에 방공체계 요청 / 페루 K2 수출 탄력",
@@ -62,7 +307,7 @@
   "counts": {
    "collected": 367,
    "tender": 28,
-   "published": "50건"
+   "published": "52건"
   },
   "tags": [
    "캐나다",
@@ -72,6 +317,130 @@
   ]
  },
  {
+  "slug": "2026-08-10-d",
+  "type": "daily",
+  "date": "2026-08-10",
+  "no": 10,
+  "subject": "8/10 — [방공·요격체계] Ukraine seeking air defense systems from S",
+  "summary": "2026-08-09 신호 29건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-09 (일간)",
+  "counts": {
+   "collected": 29,
+   "tender": 0,
+   "published": "22건"
+  },
+  "tags": [
+   "방공"
+  ]
+ },
+ {
+  "slug": "2026-08-09-d",
+  "type": "daily",
+  "date": "2026-08-09",
+  "no": 9,
+  "subject": "8/9 — [잠수함·수중체계] \"MRO Package vs. Production Priority and ",
+  "summary": "2026-08-08 신호 33건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-08 (일간)",
+  "counts": {
+   "collected": 33,
+   "tender": 0,
+   "published": "25건"
+  },
+  "tags": [
+   "해양",
+   "잠수함"
+  ]
+ },
+ {
+  "slug": "2026-08-08-d",
+  "type": "daily",
+  "date": "2026-08-08",
+  "no": 8,
+  "subject": "8/8 — [K9 계열·자주포] Could Korea's K9 bid in Spain influence ",
+  "summary": "2026-08-07 신호 65건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-07 (일간)",
+  "counts": {
+   "collected": 65,
+   "tender": 0,
+   "published": "25건"
+  },
+  "tags": [
+   "화력체계",
+   "K9"
+  ]
+ },
+ {
+  "slug": "2026-08-07-d",
+  "type": "daily",
+  "date": "2026-08-07",
+  "no": 7,
+  "subject": "8/7 — [인도 시장] White phosphorus scare: US military denies c",
+  "summary": "2026-08-06 신호 37건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-06 (일간)",
+  "counts": {
+   "collected": 37,
+   "tender": 0,
+   "published": "25건"
+  },
+  "tags": [
+   "인도"
+  ]
+ },
+ {
+  "slug": "2026-08-06-d",
+  "type": "daily",
+  "date": "2026-08-06",
+  "no": 6,
+  "subject": "8/6 — [무인기·대드론] Vietnam’s Reported 18-Jet Yak-130M Deal Co",
+  "summary": "2026-08-05 신호 39건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-05 (일간)",
+  "counts": {
+   "collected": 39,
+   "tender": 0,
+   "published": "21건"
+  },
+  "tags": [
+   "무인기",
+   "C-UAS"
+  ]
+ },
+ {
+  "slug": "2026-08-05-d",
+  "type": "daily",
+  "date": "2026-08-05",
+  "no": 5,
+  "subject": "8/5 — [탄약·화약류] Poland – Weapons, ammunition and associated",
+  "summary": "2026-08-04 신호 51건 · 조달공고 12건 · 해설 1건",
+  "covers": "2026-08-04 (일간)",
+  "counts": {
+   "collected": 51,
+   "tender": 12,
+   "published": "34건"
+  },
+  "tags": [
+   "탄약"
+  ]
+ },
+ {
+  "slug": "2026-08-04-d",
+  "type": "daily",
+  "date": "2026-08-04",
+  "no": 4,
+  "subject": "8/4 — [중동 시장] The U.S.-Saudi Nuclear Deal Is a Test Case f",
+  "summary": "2026-08-03 신호 57건 · 조달공고 16건 · 해설 2건",
+  "covers": "2026-08-03 (일간)",
+  "counts": {
+   "collected": 57,
+   "tender": 16,
+   "published": "35건"
+  },
+  "tags": [
+   "중동"
+  ]
+ },
+ {
+  "slug": "2026-08-03",
+  "type": "weekly",
   "date": "2026-08-03",
   "no": 31,
   "subject": "한화, 스페인 자주포 6,600억원 수주 — 유럽 재진입 성공 / 호주, 버지니아급 공급망 진입",
@@ -80,7 +449,7 @@
   "counts": {
    "collected": 352,
    "tender": 27,
-   "published": "54건"
+   "published": "56건"
   },
   "tags": [
    "스페인",
@@ -90,6 +459,79 @@
   ]
  },
  {
+  "slug": "2026-08-03-d",
+  "type": "daily",
+  "date": "2026-08-03",
+  "no": 3,
+  "subject": "8/3 — [레이더·센서] South Korea's KDDX Destroyer Contract Locks",
+  "summary": "2026-08-02 신호 19건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-02 (일간)",
+  "counts": {
+   "collected": 19,
+   "tender": 0,
+   "published": "13건"
+  },
+  "tags": [
+   "센서"
+  ]
+ },
+ {
+  "slug": "2026-08-02-d",
+  "type": "daily",
+  "date": "2026-08-02",
+  "no": 2,
+  "subject": "8/2 — [방공·요격체계] Iraq’s Vow To Modernize Air Defense After ",
+  "summary": "2026-08-01 신호 13건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-08-01 (일간)",
+  "counts": {
+   "collected": 13,
+   "tender": 0,
+   "published": "13건"
+  },
+  "tags": [
+   "방공"
+  ]
+ },
+ {
+  "slug": "2026-08-01-m",
+  "type": "monthly",
+  "date": "2026-08-01",
+  "no": 8,
+  "subject": "7월 결산 — 캐나다는 독일을 골랐고, 한국은 NATO의 문을 열었다",
+  "summary": "최대 수주전의 패배와 사상 첫 NATO 공동조달 협상 개시가 같은 달에 왔습니다.",
+  "covers": "2026-07-01 ~ 2026-07-31",
+  "counts": {
+   "collected": 522,
+   "tender": 75,
+   "published": "73건"
+  },
+  "tags": [
+   "캐나다",
+   "NATO",
+   "미국",
+   "월간결산"
+  ]
+ },
+ {
+  "slug": "2026-08-01-d",
+  "type": "daily",
+  "date": "2026-08-01",
+  "no": 1,
+  "subject": "8/1 — [MRO·후속군수] American Rheinmetall awarded U.S. Army co",
+  "summary": "2026-07-31 신호 53건 · 조달공고 0건 · 해설 1건",
+  "covers": "2026-07-31 (일간)",
+  "counts": {
+   "collected": 53,
+   "tender": 0,
+   "published": "25건"
+  },
+  "tags": [
+   "MRO"
+  ]
+ },
+ {
+  "slug": "2026-07-27",
+  "type": "weekly",
   "date": "2026-07-27",
   "no": 30,
   "subject": "한화 필리조선소, 20억 달러 미사일추적함 2척 수주 — 미국 공급망 진입 본격화",
@@ -98,7 +540,7 @@
   "counts": {
    "collected": 376,
    "tender": 32,
-   "published": "55건"
+   "published": "56건"
   },
   "tags": [
    "미국",
@@ -108,6 +550,8 @@
   ]
  },
  {
+  "slug": "2026-07-20",
+  "type": "weekly",
   "date": "2026-07-20",
   "no": 29,
   "subject": "K2 전차, 국내 첫 NATO 품질인증 획득 / 중립국 스위스도 NATO 탄약 조달 참여",
@@ -116,7 +560,7 @@
   "counts": {
    "collected": 340,
    "tender": 27,
-   "published": "50건"
+   "published": "52건"
   },
   "tags": [
    "NATO",
@@ -126,6 +570,8 @@
   ]
  },
  {
+  "slug": "2026-07-13",
+  "type": "weekly",
   "date": "2026-07-13",
   "no": 28,
   "subject": "NATO 창설 77년 만에 처음 — 한국, 99억 달러 공동조달 시장 접근 협상",
@@ -134,7 +580,7 @@
   "counts": {
    "collected": 420,
    "tender": 36,
-   "published": "56건"
+   "published": "58건"
   },
   "tags": [
    "NATO",
@@ -144,6 +590,8 @@
   ]
  },
  {
+  "slug": "2026-07-06",
+  "type": "weekly",
   "date": "2026-07-06",
   "no": 27,
   "subject": "캐나다 잠수함, 독일 TKMS 낙점 보도 — 한국 고배 / 폴란드 K9 2차 계약분 인도 개시",
@@ -152,7 +600,7 @@
   "counts": {
    "collected": 391,
    "tender": 28,
-   "published": "55건"
+   "published": "57건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -162,6 +610,28 @@
   ]
  },
  {
+  "slug": "2026-07-01-m",
+  "type": "monthly",
+  "date": "2026-07-01",
+  "no": 7,
+  "subject": "6월 결산 — 인니 KF-21 공동생산 철회, LIG-라인메탈 합작: 경쟁에서 협업으로",
+  "summary": "공동개발 파트너가 빠졌고, 유럽 OEM과의 합작이 시작됐습니다. 판의 규칙이 바뀌는 달이었습니다.",
+  "covers": "2026-06-01 ~ 2026-06-30",
+  "counts": {
+   "collected": 503,
+   "tender": 70,
+   "published": "76건"
+  },
+  "tags": [
+   "인도네시아",
+   "독일",
+   "UAE",
+   "월간결산"
+  ]
+ },
+ {
+  "slug": "2026-06-29",
+  "type": "weekly",
   "date": "2026-06-29",
   "no": 26,
   "subject": "인도네시아, KF-21 공동생산 철회 — 직구매로 전환 / UAE K9 동맹으로 중동 포병 지형 변화",
@@ -170,7 +640,7 @@
   "counts": {
    "collected": 297,
    "tender": 26,
-   "published": "56건"
+   "published": "58건"
   },
   "tags": [
    "인도네시아",
@@ -180,6 +650,8 @@
   ]
  },
  {
+  "slug": "2026-06-22",
+  "type": "weekly",
   "date": "2026-06-22",
   "no": 25,
   "subject": "LIG-라인메탈 방공 합작 추진 / 현대로템-FFG 협력 / 한화, UAE K9 생산 추진",
@@ -188,7 +660,7 @@
   "counts": {
    "collected": 288,
    "tender": 28,
-   "published": "56건"
+   "published": "61건"
   },
   "tags": [
    "독일",
@@ -198,6 +670,8 @@
   ]
  },
  {
+  "slug": "2026-06-15",
+  "type": "weekly",
   "date": "2026-06-15",
   "no": 24,
   "subject": "캐나다 \"30일 내 결정\" / 인도 육군, K9 Vajra 300문 2.3조 루피 추가 소요",
@@ -206,7 +680,7 @@
   "counts": {
    "collected": 284,
    "tender": 28,
-   "published": "51건"
+   "published": "53건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -216,6 +690,8 @@
   ]
  },
  {
+  "slug": "2026-06-08",
+  "type": "weekly",
   "date": "2026-06-08",
   "no": 23,
   "subject": "한화오션-알고마스틸 협력, 3만 일자리 제안 / 인도, 20억 달러 무인기 조달 추진",
@@ -224,7 +700,7 @@
   "counts": {
    "collected": 321,
    "tender": 22,
-   "published": "51건"
+   "published": "55건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -234,6 +710,28 @@
   ]
  },
  {
+  "slug": "2026-06-01-m",
+  "type": "monthly",
+  "date": "2026-06-01",
+  "no": 6,
+  "subject": "5월 결산 — 캐나다 최종 국면: 우주까지 올린 판돈, 그리고 소생마리 조건부 계약",
+  "summary": "잠수함 결정 직전 한 달, 제안은 우주발사까지 커졌고 장갑차 조건부 계약이 먼저 나왔습니다.",
+  "covers": "2026-05-01 ~ 2026-05-31",
+  "counts": {
+   "collected": 503,
+   "tender": 70,
+   "published": "76건"
+  },
+  "tags": [
+   "캐나다",
+   "루마니아",
+   "EU SAFE",
+   "월간결산"
+  ]
+ },
+ {
+  "slug": "2026-06-01",
+  "type": "weekly",
   "date": "2026-06-01",
   "no": 22,
   "subject": "캐나다 잠수함 최종 국면 — 한국, 우주발사 협력까지 제안 / 노르웨이 CAVS 참여",
@@ -242,7 +740,7 @@
   "counts": {
    "collected": 322,
    "tender": 36,
-   "published": "51건"
+   "published": "54건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -252,6 +750,8 @@
   ]
  },
  {
+  "slug": "2026-05-25",
+  "type": "weekly",
   "date": "2026-05-25",
   "no": 21,
   "subject": "한국 잠수함, 캐나다 BC주 입항 합동훈련 — 결정 임박 / 인도 대공포 사업 Biho-II 유력",
@@ -260,7 +760,7 @@
   "counts": {
    "collected": 239,
    "tender": 33,
-   "published": "51건"
+   "published": "55건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -270,6 +770,8 @@
   ]
  },
  {
+  "slug": "2026-05-18",
+  "type": "weekly",
   "date": "2026-05-18",
   "no": 20,
   "subject": "에스토니아 천무 3대 추가 / 노르웨이-말레이시아 미사일 수출허가 분쟁",
@@ -288,6 +790,8 @@
   ]
  },
  {
+  "slug": "2026-05-11",
+  "type": "weekly",
   "date": "2026-05-11",
   "no": 19,
   "subject": "LIG, UAE에 방산 제조허브 추진 — MRO·공급망 통합 / 말레이시아 방공에 인도·중국 경쟁",
@@ -296,7 +800,7 @@
   "counts": {
    "collected": 235,
    "tender": 28,
-   "published": "50건"
+   "published": "51건"
   },
   "tags": [
    "UAE",
@@ -306,6 +810,8 @@
   ]
  },
  {
+  "slug": "2026-05-04",
+  "type": "weekly",
   "date": "2026-05-04",
   "no": 18,
   "subject": "현대로템, 폴란드 K2 현지생산 계약 / 한화, 캐나다에 K9·천무 현지생산 카드",
@@ -314,7 +820,7 @@
   "counts": {
    "collected": 279,
    "tender": 23,
-   "published": "50건"
+   "published": "52건"
   },
   "tags": [
    "폴란드",
@@ -324,6 +830,28 @@
   ]
  },
  {
+  "slug": "2026-05-01-m",
+  "type": "monthly",
+  "date": "2026-05-01",
+  "no": 5,
+  "subject": "4월 결산 — 핀란드 K9 2배 확대, 폴란드 K2 현지생산 서명, 링스에 내준 루마니아",
+  "summary": "유럽에서 이긴 것과 진 것이 한 달에 겹쳤습니다. 승패의 공통 변수는 현지생산이었습니다.",
+  "covers": "2026-04-01 ~ 2026-04-30",
+  "counts": {
+   "collected": 468,
+   "tender": 58,
+   "published": "76건"
+  },
+  "tags": [
+   "핀란드",
+   "폴란드",
+   "루마니아",
+   "월간결산"
+  ]
+ },
+ {
+  "slug": "2026-04-27",
+  "type": "weekly",
   "date": "2026-04-27",
   "no": 17,
   "subject": "일본, 60년 만에 무기수출 금지 해제 — 새 경쟁자 등장 / 폴란드 K2 현지생산 계약 서명",
@@ -332,7 +860,7 @@
   "counts": {
    "collected": 299,
    "tender": 29,
-   "published": "56건"
+   "published": "57건"
   },
   "tags": [
    "일본",
@@ -342,6 +870,8 @@
   ]
  },
  {
+  "slug": "2026-04-20",
+  "type": "weekly",
   "date": "2026-04-20",
   "no": 16,
   "subject": "NATO의 한국산 포병 확대 / 한화오션, 캐나다 노바스코샤·어빙과 협력",
@@ -350,7 +880,7 @@
   "counts": {
    "collected": 271,
    "tender": 33,
-   "published": "53건"
+   "published": "57건"
   },
   "tags": [
    "NATO",
@@ -360,6 +890,8 @@
   ]
  },
  {
+  "slug": "2026-04-13",
+  "type": "weekly",
   "date": "2026-04-13",
   "no": 15,
   "subject": "핀란드, K9 112문 추가 도입 6.42억 달러 — 보유 규모 2배로",
@@ -368,7 +900,7 @@
   "counts": {
    "collected": 244,
    "tender": 26,
-   "published": "52건"
+   "published": "54건"
   },
   "tags": [
    "핀란드",
@@ -378,6 +910,8 @@
   ]
  },
  {
+  "slug": "2026-04-06",
+  "type": "weekly",
   "date": "2026-04-06",
   "no": 14,
   "subject": "UAE에 KM-SAM II 공급 확대 / 한화디펜스USA 미 해군 첫 하청 / K-SURE 루마니아 9억 유로 금융",
@@ -396,6 +930,28 @@
   ]
  },
  {
+  "slug": "2026-04-01-m",
+  "type": "monthly",
+  "date": "2026-04-01",
+  "no": 4,
+  "subject": "3월 결산 — UAE 실전 요격률 96%가 모든 것을 바꿨다",
+  "summary": "실전 데이터가 공개되며 중동 방공 수요가 한국으로 쏠렸습니다. 미국 함정 공급망 첫 진입도 이 달입니다.",
+  "covers": "2026-03-01 ~ 2026-03-31",
+  "counts": {
+   "collected": 448,
+   "tender": 68,
+   "published": "72건"
+  },
+  "tags": [
+   "UAE",
+   "방공",
+   "미국",
+   "월간결산"
+  ]
+ },
+ {
+  "slug": "2026-03-30",
+  "type": "weekly",
   "date": "2026-03-30",
   "no": 13,
   "subject": "인도 25조원 조달안 승인 / KDDX 구축함 입찰 개시 / 한화 필리조선소 미 해군 첫 하청",
@@ -404,7 +960,7 @@
   "counts": {
    "collected": 290,
    "tender": 24,
-   "published": "50건"
+   "published": "51건"
   },
   "tags": [
    "인도",
@@ -414,6 +970,8 @@
   ]
  },
  {
+  "slug": "2026-03-23",
+  "type": "weekly",
   "date": "2026-03-23",
   "no": 12,
   "subject": "이집트 K9 현지생산 가속 — 중동·아프리카 확장 거점 / KF-21 인니 첫 수출 임박",
@@ -422,7 +980,7 @@
   "counts": {
    "collected": 206,
    "tender": 29,
-   "published": "50건"
+   "published": "53건"
   },
   "tags": [
    "이집트",
@@ -432,6 +990,8 @@
   ]
  },
  {
+  "slug": "2026-03-16",
+  "type": "weekly",
   "date": "2026-03-16",
   "no": 11,
   "subject": "천궁-II UAE 실전 요격률 96% / 영국·노르웨이도 캐나다 잠수함전 참전",
@@ -440,7 +1000,7 @@
   "counts": {
    "collected": 272,
    "tender": 30,
-   "published": "51건"
+   "published": "55건"
   },
   "tags": [
    "UAE",
@@ -450,6 +1010,8 @@
   ]
  },
  {
+  "slug": "2026-03-09",
+  "type": "weekly",
   "date": "2026-03-09",
   "no": 10,
   "subject": "UAE에서 천궁-II 실전 요격 성공 / 캐나다, 잠수함 분할발주 검토",
@@ -458,7 +1020,7 @@
   "counts": {
    "collected": 297,
    "tender": 28,
-   "published": "51건"
+   "published": "53건"
   },
   "tags": [
    "UAE",
@@ -468,6 +1030,8 @@
   ]
  },
  {
+  "slug": "2026-03-02",
+  "type": "weekly",
   "date": "2026-03-02",
   "no": 9,
   "subject": "UAE와 350억 달러 방산협력 서명 / 캐나다, 자동차 조립공장 포함 요구",
@@ -476,7 +1040,7 @@
   "counts": {
    "collected": 290,
    "tender": 32,
-   "published": "50건"
+   "published": "51건"
   },
   "tags": [
    "UAE",
@@ -486,6 +1050,28 @@
   ]
  },
  {
+  "slug": "2026-03-01-m",
+  "type": "monthly",
+  "date": "2026-03-01",
+  "no": 3,
+  "subject": "2월 결산 — 캐나다가 자동차 파트너십을 먼저 꺼냈다, 루마니아 K9 공장 착공",
+  "summary": "발주국이 산업 패키지를 역제안하는 단계로 진화했고, 동유럽 생산거점이 착공됐습니다.",
+  "covers": "2026-02-01 ~ 2026-02-28",
+  "counts": {
+   "collected": 461,
+   "tender": 63,
+   "published": "74건"
+  },
+  "tags": [
+   "캐나다",
+   "루마니아",
+   "NATO",
+   "월간결산"
+  ]
+ },
+ {
+  "slug": "2026-02-23",
+  "type": "weekly",
   "date": "2026-02-23",
   "no": 8,
   "subject": "유럽 NATO 회원국들, 한화 장사정 화력으로 이동 / 캐나다와 조선 인력양성 협력",
@@ -494,7 +1080,7 @@
   "counts": {
    "collected": 245,
    "tender": 30,
-   "published": "50건"
+   "published": "53건"
   },
   "tags": [
    "NATO",
@@ -504,6 +1090,8 @@
   ]
  },
  {
+  "slug": "2026-02-16",
+  "type": "weekly",
   "date": "2026-02-16",
   "no": 7,
   "subject": "루마니아 K9 공장 착공 / 노르웨이 천무 9.22억 달러 본계약",
@@ -512,7 +1100,7 @@
   "counts": {
    "collected": 291,
    "tender": 28,
-   "published": "54건"
+   "published": "56건"
   },
   "tags": [
    "루마니아",
@@ -522,6 +1110,8 @@
   ]
  },
  {
+  "slug": "2026-02-09",
+  "type": "weekly",
   "date": "2026-02-09",
   "no": 6,
   "subject": "캐나다 조달담당 국무장관, 한화오션 조선소 방문 / 노르웨이 예산 절반으로 계약",
@@ -530,7 +1120,7 @@
   "counts": {
    "collected": 291,
    "tender": 24,
-   "published": "56건"
+   "published": "60건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -540,6 +1130,8 @@
   ]
  },
  {
+  "slug": "2026-02-02",
+  "type": "weekly",
   "date": "2026-02-02",
   "no": 5,
   "subject": "노르웨이, 천무 20억 달러 계약 — 유럽·미국 체계 제치고 선정",
@@ -548,7 +1140,7 @@
   "counts": {
    "collected": 251,
    "tender": 23,
-   "published": "50건"
+   "published": "52건"
   },
   "tags": [
    "노르웨이",
@@ -558,6 +1150,28 @@
   ]
  },
  {
+  "slug": "2026-02-01-m",
+  "type": "monthly",
+  "date": "2026-02-01",
+  "no": 2,
+  "subject": "1월 결산 — 노르웨이 천무 20억 달러 선정, 캐나다 45조 잠수함전 개전",
+  "summary": "노르웨이가 유럽·미국 체계를 제치고 천무를 골랐고, 캐나다 잠수함 수주전이 시작됐습니다.",
+  "covers": "2026-01-01 ~ 2026-01-31",
+  "counts": {
+   "collected": 453,
+   "tender": 66,
+   "published": "71건"
+  },
+  "tags": [
+   "노르웨이",
+   "캐나다 잠수함",
+   "천무",
+   "월간결산"
+  ]
+ },
+ {
+  "slug": "2026-01-26",
+  "type": "weekly",
   "date": "2026-01-26",
   "no": 4,
   "subject": "캐나다 잠수함전 본격화 — 한화·밥콕 3국 연합 / 독일 TKMS 투자패키지 맞대응",
@@ -566,7 +1180,7 @@
   "counts": {
    "collected": 276,
    "tender": 33,
-   "published": "50건"
+   "published": "52건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -576,6 +1190,8 @@
   ]
  },
  {
+  "slug": "2026-01-19",
+  "type": "weekly",
   "date": "2026-01-19",
   "no": 3,
   "subject": "모로코, K2 전차·방공체계 도입 검토 / 미 육군 58구경 K9 통합 추진",
@@ -584,7 +1200,7 @@
   "counts": {
    "collected": 303,
    "tender": 29,
-   "published": "50건"
+   "published": "54건"
   },
   "tags": [
    "모로코",
@@ -594,6 +1210,8 @@
   ]
  },
  {
+  "slug": "2026-01-12",
+  "type": "weekly",
   "date": "2026-01-12",
   "no": 2,
   "subject": "캐나다 450억 달러 잠수함 수주전 개막 / 폴란드 미사일 현지생산 확정",
@@ -602,7 +1220,7 @@
   "counts": {
    "collected": 241,
    "tender": 25,
-   "published": "51건"
+   "published": "52건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -612,6 +1230,8 @@
   ]
  },
  {
+  "slug": "2026-01-05",
+  "type": "weekly",
   "date": "2026-01-05",
   "no": 1,
   "subject": "[창간호] 한화 폴란드 천무 39억 달러 계약 / 필리핀 호위함 2척 추가 발주",
@@ -620,13 +1240,33 @@
   "counts": {
    "collected": 200,
    "tender": 24,
-   "published": "51건"
+   "published": "54건"
   },
   "tags": [
    "폴란드",
    "천무",
    "필리핀",
    "말레이시아"
+  ]
+ },
+ {
+  "slug": "2026-01-01-m",
+  "type": "monthly",
+  "date": "2026-01-01",
+  "no": 1,
+  "subject": "12월 결산 — 페루 프레임워크 협정, 폴란드 K9 1차분 212문 완납, 남미가 열렸다",
+  "summary": "2025년 12월의 흐름을 정리하고 2026년 1월의 대응 방향을 제시하는 월간뉴스 창간호입니다.",
+  "covers": "2025-12-01 ~ 2025-12-31",
+  "counts": {
+   "collected": 491,
+   "tender": 76,
+   "published": "73건"
+  },
+  "tags": [
+   "페루",
+   "폴란드",
+   "이집트",
+   "월간결산"
   ]
  }
 ]

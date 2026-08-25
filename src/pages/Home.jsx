@@ -25,7 +25,7 @@ export default function Home() {
             뉴스에서, <em>수출기회</em>까지
           </h1>
           <div className="hero-date">
-            매주 월요일 발행 <b>·</b> 방산MICE 글로벌 마켓 인텔리전스
+            매일 · 매주 월요일 · 매월 1일 발행 <b>|</b> 방산MICE 글로벌 마켓 인텔리전스
           </div>
           <p style={{ margin: '0 auto 30px' }}>
             전 세계 조달포털·정부 발표·전문매체의 신호를
@@ -33,7 +33,7 @@ export default function Home() {
           </p>
           <div>
             {latest && (
-              <Link className="btn btn-primary" to={`/archive/${latest.date}`}>
+              <Link className="btn btn-primary" to={`/archive/${latest.slug || latest.date}`}>
                 최신호 읽기 ▸
               </Link>
             )}
@@ -41,7 +41,7 @@ export default function Home() {
           </div>
 
           <div className="stats">
-            <div><b>{issues.length || 35}+</b><span>ISSUE</span><small>2026년 1월 5일 창간</small></div>
+            <div><b>{issues.length || 35}+</b><span>ISSUE</span><small>일간·주간·월간 3종 발행</small></div>
             <div><b>{srcCount}</b><span>SOURCE</span><small>상시 수집 정보원</small></div>
             <div><b>32</b><span>COUNTRY</span><small>조달공고 원문 수집국</small></div>
             <div><b>300+</b><span>WEEKLY</span><small>주간 수집 후 30건으로 압축</small></div>
@@ -52,7 +52,7 @@ export default function Home() {
       {/* ------------------------------------------------ 퀵메뉴 (K-DEX 스트립) */}
       <div className="quickbar">
         <div className="quickbar-in">
-          <Link to={latest ? `/archive/${latest.date}` : '/archive'}>
+          <Link to={latest ? `/archive/${latest.slug || latest.date}` : '/archive'}>
             <span className="qi">◎</span> 최신호 보기
           </Link>
           <Link to="/archive"><span className="qi">▤</span> 아카이브</Link>
@@ -177,10 +177,10 @@ export default function Home() {
           <div className="wrap">
             <div className="kicker">Latest Issues</div>
             <h2 className="sec">지난 호 살펴보기</h2>
-            <p className="sub">2026년 1월 5일 창간 이후 매주 월요일 아침 발송했습니다.</p>
+            <p className="sub">일간·주간·월간 최신호입니다. 아카이브에서 종류별로 모아볼 수 있습니다.</p>
             <div className="grid g3">
               {issues.slice(0, 6).map((it) => (
-                <Link className="issue" key={it.date} to={`/archive/${it.date}`}>
+                <Link className="issue" key={it.slug || it.date} to={`/archive/${it.slug || it.date}`}>
                   <div className="no">제{it.no}호 · {it.date}</div>
                   <h3>{it.subject}</h3>
                   <p>{it.summary}</p>

@@ -29,7 +29,7 @@ import glob
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render as R  # noqa: E402
@@ -78,11 +78,36 @@ def build_one(ed):
             "targets": f.get("targets", []), "action": f.get("action", []),
             "source": it.get("outlet") or it.get("source"), "url": it["url"],
         })
+    # ---- 이번 주 주목 일정: 발행일 이후 2주 내 마감되는 공고 (원자료에서 자동)
+    watch = []
+    pub_d = datetime.strptime(date, "%Y-%m-%d").date()
+    for it in sorted(items, key=lambda x: x.get("deadline") or "9999"):
+        dl = (it.get("deadline") or "")[:10]
+        if not dl or it.get("kind") != "tender":
+            continue
+        try:
+            dd = datetime.strptime(dl, "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if pub_d <= dd <= pub_d + timedelta(days=14):
+            c = (it["title"].split("–")[0].strip()[:14] if "–" in it["title"] else "")
+            watch.append({"country": c, "title": it["title"][:150],
+                          "note": (it.get("buyer") or "")[:70],
+                          "stage": it.get("notice_type", ""), "deadline": dl,
+                          "urgent": dd <= pub_d + timedelta(days=7), "url": it["url"]})
+        if len(watch) >= 6:
+            break
+
     if feats:
         brief_secs.append({"kind": "feature", "title": "이번 주 핵심",
                            "subtitle": "국내 기업의 사업기회 관점에서 본 주요 움직임 — "
                                        "왜 중요한가 · 누구에게 기회인가 · 지금 할 일",
                            "items": feats})
+
+    if watch:
+        brief_secs.append({"kind": "table", "title": "이번 주 주목 일정",
+                           "subtitle": "발행일 기준 2주 내 마감되는 공고 — 지금 검토해야 대응이 가능합니다",
+                           "items": watch})
 
     tds = []
     for t in ed.get("tenders", []):
@@ -114,7 +139,7 @@ def build_one(ed):
 
     # ---- 탭 구성: 주간 브리핑 / 글로벌 방산 정보 / 아티클 스크랩 / 전시회·MICE 캘린더
     tabs = [
-        {"id": "brief", "label": "주간 브리핑",
+        {"id": "brief", "label": "주간 뉴스",
          "desc": "이번 주 가장 중요한 움직임을 골라 '왜 중요한가 → 누구에게 기회인가 → 지금 무엇을 할 것인가' "
                  "순으로 정리했습니다.",
          "sections": brief_secs},
@@ -156,7 +181,7 @@ def build_one(ed):
 
     doc = {
         "date": date, "issue": ed.get("no", 1),
-        "cadence": "주간 브리핑", "lead_title": "이번 주 핵심",
+        "cadence": "주간뉴스", "lead_title": "이번 주 핵심",
         "subject": ed.get("subject", ""), "preheader": ed.get("preheader", ""),
         "lead": ed.get("lead", ""),
         "stats": {"수집": f"{raw['counts']['unique']}건",
@@ -211,6 +236,7 @@ def main():
         open(os.path.join(OUT, f"{ed['date']}.html"), "w", encoding="utf-8").write(mail)
         open(os.path.join(OUT, f"{ed['date']}_web.html"), "w", encoding="utf-8").write(web)
         index.append({
+            "slug": ed["date"], "type": "weekly",
             "date": ed["date"], "no": ed.get("no"),
             "subject": ed.get("subject", ""),
             "summary": ed.get("summary") or ed.get("preheader", ""),
@@ -225,13 +251,16 @@ def main():
     # 기존 색인의 아카이브 외 항목(데일리 등)은 보존한다
     if os.path.exists(IDX):
         try:
-            built = {e["date"] for e in index}
+            built = {e["slug"] for e in index}
             for e in json.load(open(IDX, encoding="utf-8")):
-                if e["date"] not in built:
+                e.setdefault("slug", e["date"])
+                e.setdefault("type", "weekly")
+                if e["slug"] not in built:
                     index.append(e)
         except Exception:
             pass
-    index.sort(key=lambda x: x["date"], reverse=True)
+    order = {"monthly": 0, "weekly": 1, "daily": 2}
+    index.sort(key=lambda x: (x["date"], -order.get(x.get("type", "weekly"), 9)), reverse=True)
     json.dump(index, open(IDX, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"\n{len(index)}개 호 생성 → {OUT}")
     print(f"색인 → {IDX}")

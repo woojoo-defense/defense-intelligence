@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
 export default function Issue() {
-  const { date } = useParams()
+  const { date: slug } = useParams()
   const [issues, setIssues] = useState([])
   const [h, setH] = useState(1800)
 
@@ -25,12 +25,17 @@ export default function Issue() {
     }
     const id = setInterval(fit, 400)
     return () => clearInterval(id)
-  }, [date])
+  }, [slug])
 
-  const idx = issues.findIndex((i) => i.date === date)
+  const key = (i) => i.slug || i.date
+  const idx = issues.findIndex((i) => key(i) === slug)
   const me = idx >= 0 ? issues[idx] : null
-  const newer = idx > 0 ? issues[idx - 1] : null
-  const older = idx >= 0 && idx < issues.length - 1 ? issues[idx + 1] : null
+  // 이전/다음은 같은 종(일간/주간/월간) 안에서만 이동한다
+  const sameType = issues.filter((i) => (i.type || 'weekly') === (me?.type || 'weekly'))
+  const tIdx = sameType.findIndex((i) => key(i) === slug)
+  const newer = tIdx > 0 ? sameType[tIdx - 1] : null
+  const older = tIdx >= 0 && tIdx < sameType.length - 1 ? sameType[tIdx + 1] : null
+  const TYPE_KO = { daily: '일일뉴스', weekly: '주간뉴스', monthly: '월간뉴스' }
 
   return (
     <section style={{ paddingTop: 28 }}>
@@ -54,28 +59,28 @@ export default function Issue() {
               {me && <> 수집 <b>{me.counts?.collected}건</b> 중 <b>{me.counts?.published}</b> 수록</>}
             </span>
             <span style={{ display: 'flex', gap: 12 }}>
-              <a href={`/issues/${date}_web.html`} target="_blank" rel="noopener noreferrer">
+              <a href={`/issues/${slug}_web.html`} target="_blank" rel="noopener noreferrer">
                 새 창에서 열기 ↗
               </a>
-              <a href={`/issues/${date}.html`} target="_blank" rel="noopener noreferrer">
+              <a href={`/issues/${slug}.html`} target="_blank" rel="noopener noreferrer">
                 메일 원본(전체 펼침) ↗
               </a>
             </span>
           </div>
           <iframe
             ref={frame}
-            title={`${date} 뉴스레터`}
-            src={`/issues/${date}_web.html`}
+            title={`${slug} 뉴스레터`}
+            src={`/issues/${slug}_web.html`}
             style={{ height: h }}
           />
         </div>
 
         <div className="pager">
           {older
-            ? <Link to={`/archive/${older.date}`}>← 제{older.no}호 · {older.date}</Link>
+            ? <Link to={`/archive/${older.slug || older.date}`}>← 제{older.no}호 · {older.date}</Link>
             : <span />}
           {newer
-            ? <Link to={`/archive/${newer.date}`}>제{newer.no}호 · {newer.date} →</Link>
+            ? <Link to={`/archive/${newer.slug || newer.date}`}>제{newer.no}호 · {newer.date} →</Link>
             : <span />}
         </div>
       </div>
