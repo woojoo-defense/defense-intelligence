@@ -40,6 +40,17 @@ OUT = os.path.join(ROOT, "repo", "public", "issues")
 IDX = os.path.join(ROOT, "repo", "public", "data", "issues.json")
 
 START = ddate(2026, 8, 1)
+TITLES_PATH = os.path.join(ROOT, "data", "archive", "daily_titles.json")
+
+
+def load_titles():
+    """한글 제목 오버라이드(subject·해설 카드 제목). 없으면 빈 dict."""
+    if os.path.exists(TITLES_PATH):
+        try:
+            return json.load(open(TITLES_PATH, encoding="utf-8"))
+        except Exception:
+            pass
+    return {}
 
 
 def weekly_file_for(day):
@@ -91,7 +102,8 @@ def build_lead(pub, items, tenders):
     return " ".join(parts)
 
 
-def build_one(pub, no):
+def build_one(pub, no, titles=None):
+    ov = (titles or {}).get(str(pub), {})
     items, covers = load_slice(pub)
     if items is None:
         return None, f"원자료 없음 ({covers})"
@@ -114,10 +126,13 @@ def build_one(pub, no):
             if it.get("deadline"):
                 facts.append(["마감", it["deadline"]])
             facts.append(["원제", it["title"]])
+            ko_list = ov.get("feats", [])
+            ko_title = ko_list[len(feats)] if len(feats) < len(ko_list) else None
             feats.append({
                 "score": it.get("score"), "grade": "A" if it.get("tier") == 1 else "C",
                 "tags": tp["tags"],
-                "title": f"[{tp['name']}] " + it["title"][:120],
+                "title": (f"[{tp['name']}] {ko_title}" if ko_title
+                          else f"[{tp['name']}] " + it["title"][:120]),
                 "facts": facts, "why": tp["why"],
                 "targets": tp["targets"], "action": tp["action"],
                 "source": it.get("outlet") or it.get("source"), "url": it["url"],
@@ -203,7 +218,9 @@ def build_one(pub, no):
     ]
 
     subject = f"[방산MICE 데일리] {pub.month}/{pub.day} — "
-    if feats:
+    if ov.get("subject"):
+        subject += ov["subject"]
+    elif feats:
         subject += feats[0]["title"][:52]
     elif tds:
         subject += f"신규 조달공고 {len(tds)}건"
@@ -262,10 +279,11 @@ def main():
     days = ([datetime.strptime(args.only, "%Y-%m-%d").date()] if args.only
             else [START + timedelta(days=i) for i in range((end - START).days + 1)])
 
+    titles = load_titles()
     entries, skipped = [], []
     for pub in days:
         no = (pub - START).days + 1
-        res, err = build_one(pub, no)
+        res, err = build_one(pub, no, titles)
         if err:
             skipped.append((str(pub), err))
             continue
