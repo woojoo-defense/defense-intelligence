@@ -94,7 +94,7 @@ def build_one(ed):
                     "note": t.get("note", ""), "stage": it.get("notice_type", ""),
                     "deadline": (it.get("deadline") or "")[:10], "url": it["url"]})
     if tds:
-        global_secs.append({"kind": "table", "title": "해외 조달·입찰 공고",
+        global_secs.append({"kind": "table", "title": "입찰정보",
                             "subtitle": "EU 공공조달(TED) 국방 분야 공고 중 국내 기업 대응 가능성이 있는 건 — "
                                         "제목 또는 우측 '공고'를 누르면 원문으로 이동합니다",
                             "items": tds})
@@ -108,7 +108,7 @@ def build_one(ed):
                               f"{' · ' + it['date'] if it.get('date') else ''}",
                     "url": it["url"]})
     if brs:
-        global_secs.append({"kind": "brief", "title": "글로벌 시장·공급망 동향",
+        global_secs.append({"kind": "brief", "title": "방산정보",
                             "subtitle": "향후 사업으로 전환될 가능성이 있는 신호 — 제목을 누르면 원문으로 이동합니다",
                             "items": brs})
 
