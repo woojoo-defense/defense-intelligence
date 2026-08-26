@@ -7,7 +7,7 @@
 
 import os
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONT_DIR = os.path.join(ROOT, "data", "fonts")
@@ -49,6 +49,8 @@ def _paste_logo(img, cy, height=58):
     logo = Image.open(LOGO_PATH).convert("RGBA")
     w = int(logo.width * height / logo.height)
     logo = logo.resize((w, height), Image.LANCZOS)
+    # 원본(40px)보다 키울 때 흐려지는 것을 살짝 보정
+    logo = logo.filter(ImageFilter.UnsharpMask(radius=2, percent=90, threshold=2))
     img.paste(logo, (W // 2 - w // 2, cy - height // 2), logo)
 
 
@@ -59,16 +61,16 @@ def og_image(date_str, weekday, type_key, issue_no, out_path):
     d = ImageDraw.Draw(img)
 
     d.rectangle([0, 0, W, 10], fill=ACCENT)
-    _spaced(d, (W / 2, 100), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
+    _spaced(d, (W / 2, 92), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
             _font("Medium", 22), MUTED, tracking=7, anchor="mm")
-    d.text((W / 2, 238), f"{yy}.{mm}.{dd} ({weekday})",
-           font=_font("ExtraBold", 96), fill=INK, anchor="mm")
-    d.text((W / 2, 352), "방산MICE 글로벌 마켓 인텔리전스",
-           font=_font("Bold", 44), fill=INK, anchor="mm")
-    d.line([440, 424, 760, 424], fill=LINE, width=2)
+    d.text((W / 2, 218), f"{yy}.{mm}.{dd} ({weekday})",
+           font=_font("ExtraBold", 84), fill=INK, anchor="mm")
+    d.text((W / 2, 322), "방산MICE 글로벌 마켓 인텔리전스",
+           font=_font("Bold", 42), fill=INK, anchor="mm")
+    d.line([440, 390, 760, 390], fill=LINE, width=2)
     meta = f"{TYPE_KO.get(type_key, '뉴스레터')}  제{issue_no}호"
-    d.text((W / 2, 468), meta, font=_font("Medium", 26), fill=META, anchor="mm")
-    _paste_logo(img, 552, height=58)
+    d.text((W / 2, 430), meta, font=_font("Medium", 26), fill=META, anchor="mm")
+    _paste_logo(img, 535, height=110)
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     img.save(out_path, "PNG", optimize=True)
@@ -87,7 +89,7 @@ def og_default(out_path):
     d.line([440, 372, 760, 372], fill=LINE, width=2)
     d.text((W / 2, 428), "뉴스에서 수출기회까지 — 일일 · 주간 · 월간 뉴스레터",
            font=_font("Medium", 28), fill=META, anchor="mm")
-    _paste_logo(img, 512, height=58)
+    _paste_logo(img, 505, height=110)
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     img.save(out_path, "PNG", optimize=True)
     return out_path
