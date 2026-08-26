@@ -90,7 +90,7 @@ def og_default(out_path):
     d.text((W / 2, 288), "방산MICE 글로벌 마켓 인텔리전스",
            font=_font("ExtraBold", 64), fill=INK, anchor="mm")
     d.line([440, 372, 760, 372], fill=LINE, width=2)
-    d.text((W / 2, 428), "뉴스에서 수출기회까지 — 일일 · 주간 · 월간 뉴스레터",
+    d.text((W / 2, 428), "뉴스에서 수출기회까지 · 일일 · 주간 · 월간 뉴스레터",
            font=_font("Medium", 28), fill=META, anchor="mm")
     _paste_logo(img, 505, height=110)
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
