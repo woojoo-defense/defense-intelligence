@@ -42,7 +42,7 @@ def _spaced(draw, xy, text, font, fill, tracking=0, anchor=None):
         x += w + tracking
 
 
-def _paste_logo(img, cy, height=30):
+def _paste_logo(img, cy, height=58):
     """디펜스엑스포 로고를 하단 중앙에 (없으면 건너뜀)."""
     if not os.path.exists(LOGO_PATH):
         return
@@ -59,16 +59,16 @@ def og_image(date_str, weekday, type_key, issue_no, out_path):
     d = ImageDraw.Draw(img)
 
     d.rectangle([0, 0, W, 10], fill=ACCENT)
-    _spaced(d, (W / 2, 108), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
+    _spaced(d, (W / 2, 100), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
             _font("Medium", 22), MUTED, tracking=7, anchor="mm")
-    d.text((W / 2, 258), f"{yy}.{mm}.{dd} ({weekday})",
-           font=_font("ExtraBold", 120), fill=INK, anchor="mm")
-    d.text((W / 2, 390), "방산MICE 글로벌 마켓 인텔리전스",
-           font=_font("Bold", 46), fill=INK, anchor="mm")
-    d.line([440, 462, 760, 462], fill=LINE, width=2)
+    d.text((W / 2, 238), f"{yy}.{mm}.{dd} ({weekday})",
+           font=_font("ExtraBold", 96), fill=INK, anchor="mm")
+    d.text((W / 2, 352), "방산MICE 글로벌 마켓 인텔리전스",
+           font=_font("Bold", 44), fill=INK, anchor="mm")
+    d.line([440, 424, 760, 424], fill=LINE, width=2)
     meta = f"{TYPE_KO.get(type_key, '뉴스레터')}  제{issue_no}호"
-    d.text((W / 2, 506), meta, font=_font("Medium", 27), fill=META, anchor="mm")
-    _paste_logo(img, 572)
+    d.text((W / 2, 468), meta, font=_font("Medium", 26), fill=META, anchor="mm")
+    _paste_logo(img, 552, height=58)
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     img.save(out_path, "PNG", optimize=True)
@@ -87,7 +87,7 @@ def og_default(out_path):
     d.line([440, 372, 760, 372], fill=LINE, width=2)
     d.text((W / 2, 428), "뉴스에서 수출기회까지 — 일일 · 주간 · 월간 뉴스레터",
            font=_font("Medium", 28), fill=META, anchor="mm")
-    _paste_logo(img, 520)
+    _paste_logo(img, 512, height=58)
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     img.save(out_path, "PNG", optimize=True)
     return out_path
