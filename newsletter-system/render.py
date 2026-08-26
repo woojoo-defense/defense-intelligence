@@ -370,11 +370,8 @@ def og_shell(doc, slug, out_dir):
     # 브라우저 탭에는 날짜를, OG 제목은 브랜드만 (날짜는 이미지가 보여준다)
     title = f"{d.year % 100:02d}.{d.month:02d}.{d.day:02d}({wd}) 방산MICE 글로벌 마켓 인텔리전스"
     og_title = "방산MICE 글로벌 마켓 인텔리전스"
-    # 설명: 리드 첫 문장(HTML 제거). 카톡 말줄임 안 되게 80자 이내만 채택.
-    lead = re.sub(r"<[^>]+>", "", doc.get("lead", "")).strip()
-    first = lead.split("다.")[0] + "다." if "다." in lead else ""
-    desc = first if 0 < len(first) <= 80 else \
-        "뉴스에서 수출기회까지 — 글로벌 방산 조달·수주 신호를 매일 정리합니다."
+    # 설명: 호별 내용이 아니라 고정 브랜드 메시지 (카톡 말줄임 없게 짧게)
+    desc = "뉴스에서 수출기회까지 — 글로벌 방산 조달·수주 신호를 매일 아침 정리합니다."
     os.makedirs(out_dir, exist_ok=True)
     html_out = (OG_SHELL
                 .replace("{title}", e(title))
