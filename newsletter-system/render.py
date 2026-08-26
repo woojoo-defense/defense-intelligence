@@ -370,8 +370,8 @@ def og_shell(doc, slug, out_dir):
     # 브라우저 탭에는 날짜를, OG 제목은 브랜드만 (날짜는 이미지가 보여준다)
     title = f"{d.year % 100:02d}.{d.month:02d}.{d.day:02d}({wd}) 방산MICE 글로벌 마켓 인텔리전스"
     og_title = "방산MICE 글로벌 마켓 인텔리전스"
-    # 설명: 호별 내용이 아니라 고정 브랜드 메시지 (카톡 말줄임 없게 짧게)
-    desc = "뉴스에서 수출기회까지 — 글로벌 방산 조달·수주 신호를 매일 아침 정리합니다."
+    # 설명: 고정 브랜드 메시지. 카톡 카드 2줄 안에 들어가게 아주 짧게 유지
+    desc = "뉴스에서 수출기회까지 — 매일 아침 발행"
     os.makedirs(out_dir, exist_ok=True)
     html_out = (OG_SHELL
                 .replace("{title}", e(title))

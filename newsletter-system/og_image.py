@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """아티클별 오픈그래프 이미지(1200×630 PNG) 생성.
 
-브런치풍 화이트 미니멀: 상단 오렌지 라인, 영문 아이브로,
-큰 날짜, 워드마크, 하단에 호수·타입 메타.
+연한 블루그레이 배경(카톡 흰색 설명 영역과 구분), 상단 오렌지 라인,
+영문 아이브로, 큰 날짜, 워드마크, 호수 메타, 하단 디펜스엑스포 로고.
 """
 
 import os
@@ -11,12 +11,14 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONT_DIR = os.path.join(ROOT, "data", "fonts")
+LOGO_PATH = os.path.join(FONT_DIR, "dx_logo.png")
 
 W, H = 1200, 630
-INK = (26, 26, 26)
-META = (102, 102, 102)
-MUTED = (149, 149, 149)
-LINE = (238, 238, 238)
+BG = (233, 238, 245)          # 연한 블루그레이 — 흰 카드 영역과 구분
+INK = (26, 30, 41)
+META = (90, 101, 119)
+MUTED = (122, 132, 148)
+LINE = (201, 210, 222)
 ACCENT = (255, 85, 0)
 TYPE_KO = {"daily": "일일뉴스", "weekly": "주간뉴스", "monthly": "월간뉴스"}
 
@@ -40,31 +42,33 @@ def _spaced(draw, xy, text, font, fill, tracking=0, anchor=None):
         x += w + tracking
 
 
+def _paste_logo(img, cy, height=30):
+    """디펜스엑스포 로고를 하단 중앙에 (없으면 건너뜀)."""
+    if not os.path.exists(LOGO_PATH):
+        return
+    logo = Image.open(LOGO_PATH).convert("RGBA")
+    w = int(logo.width * height / logo.height)
+    logo = logo.resize((w, height), Image.LANCZOS)
+    img.paste(logo, (W // 2 - w // 2, cy - height // 2), logo)
+
+
 def og_image(date_str, weekday, type_key, issue_no, out_path):
     """date_str='2026-08-27', weekday='목', type_key='daily', issue_no=27"""
     yy, mm, dd = date_str[2:4], date_str[5:7], date_str[8:10]
-    img = Image.new("RGB", (W, H), "white")
+    img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
 
-    # 상단 오렌지 라인
     d.rectangle([0, 0, W, 10], fill=ACCENT)
-
-    # 영문 아이브로 (자간 넓게, 중앙)
-    _spaced(d, (W / 2, 118), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
+    _spaced(d, (W / 2, 108), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
             _font("Medium", 22), MUTED, tracking=7, anchor="mm")
-
-    # 큰 날짜
-    d.text((W / 2, 275), f"{yy}.{mm}.{dd} ({weekday})",
+    d.text((W / 2, 258), f"{yy}.{mm}.{dd} ({weekday})",
            font=_font("ExtraBold", 120), fill=INK, anchor="mm")
-
-    # 워드마크
-    d.text((W / 2, 408), "방산MICE 글로벌 마켓 인텔리전스",
+    d.text((W / 2, 390), "방산MICE 글로벌 마켓 인텔리전스",
            font=_font("Bold", 46), fill=INK, anchor="mm")
-
-    # 구분선 + 하단 메타
-    d.line([440, 480, 760, 480], fill=LINE, width=2)
+    d.line([440, 462, 760, 462], fill=LINE, width=2)
     meta = f"{TYPE_KO.get(type_key, '뉴스레터')}  제{issue_no}호"
-    d.text((W / 2, 528), meta, font=_font("Medium", 27), fill=META, anchor="mm")
+    d.text((W / 2, 506), meta, font=_font("Medium", 27), fill=META, anchor="mm")
+    _paste_logo(img, 572)
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     img.save(out_path, "PNG", optimize=True)
@@ -73,16 +77,17 @@ def og_image(date_str, weekday, type_key, issue_no, out_path):
 
 def og_default(out_path):
     """사이트 루트·아카이브 목록용 기본 이미지(날짜 없음)."""
-    img = Image.new("RGB", (W, H), "white")
+    img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
     d.rectangle([0, 0, W, 10], fill=ACCENT)
-    _spaced(d, (W / 2, 160), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
+    _spaced(d, (W / 2, 150), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
             _font("Medium", 22), MUTED, tracking=7, anchor="mm")
-    d.text((W / 2, 300), "방산MICE 글로벌 마켓 인텔리전스",
+    d.text((W / 2, 288), "방산MICE 글로벌 마켓 인텔리전스",
            font=_font("ExtraBold", 64), fill=INK, anchor="mm")
-    d.line([440, 390, 760, 390], fill=LINE, width=2)
-    d.text((W / 2, 448), "뉴스에서 수출기회까지 — 일일 · 주간 · 월간 뉴스레터",
+    d.line([440, 372, 760, 372], fill=LINE, width=2)
+    d.text((W / 2, 428), "뉴스에서 수출기회까지 — 일일 · 주간 · 월간 뉴스레터",
            font=_font("Medium", 28), fill=META, anchor="mm")
+    _paste_logo(img, 520)
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     img.save(out_path, "PNG", optimize=True)
     return out_path
