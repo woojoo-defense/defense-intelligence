@@ -263,11 +263,13 @@ def build_one(pub, no, titles=None):
                  os.path.join(OUT, f"{pub}-d.json"))
     R.og_shell(doc, f"{pub}-d", os.path.join(os.path.dirname(OUT), "archive"))
 
+    # covers("2026-08-25")를 "전일 8/25 신호"로 — 발행일과 대상일 혼동을 막는다
+    cshort = f"{int(covers[5:7])}/{int(covers[8:10])}"
     entry = {"slug": f"{key}-d", "type": "daily", "date": key, "no": no,
              "subject": doc["subject"].replace("[방산MICE 데일리] ", ""),
-             "summary": (f"{covers} 신호 {len(items)}건 · 조달공고 {len(tenders)}건"
+             "summary": (f"전일({cshort}) 신호 {len(items)}건 · 조달공고 {len(tenders)}건"
                          + (f" · 해설 {len(feats)}건" if feats else "")),
-             "covers": f"{covers} (일간)",
+             "covers": f"전일 {cshort} 신호",
              "counts": {"collected": len(items), "tender": len(tenders),
                         "published": f"{total}건"},
              "tags": (feats[0]["tags"][:3] if feats else [])}

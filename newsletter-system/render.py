@@ -25,6 +25,7 @@ _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 from translate import ko_title, has_hangul
 import json
 import os
+import re
 import sys
 from datetime import datetime, timedelta
 
@@ -338,11 +339,15 @@ OG_SHELL = """<!doctype html>
     <title>{title}</title>
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="방산MICE 글로벌 마켓 인텔리전스" />
-    <meta property="og:title" content="{title}" />
+    <meta property="og:title" content="{ogtitle}" />
     <meta property="og:description" content="{desc}" />
     <meta property="og:url" content="https://defense-intelligence.vercel.app/archive/{slug}" />
+    <meta property="og:image" content="https://defense-intelligence.vercel.app/og/{slug}.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="description" content="{desc}" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://defense-intelligence.vercel.app/og/{slug}.png" />
     <link rel="stylesheet" as="style" crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
     <link rel="stylesheet" href="/assets/app.css" />
@@ -362,16 +367,31 @@ def og_shell(doc, slug, out_dir):
     실제 방문자는 같은 파일이 로드하는 SPA 번들(고정 파일명)로 앱을 본다."""
     d = datetime.strptime(doc["date"], "%Y-%m-%d")
     wd = "월화수목금토일"[d.weekday()]
+    # 브라우저 탭에는 날짜를, OG 제목은 브랜드만 (날짜는 이미지가 보여준다)
     title = f"{d.year % 100:02d}.{d.month:02d}.{d.day:02d}({wd}) 방산MICE 글로벌 마켓 인텔리전스"
-    desc = (doc.get("subject", "")
-            .replace("[방산MICE 데일리] ", "").replace("[방산MICE] ", ""))[:150]
+    og_title = "방산MICE 글로벌 마켓 인텔리전스"
+    # 설명: 리드 첫 문장(HTML 제거). 카톡 말줄임 안 되게 80자 이내만 채택.
+    lead = re.sub(r"<[^>]+>", "", doc.get("lead", "")).strip()
+    first = lead.split("다.")[0] + "다." if "다." in lead else ""
+    desc = first if 0 < len(first) <= 80 else \
+        "뉴스에서 수출기회까지 — 글로벌 방산 조달·수주 신호를 매일 정리합니다."
     os.makedirs(out_dir, exist_ok=True)
     html_out = (OG_SHELL
                 .replace("{title}", e(title))
+                .replace("{ogtitle}", e(og_title))
                 .replace("{desc}", e(desc))
                 .replace("{slug}", slug)
                 .replace("\U0001F6E1\uFE0F", "🛡️"))
     open(os.path.join(out_dir, f"{slug}.html"), "w", encoding="utf-8").write(html_out)
+    # OG 이미지 (1200×630) — PIL이 없으면 조용히 건너뛴다
+    try:
+        from og_image import og_image as _ogimg
+        tkey = ("daily" if slug.endswith("-d")
+                else "monthly" if slug.endswith("-m") else "weekly")
+        _ogimg(doc["date"], wd, tkey, doc.get("issue", ""),
+               os.path.join(os.path.dirname(out_dir), "og", f"{slug}.png"))
+    except Exception as ex:
+        print(f"  [og-image 생략] {slug}: {ex}")
 
 
 def section_header(sec, first=False):
