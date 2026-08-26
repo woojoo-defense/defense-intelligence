@@ -14,11 +14,12 @@ FONT_DIR = os.path.join(ROOT, "data", "fonts")
 LOGO_PATH = os.path.join(FONT_DIR, "dx_logo.png")
 
 W, H = 1200, 630
-BG = (233, 238, 245)          # 연한 블루그레이 — 흰 카드 영역과 구분
-INK = (26, 30, 41)
-META = (90, 101, 119)
-MUTED = (122, 132, 148)
-LINE = (201, 210, 222)
+BG = (255, 255, 255)
+INK = (26, 26, 26)
+META = (102, 102, 102)
+MUTED = (149, 149, 149)
+LINE = (229, 229, 229)
+EDGE = (214, 214, 214)        # 하단 경계선 — 공유 카드의 텍스트 영역과 구분
 ACCENT = (255, 85, 0)
 TYPE_KO = {"daily": "일일뉴스", "weekly": "주간뉴스", "monthly": "월간뉴스"}
 
@@ -61,6 +62,7 @@ def og_image(date_str, weekday, type_key, issue_no, out_path):
     d = ImageDraw.Draw(img)
 
     d.rectangle([0, 0, W, 10], fill=ACCENT)
+    d.rectangle([0, H - 4, W, H], fill=EDGE)
     _spaced(d, (W / 2, 92), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
             _font("Medium", 22), MUTED, tracking=7, anchor="mm")
     d.text((W / 2, 218), f"{yy}.{mm}.{dd} ({weekday})",
@@ -82,6 +84,7 @@ def og_default(out_path):
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
     d.rectangle([0, 0, W, 10], fill=ACCENT)
+    d.rectangle([0, H - 4, W, H], fill=EDGE)
     _spaced(d, (W / 2, 150), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
             _font("Medium", 22), MUTED, tracking=7, anchor="mm")
     d.text((W / 2, 288), "방산MICE 글로벌 마켓 인텔리전스",
