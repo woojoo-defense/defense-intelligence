@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """아티클별 오픈그래프 이미지(1200×630 PNG) 생성.
 
-연한 블루그레이 배경(카톡 흰색 설명 영역과 구분), 상단 오렌지 라인,
-영문 아이브로, 큰 날짜, 워드마크, 호수 메타, 하단 디펜스엑스포 로고.
+k-dex.kr풍 다크 네이비 배경(약간 블루), 흰색 텍스트·로고.
+영문 아이브로, 큰 날짜, 워드마크, 호수 메타, 하단 디펜스엑스포 로고(흰색 변환).
 """
 
 import os
@@ -11,16 +11,14 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONT_DIR = os.path.join(ROOT, "data", "fonts")
-LOGO_PATH = os.path.join(FONT_DIR, "dx_logo.png")
+LOGO_PATH = os.path.join(FONT_DIR, "dx_logo_white.png")
 
 W, H = 1200, 630
-BG = (255, 255, 255)
-INK = (26, 26, 26)
-META = (102, 102, 102)
-MUTED = (149, 149, 149)
-LINE = (229, 229, 229)
-EDGE = (214, 214, 214)        # 하단 경계선 — 공유 카드의 텍스트 영역과 구분
-ACCENT = (255, 85, 0)
+BG = (10, 17, 48)             # 다크 네이비 — #050816보다 아주 조금 블루
+INK = (255, 255, 255)
+META = (150, 160, 185)
+MUTED = (120, 130, 155)
+LINE = (48, 56, 84)
 TYPE_KO = {"daily": "일일뉴스", "weekly": "주간뉴스", "monthly": "월간뉴스"}
 
 
@@ -43,8 +41,8 @@ def _spaced(draw, xy, text, font, fill, tracking=0, anchor=None):
         x += w + tracking
 
 
-def _paste_logo(img, cy, height=58):
-    """디펜스엑스포 로고를 하단 중앙에 (없으면 건너뜀)."""
+def _paste_logo(img, cy, height=110):
+    """디펜스엑스포 로고(흰색 변환본)를 하단 중앙에 (없으면 건너뜀)."""
     if not os.path.exists(LOGO_PATH):
         return
     logo = Image.open(LOGO_PATH).convert("RGBA")
@@ -61,8 +59,6 @@ def og_image(date_str, weekday, type_key, issue_no, out_path):
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
 
-    d.rectangle([0, 0, W, 10], fill=ACCENT)
-    d.rectangle([0, H - 4, W, H], fill=EDGE)
     _spaced(d, (W / 2, 92), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
             _font("Medium", 22), MUTED, tracking=7, anchor="mm")
     d.text((W / 2, 218), f"{yy}.{mm}.{dd} ({weekday})",
@@ -83,8 +79,6 @@ def og_default(out_path):
     """사이트 루트·아카이브 목록용 기본 이미지(날짜 없음)."""
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
-    d.rectangle([0, 0, W, 10], fill=ACCENT)
-    d.rectangle([0, H - 4, W, H], fill=EDGE)
     _spaced(d, (W / 2, 150), "K-DEFENSE GLOBAL MARKET INTELLIGENCE",
             _font("Medium", 22), MUTED, tracking=7, anchor="mm")
     d.text((W / 2, 288), "방산MICE 글로벌 마켓 인텔리전스",
