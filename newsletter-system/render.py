@@ -342,12 +342,12 @@ OG_SHELL = """<!doctype html>
     <meta property="og:title" content="{ogtitle}" />
     <meta property="og:description" content="{desc}" />
     <meta property="og:url" content="https://defense-intelligence.vercel.app/archive/{slug}" />
-    <meta property="og:image" content="https://defense-intelligence.vercel.app/og/{slug}.png" />
+    <meta property="og:image" content="https://defense-intelligence.vercel.app/og/{slug}.png?v={imgv}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="description" content="{desc}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://defense-intelligence.vercel.app/og/{slug}.png" />
+    <meta name="twitter:image" content="https://defense-intelligence.vercel.app/og/{slug}.png?v={imgv}" />
     <link rel="stylesheet" as="style" crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
     <link rel="stylesheet" href="/assets/app.css" />
@@ -373,22 +373,27 @@ def og_shell(doc, slug, out_dir):
     # 설명: 고정 브랜드 슬로건. 짧게, 대시 없이
     desc = "뉴스에서 수출기회까지"
     os.makedirs(out_dir, exist_ok=True)
-    html_out = (OG_SHELL
-                .replace("{title}", e(title))
-                .replace("{ogtitle}", e(og_title))
-                .replace("{desc}", e(desc))
-                .replace("{slug}", slug)
-                .replace("\U0001F6E1\uFE0F", "🛡️"))
-    open(os.path.join(out_dir, f"{slug}.html"), "w", encoding="utf-8").write(html_out)
-    # OG 이미지 (1200×630) — PIL이 없으면 조용히 건너뛴다
+    # OG 이미지를 먼저 생성하고 내용 해시를 URL 버전 태그(?v=)로 쓴다.
+    # 카카오 등은 이미지 URL 단위로 캐시하므로 디자인이 바뀌면 URL도 바뀌어야 갱신된다.
+    imgv = "1"
     try:
         from og_image import og_image as _ogimg
         tkey = ("daily" if slug.endswith("-d")
                 else "monthly" if slug.endswith("-m") else "weekly")
-        _ogimg(doc["date"], wd, tkey, doc.get("issue", ""),
-               os.path.join(os.path.dirname(out_dir), "og", f"{slug}.png"))
+        img_path = _ogimg(doc["date"], wd, tkey, doc.get("issue", ""),
+                          os.path.join(os.path.dirname(out_dir), "og", f"{slug}.png"))
+        import hashlib
+        imgv = hashlib.md5(open(img_path, "rb").read()).hexdigest()[:8]
     except Exception as ex:
         print(f"  [og-image 생략] {slug}: {ex}")
+    html_out = (OG_SHELL
+                .replace("{title}", e(title))
+                .replace("{ogtitle}", e(og_title))
+                .replace("{desc}", e(desc))
+                .replace("{imgv}", imgv)
+                .replace("{slug}", slug)
+                .replace("\U0001F6E1\uFE0F", "🛡️"))
+    open(os.path.join(out_dir, f"{slug}.html"), "w", encoding="utf-8").write(html_out)
 
 
 def section_header(sec, first=False):
