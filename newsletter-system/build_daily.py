@@ -28,7 +28,7 @@ from datetime import date as ddate, datetime, timedelta
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render as R  # noqa: E402
 from daily_topics import match_topic  # noqa: E402
-from translate import ko_title, ko_country  # noqa: E402
+from translate import COUNTRY, flag_for, ko_country, ko_title  # noqa: E402
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -82,9 +82,22 @@ def load_slice(pub):
 
 
 def parse_country(it):
+    """제목 앞머리가 실제 국가명일 때만 쓰고(TED 형식), 아니면 조달 소스로 판별.
+    캐나다 공고 등은 제목에 참조번호+엔대시가 있어 오인될 수 있다."""
     t = it.get("title", "")
     if "–" in t:
-        return t.split("–")[0].strip()[:14]
+        head = t.split("–")[0].strip()
+        if head.lower() in COUNTRY:
+            return head
+    src = it.get("source") or ""
+    if "SAM.gov" in src:
+        return "미국"
+    if "Canada" in src or "캐나다" in src:
+        return "캐나다"
+    if "Find a Tender" in src or "영국" in src:
+        return "영국"
+    if "TED" in src:
+        return "EU"
     return (it.get("country_hint") or "")[:14]
 
 
@@ -166,12 +179,22 @@ def build_one(pub, no, titles=None):
     global_secs = []
     if tds:
         excluded = len(tenders) - len(shown_tenders)
-        global_secs.append({"kind": "table", "title": "입찰정보",
-                            "subtitle": (f"전일 확인 조달공고 {len(tenders)}건 중 "
-                                         f"방산 연관성 낮은 {excluded}건 제외, {len(tds)}건 전체 게재"
-                                         if excluded else
-                                         f"전일 확인 조달공고 {len(tds)}건 전체 게재"),
-                            "items": tds})
+        note = (f"전일 확인 조달공고 {len(tenders)}건 중 "
+                f"방산 연관성 낮은 {excluded}건 제외, {len(tds)}건 전체 게재"
+                if excluded else f"전일 확인 조달공고 {len(tds)}건 전체 게재")
+        global_secs.append({"kind": "table", "title": "전체",
+                            "subtitle": note, "items": tds})
+        # 국가별 하위 탭 (미국 / 캐나다 / 유럽)
+        groups = [("미국", lambda c: c == "미국"),
+                  ("캐나다", lambda c: c == "캐나다"),
+                  ("유럽", lambda c: c not in ("미국", "캐나다"))]
+        for gname, cond in groups:
+            rows = [r for r in tds if cond(r["country"])]
+            if rows:
+                global_secs.append({"kind": "table", "title": gname,
+                                    "subtitle": f"{gname} 발주 공고 {len(rows)}건",
+                                    "web_only": True,   # 메일에서는 전체 표만
+                                    "items": rows})
 
     # ---- 주요 동향 (상위 뉴스, 해설 카드에 쓴 건 제외)
     brs = []
@@ -179,8 +202,13 @@ def build_one(pub, no, titles=None):
         if it["url"] in used_urls or len(brs) >= 10:
             continue
         _ko = ko_title(it["title"])
+        _orig = it["title"] if _ko != it["title"] else ""
+        if _orig:
+            _fl = flag_for(f"{it['title']} {_ko}")
+            if _fl:
+                _orig = f"{_fl} {_orig}"
         brs.append({"title": _ko[:160],
-                    "title_orig": it["title"] if _ko != it["title"] else "",
+                    "title_orig": _orig,
                     "note": "",
                     "source": f"{it.get('outlet') or it.get('source')}"
                               f"{' · ' + it['date'] if it.get('date') else ''}",

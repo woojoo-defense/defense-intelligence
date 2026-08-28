@@ -22,7 +22,7 @@ import argparse
 import html
 import sys as _sys, os as _os
 _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-from translate import ko_title, has_hangul
+from translate import ko_title, has_hangul, flag_for
 import json
 import os
 import re
@@ -80,11 +80,7 @@ def src_link(url, label="원문 보기"):
 # ------------------------------------------------------------------ 블록
 
 def render_feature(it):
-    tags = "".join(badge(t) for t in it.get("tags", []))
-    if it.get("grade"):
-        tags = badge(f"신뢰등급 {it['grade']}", grade_tone(it["grade"])) + tags
-    if it.get("score") is not None:
-        tags = badge(f"{it['score']}점", "red" if it["score"] >= 80 else "blue") + tags
+    tags = ""   # 신뢰등급·점수·태그 배지는 표시하지 않는다 (2026-08-29 사용자 요청)
 
     facts = "".join(
         f'<tr><td style="padding:5px 10px 5px 0;color:{C["muted"]};font-size:13px;'
@@ -451,9 +447,14 @@ def fill_auto(sec, date, used_urls):
         used_urls.add(it["url"])
         _t = it["title"]
         _ko = ko_title(_t)
+        _orig = (_t if _ko != _t else it.get("title_orig", "")) or ""
+        if _orig:
+            _fl = flag_for(f"{_t} {_ko}")
+            if _fl:
+                _orig = f"{_fl} {_orig}"
         row = {
             "title": _ko, "url": it["url"],
-            "title_orig": (_t if _ko != _t else it.get("title_orig", "")) or "",
+            "title_orig": _orig,
             "outlet": it.get("outlet") or it.get("source"),
             "date": it.get("date", ""), "others": it.get("others", []),
             "note": (it.get("snippet", "")[:110] + "…") if cfg.get("show_snippet")
@@ -481,6 +482,8 @@ def render_tab_body(tab, date, used_urls):
     out = []
     today = datetime.strptime(date, "%Y-%m-%d").date()
     for i, sec in enumerate(tab.get("sections", [])):
+        if sec.get("web_only"):
+            continue                        # 국가별 하위 탭 등 웹 전용 섹션
         if sec.get("kind") == "calendar":
             if sec.get("auto") is not None or not sec.get("items"):
                 items = load_exhibitions(sec.get("auto", {}), today)

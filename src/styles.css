@@ -405,6 +405,36 @@ footer b { color: var(--ink); display: block; margin-bottom: 7px; font-size: 13p
 .nl-scrap-go { flex: 0 0 auto; font-size: 11.5px; padding-top: 4px; }
 .nl-others a { color: var(--muted); }
 
+/* 주간·월간 결산 지표 그리드 */
+.nl-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+            border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.nl-stat { padding: 18px 12px; text-align: center; border-left: 1px solid var(--line); }
+.nl-stat:nth-child(3n+1) { border-left: 0; }
+.nl-stat:nth-child(n+4) { border-top: 1px solid var(--line); }
+.nl-stat-label { font-size: 11.5px; color: var(--muted); font-weight: 600;
+                 margin-bottom: 4px; }
+.nl-stat-value { font-size: 24px; font-weight: 800; color: var(--ink-strong);
+                 letter-spacing: -0.5px; line-height: 1.3; }
+.nl-stat-delta { font-size: 12px; font-weight: 700; color: var(--green); margin-top: 2px; }
+.nl-stat-delta.down { color: var(--red); }
+.nl-stat-note { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+@media (max-width: 720px) {
+  .nl-stats { grid-template-columns: repeat(2, 1fr); }
+  .nl-stat:nth-child(3n+1) { border-left: 1px solid var(--line); }
+  .nl-stat:nth-child(2n+1) { border-left: 0; }
+  .nl-stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+
+/* 월간 타임라인 */
+.nl-timeline { border-left: 2px solid var(--line-dark); margin-left: 4px; }
+.nl-tl-row { display: flex; gap: 14px; padding: 12px 0 12px 16px; position: relative; }
+.nl-tl-row::before { content: ""; position: absolute; left: -5px; top: 22px;
+                     width: 8px; height: 8px; border-radius: 50%;
+                     background: var(--accent); }
+.nl-tl-date { flex: 0 0 46px; font-size: 12.5px; font-weight: 800;
+              color: var(--ink-strong); padding-top: 2px; }
+.nl-tl-body { flex: 1; min-width: 0; }
+
 /* 꼬리 */
 .nl-foot { max-width: 700px; margin: 22px auto 0; padding: 16px 20px 6px;
            border-top: 1px solid var(--line); background: none; color: var(--muted);

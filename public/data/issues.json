@@ -10,7 +10,7 @@
   "counts": {
    "collected": 357,
    "tender": 35,
-   "published": "95건"
+   "published": "131건"
   },
   "tags": [
    "현지생산",
@@ -28,7 +28,7 @@
   "counts": {
    "collected": 542,
    "tender": 96,
-   "published": "152건"
+   "published": "245건"
   },
   "tags": [
    "해양",
@@ -46,7 +46,7 @@
   "counts": {
    "collected": 521,
    "tender": 65,
-   "published": "124건"
+   "published": "189건"
   },
   "tags": [
    "탄약"
@@ -63,7 +63,7 @@
   "counts": {
    "collected": 375,
    "tender": 42,
-   "published": "97건"
+   "published": "135건"
   },
   "tags": [
    "방공"
@@ -80,7 +80,7 @@
   "counts": {
    "collected": 499,
    "tender": 80,
-   "published": "133건"
+   "published": "206건"
   },
   "tags": [
    "현지생산",
@@ -118,7 +118,7 @@
   "counts": {
    "collected": 786,
    "tender": 44,
-   "published": "122건"
+   "published": "166건"
   },
   "tags": [
    "화력체계",
@@ -136,7 +136,7 @@
   "counts": {
    "collected": 28,
    "tender": 0,
-   "published": "37건"
+   "published": "39건"
   },
   "tags": []
  },
@@ -151,7 +151,7 @@
   "counts": {
    "collected": 61,
    "tender": 0,
-   "published": "39건"
+   "published": "41건"
   },
   "tags": [
    "방공"
@@ -168,7 +168,7 @@
   "counts": {
    "collected": 68,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "화력체계",
@@ -186,7 +186,7 @@
   "counts": {
    "collected": 70,
    "tender": 6,
-   "published": "45건"
+   "published": "53건"
   },
   "tags": [
    "화력체계",
@@ -204,7 +204,7 @@
   "counts": {
    "collected": 56,
    "tender": 11,
-   "published": "49건"
+   "published": "61건"
   },
   "tags": [
    "K-방산"
@@ -221,7 +221,7 @@
   "counts": {
    "collected": 59,
    "tender": 14,
-   "published": "52건"
+   "published": "68건"
   },
   "tags": [
    "폴란드"
@@ -258,7 +258,7 @@
   "counts": {
    "collected": 23,
    "tender": 0,
-   "published": "37건"
+   "published": "39건"
   },
   "tags": []
  },
@@ -273,7 +273,7 @@
   "counts": {
    "collected": 22,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "인도"
@@ -290,7 +290,7 @@
   "counts": {
    "collected": 53,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "화력체계",
@@ -308,7 +308,7 @@
   "counts": {
    "collected": 57,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "인도"
@@ -325,7 +325,7 @@
   "counts": {
    "collected": 54,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "MRO"
@@ -342,7 +342,7 @@
   "counts": {
    "collected": 78,
    "tender": 13,
-   "published": "52건"
+   "published": "67건"
   },
   "tags": [
    "해양",
@@ -360,7 +360,7 @@
   "counts": {
    "collected": 72,
    "tender": 18,
-   "published": "56건"
+   "published": "76건"
   },
   "tags": [
    "탄약"
@@ -397,7 +397,7 @@
   "counts": {
    "collected": 29,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "방공"
@@ -414,7 +414,7 @@
   "counts": {
    "collected": 33,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "해양",
@@ -432,7 +432,7 @@
   "counts": {
    "collected": 65,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "화력체계",
@@ -450,7 +450,7 @@
   "counts": {
    "collected": 37,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "인도"
@@ -467,7 +467,7 @@
   "counts": {
    "collected": 39,
    "tender": 0,
-   "published": "39건"
+   "published": "41건"
   },
   "tags": [
    "무인기",
@@ -485,7 +485,7 @@
   "counts": {
    "collected": 51,
    "tender": 12,
-   "published": "50건"
+   "published": "64건"
   },
   "tags": [
    "탄약"
@@ -502,7 +502,7 @@
   "counts": {
    "collected": 57,
    "tender": 16,
-   "published": "54건"
+   "published": "71건"
   },
   "tags": [
    "중동"
@@ -539,7 +539,7 @@
   "counts": {
    "collected": 19,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "센서"
@@ -556,7 +556,7 @@
   "counts": {
    "collected": 13,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "방공"
@@ -593,7 +593,7 @@
   "counts": {
    "collected": 53,
    "tender": 0,
-   "published": "38건"
+   "published": "40건"
   },
   "tags": [
    "MRO"

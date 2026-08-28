@@ -21,11 +21,6 @@ function Ext({ url, children, className }) {
 function Feature({ it }) {
   return (
     <article className="nl-feature">
-      <div className="nl-badges">
-        {it.grade && <span className={`nl-badge ${GRADE_CLASS[it.grade] || ''}`}>신뢰등급 {it.grade}</span>}
-        {it.score != null && <span className="nl-badge nl-g-b">{it.score}점</span>}
-        {(it.tags || []).map((t) => <span className="nl-badge" key={t}>{t}</span>)}
-      </div>
       <h3 className="nl-feature-title"><Ext url={it.url}>{it.title}</Ext></h3>
       {(it.facts || []).length > 0 && (
         <dl className="nl-facts">
@@ -150,6 +145,13 @@ function Scrap({ items }) {
   )
 }
 
+const FLAG = {
+  대한민국: '🇰🇷', 미국: '🇺🇸', 프랑스: '🇫🇷', 폴란드: '🇵🇱', 필리핀: '🇵🇭',
+  인도네시아: '🇮🇩', 이집트: '🇪🇬', UAE: '🇦🇪', 인도: '🇮🇳', 영국: '🇬🇧',
+  사우디아라비아: '🇸🇦', 사우디: '🇸🇦', 싱가포르: '🇸🇬', 말레이시아: '🇲🇾',
+  독일: '🇩🇪', 일본: '🇯🇵', 튀르키예: '🇹🇷', 캐나다: '🇨🇦', 호주: '🇦🇺',
+}
+
 function CalendarList({ items }) {
   const tone = (it) => {
     if (it.dday == null) return 'd-tbd'
@@ -162,8 +164,13 @@ function CalendarList({ items }) {
       {items.map((it, i) => (
         <div className={'exh' + (it.country === '대한민국' ? ' exh-kr' : '')} key={i}>
           <div className={`dday ${tone(it)}`}>
-            <b>{it.dday == null ? '미정' : `D-${it.dday}`}</b>
+            <b>{it.dday == null ? '미정' : it.dday < 0 ? '진행 중' : `D-${it.dday}`}</b>
             <span>{it.country}</span>
+            {FLAG[it.country] && (
+              <span style={{ display: 'block', fontSize: 17, marginTop: 2 }}>
+                {FLAG[it.country]}
+              </span>
+            )}
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <h3><Ext url={it.url}>{it.name_ko || it.name}</Ext></h3>
@@ -175,6 +182,44 @@ function CalendarList({ items }) {
             <div style={{ marginTop: 8, fontSize: 12 }}>
               <Ext url={it.url} className="nl-golink">공식 사이트 ›</Ext>
             </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* 주간·월간 결산용 지표 그리드 — items: [{label, value, delta, note}] */
+function Stats({ items }) {
+  return (
+    <div className="nl-stats">
+      {items.map((it, i) => (
+        <div className="nl-stat" key={i}>
+          <div className="nl-stat-label">{it.label}</div>
+          <div className="nl-stat-value">{it.value}</div>
+          {it.delta && (
+            <div className={'nl-stat-delta' + (String(it.delta).startsWith('-') ? ' down' : '')}>
+              {it.delta}
+            </div>
+          )}
+          {it.note && <div className="nl-stat-note">{it.note}</div>}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* 월간 결산용 타임라인 — items: [{date, title, note, url, source}] */
+function Timeline({ items }) {
+  return (
+    <div className="nl-timeline">
+      {items.map((it, i) => (
+        <div className="nl-tl-row" key={i}>
+          <div className="nl-tl-date">{it.date}</div>
+          <div className="nl-tl-body">
+            <Ext url={it.url} className="nl-brief-title">{it.title}</Ext>
+            {it.note && <Html className="nl-brief-note" text={it.note} />}
+            {it.source && <div className="nl-brief-src">{it.source}</div>}
           </div>
         </div>
       ))}
@@ -199,11 +244,13 @@ function Section({ sec, hideHead }) {
       {sec.kind === 'brief' && <Briefs items={items} />}
       {sec.kind === 'scrap' && <Scrap items={items} />}
       {sec.kind === 'calendar' && <CalendarList items={items} />}
+      {sec.kind === 'stats' && <Stats items={items} />}
+      {sec.kind === 'timeline' && <Timeline items={items} />}
     </div>
   )
 }
 
-const SUBTAB_IDS = ['global', 'scrap']
+const SUBTAB_IDS = ['global', 'scrap', 'tenders']
 
 export default function Newsletter({ doc }) {
   const tabs = (doc.tabs || []).filter(
