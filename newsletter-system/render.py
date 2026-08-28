@@ -309,7 +309,12 @@ def resolve_tabs(tabs, date, pub_date):
             sec2 = {k: v for k, v in sec.items() if k not in ("auto",)}
             kind = sec.get("kind", "feature")
             if kind == "calendar":
-                sec2["items"] = load_exhibitions(sec.get("auto", {}), pub_date)
+                # items가 직접 지정된 캘린더 섹션(예: 세미나 일정)은 그대로 쓰고,
+                # auto 설정이 있을 때만 전시회 데이터로 채운다
+                if sec.get("auto") is not None or not sec.get("items"):
+                    sec2["items"] = load_exhibitions(sec.get("auto", {}), pub_date)
+                else:
+                    sec2["items"] = sec["items"]
             elif kind == "scrap":
                 sec2["items"] = fill_auto(sec, date, used)
             else:
@@ -477,7 +482,10 @@ def render_tab_body(tab, date, used_urls):
     today = datetime.strptime(date, "%Y-%m-%d").date()
     for i, sec in enumerate(tab.get("sections", [])):
         if sec.get("kind") == "calendar":
-            items = load_exhibitions(sec.get("auto", {}), today)
+            if sec.get("auto") is not None or not sec.get("items"):
+                items = load_exhibitions(sec.get("auto", {}), today)
+            else:
+                items = sec["items"]
         elif sec.get("kind") == "scrap":
             items = fill_auto(sec, date, used_urls)
         else:

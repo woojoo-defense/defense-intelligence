@@ -1,0 +1,55 @@
+{
+ "_comment": "방산 컨퍼런스·세미나 데이터. dated=개최일 확정(캘린더 표시, 지난 행사 자동 제외), regular=정례 행사(다음 회차 공고 대기). 일정 확인 시 dated로 옮긴다. 출처 확인 없이 추가 금지.",
+ "dated": [
+  {
+   "name_ko": "서울안보대화 2026 (SDD)",
+   "name": "SDD 2026",
+   "country": "대한민국",
+   "city": "서울 롯데호텔",
+   "start": "2026-09-07",
+   "end": "2026-09-09",
+   "focus": "국방외교·안보정책 / 제15회 · 국방부 주최",
+   "why": "각국 국방차관급·군 고위급이 모이는 연례 다자안보협의체. 참가국 대표단과의 접점, 국방협력 의제 흐름을 파악할 수 있는 자리",
+   "url": "https://sddofficial.kr/",
+   "verified": true
+  }
+ ],
+ "regular": [
+  {
+   "title": "K-DEX 2026 부대행사 컨퍼런스·수출상담회 — 12월 킨텍스",
+   "note": "KADEX·DX KOREA가 K-DEX 단일 브랜드로 통합(2026.7 확정). 12/8~11 전시 기간 중 국제 컨퍼런스·수출상담회 병행 — 세부 프로그램 조직위 공지 예정.",
+   "source": "K-DEX 조직위",
+   "url": "https://k-dex.kr/"
+  },
+  {
+   "title": "한국군사과학기술학회(KIMST) 추계학술대회 — 매년 11월",
+   "note": "전년도는 11월 21일 대전컨벤션센터 개최. 2026년 일정 공고 대기 중.",
+   "source": "한국군사과학기술학회",
+   "url": "https://www.kimst.or.kr/symposium/index.kin?gubun=2"
+  },
+  {
+   "title": "한국방위산업진흥회 국제 방산세미나 — 연 2회",
+   "note": "2026년 2차는 7월 9일 여의도 FKI타워 개최(방사청·국회·주한 무관단 등 290여 명). 다음 회차 공고 대기 중.",
+   "source": "이뉴스투데이",
+   "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2447335"
+  },
+  {
+   "title": "국방과학기술 대제전 학술세미나 — 연례(7월경)",
+   "note": "방위사업청 주최·국방기술진흥연구소 주관. 제9회는 7월 31일 aT센터 개최 — 제10회 일정 공고 대기.",
+   "source": "방위사업청",
+   "url": "https://www.sisa-news.com/news/article.html?no=273812"
+  },
+  {
+   "title": "글로벌 방산 공급망 포럼(GDF) — 연례(7월경)",
+   "note": "한국경제신문 주최, 방사청·산업부·중기부 후원. 2026년은 7월 1일 전쟁기념관 개최 — 차기 일정 공고 대기.",
+   "source": "한국경제신문",
+   "url": "https://defenseforum.kr/"
+  },
+  {
+   "title": "KIDA 한국국방연구원 학술회의 — 연중",
+   "note": "국방정책·전력 분야 학술회의를 연중 수시 개최. 연도별 일정은 KIDA 페이지에서 공지.",
+   "source": "한국국방연구원",
+   "url": "https://www.kida.re.kr/frt/schrshp/frtSchrShpList.do?sidx=122&depth=2"
+  }
+ ]
+}

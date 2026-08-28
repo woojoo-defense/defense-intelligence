@@ -76,7 +76,7 @@ def load_slice(pub):
     # 날짜 없는 항목 중 논문·오피니언은 발행 주기가 느슨하므로 월·목요일에만 소량 배분
     if pub.weekday() in (0, 3):
         extras = [i for i in items if not i.get("date")
-                  and i.get("kind") in ("paper", "opinion")][:6]
+                  and i.get("kind") in ("paper", "opinion")][:10]
         day_items += extras
     return day_items, str(target)
 
@@ -148,9 +148,13 @@ def build_one(pub, no, titles=None):
                            "subtitle": "상위 신호를 주제 관점에서 해설합니다 — 세부 조건은 반드시 원문으로 확인하십시오",
                            "items": feats})
 
-    # ---- 입찰정보
+    # ---- 입찰정보: 순위 컷 없이 전체 게재, 연관성 낮은 공고(점수 30 미만)만 제외
+    #      (예: 골프카트·TV모니터·박물관 기체 부품 등 — 순위에 밀려 잘리는 것 방지)
+    MIN_TENDER_SCORE = 30
+    shown_tenders = [t for t in tenders
+                     if (t.get("score") or 0) >= MIN_TENDER_SCORE]
     tds = []
-    for it in tenders[:9]:
+    for it in shown_tenders:
         tds.append({"country": ko_country(parse_country(it)),
                     "title": ko_title(it["title"])[:150],
                     "note": (it.get("buyer") or "")[:70],
@@ -161,14 +165,18 @@ def build_one(pub, no, titles=None):
                     "url": it["url"]})
     global_secs = []
     if tds:
+        excluded = len(tenders) - len(shown_tenders)
         global_secs.append({"kind": "table", "title": "입찰정보",
-                            "subtitle": "전일 게시된 국방 조달공고 — 제목 또는 우측 '공고'를 누르면 원문으로 이동합니다",
+                            "subtitle": (f"전일 확인 조달공고 {len(tenders)}건 중 "
+                                         f"방산 연관성 낮은 {excluded}건 제외, {len(tds)}건 전체 게재"
+                                         if excluded else
+                                         f"전일 확인 조달공고 {len(tds)}건 전체 게재"),
                             "items": tds})
 
-    # ---- 방산정보 (상위 뉴스, 해설 카드에 쓴 건 제외)
+    # ---- 주요 동향 (상위 뉴스, 해설 카드에 쓴 건 제외)
     brs = []
     for it in news:
-        if it["url"] in used_urls or len(brs) >= 6:
+        if it["url"] in used_urls or len(brs) >= 10:
             continue
         _ko = ko_title(it["title"])
         brs.append({"title": _ko[:160],
@@ -179,9 +187,33 @@ def build_one(pub, no, titles=None):
                     "url": it["url"]})
         used_urls.add(it["url"])
     if brs:
-        global_secs.append({"kind": "brief", "title": "방산정보",
+        global_secs.append({"kind": "brief", "title": "주요 동향",
                             "subtitle": "전일의 주요 보도 — 제목을 누르면 원문으로 이동합니다",
                             "items": brs})
+
+    # ---- 방산 컨퍼런스·세미나 (data/seminars.json)
+    sem_secs = []
+    sem_path = os.path.join(ROOT, "data", "seminars.json")
+    if os.path.exists(sem_path):
+        sem = json.load(open(sem_path, encoding="utf-8"))
+        dated = []
+        for ev in sem.get("dated", []):
+            end = ev.get("end") or ev["start"]
+            if end < str(pub):
+                continue                              # 지난 행사 자동 제외
+            it = dict(ev)
+            s = ev["start"]
+            it["dday"] = ((datetime.strptime(s, "%Y-%m-%d").date() - pub).days
+                          if ev.get("verified") else None)
+            dated.append(it)
+        if dated:
+            sem_secs.append({"kind": "calendar", "title": "일정 확정",
+                             "subtitle": "개최일이 공고된 컨퍼런스·세미나 — 발행일 기준 D-day",
+                             "items": dated})
+        if sem.get("regular"):
+            sem_secs.append({"kind": "brief", "title": "정례 행사 — 일정 공고 대기",
+                             "subtitle": "매년 열리는 행사 중 다음 회차가 아직 공고되지 않은 것 (최근 개최 이력 병기)",
+                             "items": sem["regular"]})
 
     # ---- 슬라이스를 임시 raw로 저장 (스크랩 auto가 읽는다)
     os.makedirs(SLICE_DIR, exist_ok=True)
@@ -193,32 +225,41 @@ def build_one(pub, no, titles=None):
               open(os.path.join(SLICE_DIR, f"{key}.json"), "w", encoding="utf-8"),
               ensure_ascii=False)
 
+    # 해설 + 주요 동향을 한 탭으로 (2026-08-29 구성 개편)
+    news_secs = brief_secs + [s for s in global_secs if s["kind"] == "brief"]
+    tender_secs = [s for s in global_secs if s["kind"] == "table"]
+
     tabs = [
-        {"id": "brief", "label": "데일리 뉴스",
-         "desc": "전일 수집된 신호 중 가장 중요한 것을 골라 주제 관점의 해설과 함께 정리했습니다.",
-         "sections": brief_secs},
-        {"id": "global", "label": "글로벌 방산 정보",
-         "desc": "전일의 조달공고와 시장 동향입니다. 마감일과 자격요건은 반드시 원문 공고로 확인하십시오.",
-         "sections": global_secs},
-        {"id": "scrap", "label": "방산 아티클 스크랩",
+        {"id": "news", "label": "해외 방산뉴스",
+         "desc": "전일 글로벌 방산 뉴스 가운데 한국 기업에 의미 있는 신호를 골라 해설과 함께 정리했습니다.",
+         "sections": news_secs},
+        {"id": "tenders", "label": "입찰정보",
+         "desc": "전일 게시된 국방 조달공고입니다. 마감일과 자격요건은 반드시 원문 공고로 확인하십시오.",
+         "sections": tender_secs},
+        {"id": "scrap", "label": "뉴스 스크랩",
          "desc": "전일 수집된 국내·해외 방산 기사입니다. 본문은 복제하지 않으며 모든 항목이 원문으로 연결됩니다.",
          "sections": [
              {"kind": "scrap", "title": "국내 방산 아티클",
-              "subtitle": "국내 매체 보도 — 제목을 누르면 원문으로 이동합니다",
+              "subtitle": "국내 매체 보도 — 여러 매체가 함께 다룬 사안 우선",
               "auto": {"region": "국내", "limit": 12, "show_snippet": False}},
              {"kind": "scrap", "title": "해외 방산 아티클",
-              "subtitle": "해외 매체 보도 — 매체명과 함께 원문으로 연결됩니다",
-              "auto": {"region": "해외", "limit": 12, "show_snippet": False}},
+              "subtitle": "해외 매체 보도 — 키워드 적합도 상위 전체(스코어 20점 이상)",
+              "auto": {"region": "해외", "min_score": 20, "limit": 30,
+                       "show_snippet": False}},
              {"kind": "scrap", "title": "연구·오피니언",
               "subtitle": "학술논문과 싱크탱크 기고",
-              "auto": {"kinds": ["paper", "opinion"], "limit": 6, "show_snippet": False}},
+              "auto": {"kinds": ["paper", "opinion"], "limit": 10,
+                       "show_snippet": False}},
          ]},
-        {"id": "mice", "label": "전시회·MICE 캘린더",
-         "desc": "발행 시점 기준으로 다가오는 방산전시회입니다.",
+        {"id": "events", "label": "방산 컨퍼런스·세미나",
+         "desc": "국회·정부기관·단체(학회/협회) 주관 세미나·포럼. 일정 확정 행사는 D-day로, 정례 행사는 최근 개최 이력과 함께 표시합니다.",
+         "sections": sem_secs},
+        {"id": "expo", "label": "글로벌 방산전시회",
+         "desc": "국내·해외 방산전시회 일정. 국가관·공동관 신청은 통상 개최 4~6개월 전 마감 — D-180부터 검토가 필요합니다.",
          "sections": [
-             {"kind": "calendar", "title": "다가오는 방산전시회",
+             {"kind": "calendar", "title": "글로벌 방산전시회 일정",
               "subtitle": "발행일 기준 D-day · 지난 행사는 자동 제외",
-              "auto": {"months": 20, "limit": 6}},
+              "auto": {"months": 20, "limit": 10}},
          ]},
     ]
 
