@@ -18,6 +18,35 @@ function Ext({ url, children, className }) {
   )
 }
 
+/* Windows는 국기 이모지를 글자(US, KR…)로 표시하므로 Twemoji SVG 이미지로 그린다 */
+function flagSrc(emoji) {
+  const cps = [...emoji].map((c) => c.codePointAt(0).toString(16)).join('-')
+  return `https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/${cps}.svg`
+}
+
+function FlagImg({ emoji, size = 15 }) {
+  return (
+    <img src={flagSrc(emoji)} alt="" width={size} height={size}
+         style={{ verticalAlign: -2, marginRight: 5, borderRadius: 2 }}
+         loading="lazy" />
+  )
+}
+
+/* 문자열 맨 앞의 국기 이모지(RI 페어)를 이미지로 바꿔 렌더 */
+const RI_RE = /^([\u{1F1E6}-\u{1F1FF}]{2})\s*/u
+
+function WithFlag({ text, className }) {
+  if (!text) return null
+  const m = text.match(RI_RE)
+  if (!m) return <div className={className}>{text}</div>
+  return (
+    <div className={className}>
+      <FlagImg emoji={m[1]} size={14} />
+      {text.slice(m[0].length)}
+    </div>
+  )
+}
+
 function Feature({ it }) {
   return (
     <article className="nl-feature">
@@ -106,7 +135,7 @@ function Briefs({ items }) {
       {items.map((it, i) => (
         <div className="nl-brief" key={i}>
           <Ext url={it.url} className="nl-brief-title">{it.title}</Ext>
-          {it.title_orig && <div className="nl-orig">{it.title_orig}</div>}
+          {it.title_orig && <WithFlag className="nl-orig" text={it.title_orig} />}
           {it.note && <Html className="nl-brief-note" text={it.note} />}
           <div className="nl-brief-src">{it.source} · <Ext url={it.url}>원문 ›</Ext></div>
         </div>
@@ -123,7 +152,7 @@ function Scrap({ items }) {
           <div className="nl-scrap-row">
             <div className="nl-scrap-main">
               <Ext url={it.url} className="nl-brief-title">{it.title}</Ext>
-              {it.title_orig && <div className="nl-orig">{it.title_orig}</div>}
+              {it.title_orig && <WithFlag className="nl-orig" text={it.title_orig} />}
               {it.note && <Html className="nl-brief-note" text={it.note} />}
               <div className="nl-brief-src">
                 {it.outlet}{it.date ? ` · ${it.date}` : ''}
@@ -167,8 +196,9 @@ function CalendarList({ items }) {
             <b>{it.dday == null ? '미정' : it.dday < 0 ? '진행 중' : `D-${it.dday}`}</b>
             <span>{it.country}</span>
             {FLAG[it.country] && (
-              <span style={{ display: 'block', fontSize: 17, marginTop: 2 }}>
-                {FLAG[it.country]}
+              <span style={{ display: 'block', marginTop: 3 }}>
+                <img src={flagSrc(FLAG[it.country])} alt="" width={20} height={20}
+                     style={{ borderRadius: 2, marginRight: 0 }} loading="lazy" />
               </span>
             )}
           </div>
@@ -219,7 +249,7 @@ function Timeline({ items }) {
           <div className="nl-tl-body">
             <Ext url={it.url} className="nl-brief-title">{it.title}</Ext>
             {it.note && <Html className="nl-brief-note" text={it.note} />}
-            {it.source && <div className="nl-brief-src">{it.source}</div>}
+            {it.source && <WithFlag className="nl-brief-src" text={it.source} />}
           </div>
         </div>
       ))}
