@@ -196,18 +196,16 @@ def build_one(ed):
     d = datetime.strptime(date, "%Y-%m-%d")
     datestr = f"{d.year}년 {d.month}월 {d.day}일 ({'월화수목금토일'[d.weekday()]})"
 
-    used, bodies, total = set(), [], 0
     today = d.date()
+    # 결산 포맷으로 재조립 (2026-08-29 개편)
+    import wm_format as W
+    tabs = W.restructure_monthly(R.resolve_tabs(tabs, date, today), today,
+                                 raw.get("items", []))
+
+    used, bodies, total = set(), [], 0
     for t in tabs:
         body, _ = R.render_tab_body(t, date, used)
-        cnt = 0
-        for sec in t["sections"]:
-            if sec.get("kind") == "calendar":
-                cnt += len(R.load_exhibitions(sec.get("auto", {}), today))
-            elif sec.get("kind") == "scrap":
-                cnt += len(R.fill_auto(sec, date, set(used)))
-            else:
-                cnt += len(sec.get("items", []))
+        cnt = sum(len(sec.get("items", [])) for sec in t["sections"])
         total += cnt
         bodies.append({"id": t["id"], "label": t["label"], "desc": t["desc"],
                        "html": body, "count": cnt})

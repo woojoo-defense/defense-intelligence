@@ -219,6 +219,22 @@ def render_scrap(items):
             f'style="margin:0 0 14px;">{"".join(rows)}</table>')
 
 
+def render_timeline(items):
+    """월간 타임라인 — 메일용 단순 날짜·제목 목록."""
+    rows = "".join(
+        f'<tr><td style="padding:7px 12px 7px 0;font-size:13px;font-weight:800;'
+        f'color:{C["navy"]};white-space:nowrap;vertical-align:top;">{e(it.get("date"))}</td>'
+        f'<td style="padding:7px 0;border-bottom:1px solid {C["line"]};">'
+        f'<a href="{e(it.get("url"))}" style="color:{C["text"]};font-size:13.5px;'
+        f'font-weight:600;text-decoration:none;">{e(it.get("title"))}</a>'
+        + (f'<div style="font-size:11.5px;color:{C["muted"]};margin-top:2px;">'
+           f'{e(it.get("source"))}</div>' if it.get("source") else "")
+        + '</td></tr>'
+        for it in items)
+    return (f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">'
+            f'{rows}</table>')
+
+
 def render_calendar(items):
     """전시회 캘린더 - D-day와 준비 리드타임을 함께 보여준다."""
     rows = []
@@ -509,6 +525,8 @@ def render_tab_body(tab, date, used_urls):
             out.append(render_calendar(items))
         elif kind == "scrap":
             out.append(render_scrap(items))
+        elif kind == "timeline":
+            out.append(render_timeline(items))
         else:
             out.append(render_brief(items))
             for it in items:
