@@ -1,5 +1,22 @@
 [
  {
+  "slug": "2026-08-30-d",
+  "type": "daily",
+  "date": "2026-08-30",
+  "no": 30,
+  "subject": "8/30 — 엠브라에르, 인도 MTA 수주 시 현지 조립라인 구상 / 미국 보안감시체계 정비 용역",
+  "summary": "전일(8/29) 신호 334건 · 조달공고 29건 · 해설 2건",
+  "covers": "전일 8/29 신호",
+  "counts": {
+   "collected": 334,
+   "tender": 29,
+   "published": "117건"
+  },
+  "tags": [
+   "인도"
+  ]
+ },
+ {
   "slug": "2026-08-29-d",
   "type": "daily",
   "date": "2026-08-29",
@@ -98,7 +115,7 @@
   "counts": {
    "collected": 367,
    "tender": 31,
-   "published": "37건"
+   "published": "36건"
   },
   "tags": [
    "미국",
@@ -238,7 +255,7 @@
   "counts": {
    "collected": 383,
    "tender": 31,
-   "published": "55건"
+   "published": "27건"
   },
   "tags": [
    "미국",
@@ -377,7 +394,7 @@
   "counts": {
    "collected": 367,
    "tender": 28,
-   "published": "52건"
+   "published": "26건"
   },
   "tags": [
    "캐나다",
@@ -519,7 +536,7 @@
   "counts": {
    "collected": 352,
    "tender": 27,
-   "published": "56건"
+   "published": "26건"
   },
   "tags": [
    "스페인",
@@ -573,7 +590,7 @@
   "counts": {
    "collected": 522,
    "tender": 75,
-   "published": "55건"
+   "published": "54건"
   },
   "tags": [
    "캐나다",
@@ -610,7 +627,7 @@
   "counts": {
    "collected": 376,
    "tender": 32,
-   "published": "56건"
+   "published": "25건"
   },
   "tags": [
    "미국",
@@ -630,7 +647,7 @@
   "counts": {
    "collected": 340,
    "tender": 27,
-   "published": "52건"
+   "published": "26건"
   },
   "tags": [
    "NATO",
@@ -650,7 +667,7 @@
   "counts": {
    "collected": 420,
    "tender": 36,
-   "published": "58건"
+   "published": "26건"
   },
   "tags": [
    "NATO",
@@ -670,7 +687,7 @@
   "counts": {
    "collected": 391,
    "tender": 28,
-   "published": "57건"
+   "published": "26건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -690,7 +707,7 @@
   "counts": {
    "collected": 503,
    "tender": 70,
-   "published": "76건"
+   "published": "51건"
   },
   "tags": [
    "인도네시아",
@@ -710,7 +727,7 @@
   "counts": {
    "collected": 297,
    "tender": 26,
-   "published": "58건"
+   "published": "26건"
   },
   "tags": [
    "인도네시아",
@@ -730,7 +747,7 @@
   "counts": {
    "collected": 288,
    "tender": 28,
-   "published": "61건"
+   "published": "32건"
   },
   "tags": [
    "독일",
@@ -750,7 +767,7 @@
   "counts": {
    "collected": 284,
    "tender": 28,
-   "published": "53건"
+   "published": "27건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -770,7 +787,7 @@
   "counts": {
    "collected": 321,
    "tender": 22,
-   "published": "55건"
+   "published": "31건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -790,7 +807,7 @@
   "counts": {
    "collected": 503,
    "tender": 70,
-   "published": "76건"
+   "published": "60건"
   },
   "tags": [
    "캐나다",
@@ -810,7 +827,7 @@
   "counts": {
    "collected": 322,
    "tender": 36,
-   "published": "54건"
+   "published": "29건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -830,7 +847,7 @@
   "counts": {
    "collected": 239,
    "tender": 33,
-   "published": "55건"
+   "published": "31건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -850,7 +867,7 @@
   "counts": {
    "collected": 270,
    "tender": 22,
-   "published": "50건"
+   "published": "22건"
   },
   "tags": [
    "에스토니아",
@@ -870,7 +887,7 @@
   "counts": {
    "collected": 235,
    "tender": 28,
-   "published": "51건"
+   "published": "24건"
   },
   "tags": [
    "UAE",
@@ -890,7 +907,7 @@
   "counts": {
    "collected": 279,
    "tender": 23,
-   "published": "52건"
+   "published": "26건"
   },
   "tags": [
    "폴란드",
@@ -910,7 +927,7 @@
   "counts": {
    "collected": 468,
    "tender": 58,
-   "published": "76건"
+   "published": "51건"
   },
   "tags": [
    "핀란드",
@@ -930,7 +947,7 @@
   "counts": {
    "collected": 299,
    "tender": 29,
-   "published": "57건"
+   "published": "24건"
   },
   "tags": [
    "일본",
@@ -950,7 +967,7 @@
   "counts": {
    "collected": 271,
    "tender": 33,
-   "published": "57건"
+   "published": "31건"
   },
   "tags": [
    "NATO",
@@ -970,7 +987,7 @@
   "counts": {
    "collected": 244,
    "tender": 26,
-   "published": "54건"
+   "published": "27건"
   },
   "tags": [
    "핀란드",
@@ -990,7 +1007,7 @@
   "counts": {
    "collected": 250,
    "tender": 26,
-   "published": "50건"
+   "published": "23건"
   },
   "tags": [
    "UAE",
@@ -1010,7 +1027,7 @@
   "counts": {
    "collected": 448,
    "tender": 68,
-   "published": "72건"
+   "published": "50건"
   },
   "tags": [
    "UAE",
@@ -1030,7 +1047,7 @@
   "counts": {
    "collected": 290,
    "tender": 24,
-   "published": "51건"
+   "published": "25건"
   },
   "tags": [
    "인도",
@@ -1050,7 +1067,7 @@
   "counts": {
    "collected": 206,
    "tender": 29,
-   "published": "53건"
+   "published": "28건"
   },
   "tags": [
    "이집트",
@@ -1070,7 +1087,7 @@
   "counts": {
    "collected": 272,
    "tender": 30,
-   "published": "55건"
+   "published": "30건"
   },
   "tags": [
    "UAE",
@@ -1090,7 +1107,7 @@
   "counts": {
    "collected": 297,
    "tender": 28,
-   "published": "53건"
+   "published": "26건"
   },
   "tags": [
    "UAE",
@@ -1110,7 +1127,7 @@
   "counts": {
    "collected": 290,
    "tender": 32,
-   "published": "51건"
+   "published": "24건"
   },
   "tags": [
    "UAE",
@@ -1130,7 +1147,7 @@
   "counts": {
    "collected": 461,
    "tender": 63,
-   "published": "74건"
+   "published": "49건"
   },
   "tags": [
    "캐나다",
@@ -1150,7 +1167,7 @@
   "counts": {
    "collected": 245,
    "tender": 30,
-   "published": "53건"
+   "published": "28건"
   },
   "tags": [
    "NATO",
@@ -1170,7 +1187,7 @@
   "counts": {
    "collected": 291,
    "tender": 28,
-   "published": "56건"
+   "published": "26건"
   },
   "tags": [
    "루마니아",
@@ -1190,7 +1207,7 @@
   "counts": {
    "collected": 291,
    "tender": 24,
-   "published": "60건"
+   "published": "30건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -1210,7 +1227,7 @@
   "counts": {
    "collected": 251,
    "tender": 23,
-   "published": "52건"
+   "published": "28건"
   },
   "tags": [
    "노르웨이",
@@ -1230,7 +1247,7 @@
   "counts": {
    "collected": 453,
    "tender": 66,
-   "published": "71건"
+   "published": "49건"
   },
   "tags": [
    "노르웨이",
@@ -1250,7 +1267,7 @@
   "counts": {
    "collected": 276,
    "tender": 33,
-   "published": "52건"
+   "published": "28건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -1270,7 +1287,7 @@
   "counts": {
    "collected": 303,
    "tender": 29,
-   "published": "54건"
+   "published": "32건"
   },
   "tags": [
    "모로코",
@@ -1290,7 +1307,7 @@
   "counts": {
    "collected": 241,
    "tender": 25,
-   "published": "52건"
+   "published": "25건"
   },
   "tags": [
    "캐나다 잠수함",
@@ -1310,7 +1327,7 @@
   "counts": {
    "collected": 200,
    "tender": 24,
-   "published": "54건"
+   "published": "29건"
   },
   "tags": [
    "폴란드",
@@ -1330,7 +1347,7 @@
   "counts": {
    "collected": 491,
    "tender": 76,
-   "published": "73건"
+   "published": "54건"
   },
   "tags": [
    "페루",
